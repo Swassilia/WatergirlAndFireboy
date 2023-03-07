@@ -12,6 +12,7 @@ Personnage::Personnage(const Type & t)
     type_p= t;
     vivant=true;
     
+    
 }
 
 Personnage::~Personnage()
@@ -22,7 +23,7 @@ Personnage::~Personnage()
 
 void Personnage:: deplacer (const Plateau & p, int n )
 {
-    
+    if()
 }
 
 float Personnage:: getx()

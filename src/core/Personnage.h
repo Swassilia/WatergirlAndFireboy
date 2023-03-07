@@ -7,7 +7,9 @@
 class Personnage
 {
 private:
-    /** */
+    /** 
+     * 
+    */
     Vect2 pos;
     Vect2 dir; 
     string nom, prenom;
@@ -41,8 +43,19 @@ public:
      * 
     */
     float getY();
+    /**
+     * @brief recupere la coordonnée y
+     * @return la valeur de y (float)
+     * 
+    */
     Void sauter();
+    /**
+     * @brief recupere la coordonnée y
+     * @return la valeur de y (float)
+     * 
+    */
     void entrernom();
+    
     
 
 };
