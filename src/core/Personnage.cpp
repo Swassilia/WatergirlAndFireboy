@@ -2,8 +2,8 @@
 #include <cstddef>
 #include <iostream>
 #include <fstream>
-#include <string>
 #include "Personnage.h"
+using namespace std;
 
 
 
@@ -23,14 +23,14 @@ Personnage::~Personnage()
 
 void Personnage:: deplacer (const Plateau & p, int n )
 {
-    if()
+    if(n>2);
 }
 
-float Personnage:: getx()
+float Personnage:: getX()
 {
     return pos.x; 
 }
-float Personnage:: gety()
+float Personnage:: getY()
 {
     return pos.y;
 }
@@ -40,7 +40,7 @@ void Personnage:: sauter()
 
 }
 
-void Personnage entrernom()
+void Personnage::entrernom()
 {
 
 }

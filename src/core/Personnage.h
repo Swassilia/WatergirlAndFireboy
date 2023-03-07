@@ -1,7 +1,6 @@
  #ifndef _Personnage
  #define _Personnage
  #include "Vect2.h"
- #include <string>
  #include "Type.h"
  #include "Plateau.h"
 class Personnage
@@ -12,7 +11,8 @@ private:
     */
     Vect2 pos;
     Vect2 dir; 
-    string nom, prenom;
+    char * nom;
+    char * prenom;
     Type type_p;
     bool vivant;
 public:
@@ -29,7 +29,7 @@ public:
      * @param n 
      * 
     */
-    void deplacer (Plateau p, int n );
+    void deplacer (const Plateau & p, int n );
     
     /**
      * @brief récupere la coordonnée x
@@ -48,7 +48,7 @@ public:
      * @return la valeur de y (float)
      * 
     */
-    Void sauter();
+    void sauter();
     /**
      * @brief recupere la coordonnée y
      * @return la valeur de y (float)
@@ -59,8 +59,6 @@ public:
     
 
 };
-
-
 
 
 
