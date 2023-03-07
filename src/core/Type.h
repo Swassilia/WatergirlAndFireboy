@@ -7,5 +7,6 @@ enum Type {
     Lava,
     Riviere,
     Bloc,
+    Diamon
 };
 #endif
