@@ -1,13 +1,30 @@
 #include "Bonus.h"
+#include <iostream>
+#include <time.h>
+using namespace std;
 
-Bonus(){
-    type_bon = Diamon;   //probleme ici le diamant récupérable par le feu ou l'eau? faudrait peut être mettre diamant en donnée membre et déclaré son type comme feu ou eau
-}
+Bonus::Bonus( unsigned int posx, unsigned int posy){
 
-/* Bonus(){
-    DiamantF = feu;
-    DiamantE = eau;
-}*/
-~Bonus(){
+    diamantE= DiamantEau;    
+    diamantF= DiamantFeu;
+
+    pos_E.x=0.0;
+    pos_E.y=0.0;
+
+    pos_F.x= 0.0;
+    pos_F.y=0.0;
+    
+    }
+
+Bonus::~Bonus(){
+    
+    diamantE = defaut;
+    diamantF = defaut;
+
+    pos_E.x=0.0;
+    pos_E.y=0.0;
+
+    pos_F.x=0.0;
+    pos_F.y=0.0;
     
 }

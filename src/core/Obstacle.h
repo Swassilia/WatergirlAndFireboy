@@ -5,16 +5,28 @@
 
 class Obstacle
 {
+
 private:
-/* si on met rivière ici comme obstacle :
-    Type rivière; et le constructeur défini si c'est de l'eau du feu ou le truc vert qui tue les 2
-    */
+
     Type type_ob;
+
     Vect2 pos;
+
     int dir;
+
+    unsigned int taillex; //la taille de l'obstacle
+
+    unsigned int tailley;
+
 public:
-    Obstacle(Type type_ob, Vect2 pos);
+
+    Obstacle(Type type_ob, Vect2 pos, unsigned int taille_x, unsigned int taille_y);
+
     ~Obstacle();
+
     void bougeAuto();
+
 };
 
+
+#endif

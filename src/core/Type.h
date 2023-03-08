@@ -2,11 +2,15 @@
 #define _Type
 
 enum Type {
+
     Feu,
     Eau,
+    DiamantEau,
+    DiamantFeu,
     Lava,
-    Riviere, //problemou, la rivière doit avoir un type aussi donc déclaré rivière dans obstacle
+    Riviere, 
     Bloc, 
-    Diamon //pareil, déclarer diamant dans bonus car il va avoir un type
+    defaut,
 };
+
 #endif

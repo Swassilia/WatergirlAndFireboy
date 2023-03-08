@@ -5,16 +5,28 @@
 
 class Bonus
 {
+//je pense qu'on va devoir faire deux type de bonus, bonusFeu et bonusEau
+// si on laisse "type type_b" dans le constructeur ca sera qu'un seul type en mode "eau"
+//donc on aura pas de diamant feu
 private:
-    Type type_b;
-    /* 
-    si on grade l'idée du .cpp on aura :
-    Type diamantF;
+
     Type diamantE;
-    */
-    Vect2 pos_b;
+
+    Type diamantF;
+
+    Vect2 pos_E;
+
+    Vect2 pos_F;
+
+
+
 public:
-    Bonus();
+
+    Bonus(unsigned int posx, unsigned int posy );
+
     ~Bonus();
     
 };
+
+
+#endif
