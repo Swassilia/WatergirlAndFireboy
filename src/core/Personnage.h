@@ -19,17 +19,15 @@ public:
     /** @brief constructueur qui definit le type (obligatoire)
      * @param t type du personnage
     */
-    Personnage(const Type & t);
+    Personnage(const Type & t, float x, float y);
 
     /** @brief destructeur*/
     ~Personnage();
 
     /** @brief Déplace le personnage
-     * @param p
-     * @param n 
-     * 
+     
     */
-    void deplacer (const Plateau & p, int n );
+
     
     /**
      * @brief récupere la coordonnée x
@@ -44,18 +42,15 @@ public:
     */
     float getY();
     /**
-     * @brief recupere la coordonnée y
-     * @return la valeur de y (float)
-     * 
-    */
-    void sauter();
-    /**
-     * @brief recupere la coordonnée y
+     * @brief permet d'entrer le nom et prenom de l'utilisateur
      * @return la valeur de y (float)
      * 
     */
     void entrernom();
-    
+    void  DeplacerD ( );
+    void  DeplacerG ();
+    void  DeplacerH ( );
+    Type getType();
     
 
 };
