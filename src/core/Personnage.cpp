@@ -6,12 +6,13 @@
 using namespace std;
 
 
-
-Personnage::Personnage(const Type & t)
+Personnage::Personnage(const Type & t, float x, float y)
 {
-    type_p= t;
+
+    pos=make_Vect2(x,y);
+    dir= make_Vect2(0, -1)
+    type_p=t;ll
     vivant=true;
-    
     
 }
 
@@ -21,9 +22,19 @@ Personnage::~Personnage()
     
 }
 
-void Personnage:: deplacer (const Plateau & p, int n )
+void Personnage:: DeplacerG()
 {
-    if(n>2);
+    pos.x--;
+}
+void Personnage:: DeplacerD ()
+{
+    pos.x++;
+    
+}
+void Personnage::DeplacerH ()
+{
+    pos.y+=3;
+    
 }
 
 float Personnage:: getX()
@@ -34,12 +45,6 @@ float Personnage:: getY()
 {
     return pos.y;
 }
-
-void Personnage:: sauter()
-{
-
-}
-
 void Personnage::entrernom()
 {
 
