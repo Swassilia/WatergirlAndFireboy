@@ -27,6 +27,7 @@ public:
     int getDimy()const;
     
     void PlacerBonus();
+    void PlacerObstacle();
     void EstPosValide(const int x, const int y);
     void mangeBonus(const int x, const int y);  //il faudra modifier ces fonctions si on impose 2 bonus (un pour le feu et l'autre pour l'eau)
     void AjoutBonus(Bonus bon);    

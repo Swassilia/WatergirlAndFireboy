@@ -20,7 +20,7 @@ private:
 
 public:
 
-    Obstacle(Type type_ob, Vect2 pos, unsigned int taille_x, unsigned int taille_y);
+    Obstacle(Type type_ob, Vect2 pos);
 
     ~Obstacle();
 

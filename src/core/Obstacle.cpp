@@ -40,7 +40,7 @@ Obstacle::~Obstacle()
 }
 
 
-void Obstacle::bougeAuto(const Plateau &p){
+void Obstacle::bougeAuto(const Plateau &p){ //pas vraiment compris, precicer que c'est pour les blocs non? #esra 
     int dx [4] = { 1, 0, -1, 0};
     int dy [4] = { 0, 1, 0, -1};
     int xtmp,ytmp;

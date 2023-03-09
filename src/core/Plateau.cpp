@@ -48,12 +48,12 @@ Plateau::Plateau(){
     for(int x=0;x<dimx;++x)
 		for(int y=0;y<dimy;++y)
 		{
-			switch(plateau1[dimy-1-y][x])
+			switch(plateau1[dimy-1-y][x]) //l'inverse plus tot non?
 			{
 				case '#': plateau1[x][y] = WALL; break;
-				case '_': plateau1[x][y] = BLOC; break;
+				case '_': plateau1[x][y] = BLOC; break; //pas des obstacles plus tot?
 				case ' ': plateau1[x][y] = SPACE; break;
-                case '.': plateau1[x][y] = DOT;break;
+                case '.': plateau1[x][y] = DOT;break; //on a pas de dot pas besoin non?
 			}
 		}
     for(int x=0;x<dimx;++x)
@@ -80,6 +80,7 @@ Plateau::~Plateau(){
         tabO = nullptr;
     }
 }
+
 int Plateau::getXY(){
 
 }
@@ -95,12 +96,53 @@ void Plateau::setDimy(int y){
 int Plateau::getDimy()const{
     return dimy;
 }
+
 void Plateau::Placerbonus(){
     for(int i=0;i<dimx;i++)
         for(int j=0;j<dimy;j++){
-            tabB[i][j];
+            
+                tabB[i][j];       
+            
         }
 }
+/*idée pour faciliter les tirage au sort
+int random(int low, int high)
+{
+    return low + rand() % (high - low + 1);
+}
+
+donc si on veut tirer un nombre entre 5 et 10: random (5,10);
+*/
+
+/*void Plateau::Placerbonus(){
+    int nbBonus= (rand () % 3) + 3; //normalement génére entre 3 et 6 bonus
+    tabB= new Bonus[nbBonus];
+    for (int i=0; i<nbBonus; i++)
+    {
+        do{
+            unsigned int x= (rand ()% dimx); //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
+            unsigned int y= (rand ()% dimy);
+            tabB = Bonus(x,y);
+        }
+        while(plateau1[x][y] != WALL || tabB[x][y] != "deja pris") //comment traduire le "deja pris"
+    }
+
+}*/
+
+void Plateau:PlacerObstacle()
+{
+    int nbObs= (rand () % 4) + 4; //normalement génére entre 4 et 7 obstacles
+    for (int i=0; i<nbObs; i++)
+    {
+        do{
+            unsigned int x= (rand ()% dimx); //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
+            unsigned int y= (rand ()% dimy);
+            tabO= Obstacle(x,y);
+        }
+        while(plateau1[x][y] != WALL || tabO[x][y] != "deja pris") //comment traduire le "deja pris"
+    }
+}
+
 void Plateau::EstPosValide(const int x, const int y){
     return ((x>=0) && (x<dimx) && (y>=0) && (y<dimy) && (plateau1[x][y]!='#'));
 }
