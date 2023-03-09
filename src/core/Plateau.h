@@ -10,28 +10,27 @@ private:
 
     unsigned int dimx, dimy;
 
-    Plateau * tab; //???
-
-    Obstacle * tabo; // tableau qui contient les obstacles du plateau
+    Obstacle * tabO; // tableau qui contient les obstacles du plateau
     
-    Bonus * tabb; 
+    Bonus * tabB; 
 
 public:
 
-    Plateau(/* args */);
+    Plateau();
 
     ~Plateau();
 
     int getXY();
-
-    int getDimx();
-
-    int getDimy();
-
-    void mangeBonus(Bonus bon);  //il faudra modifier ces fonctions si on impose 2 bonus (un pour le feu et l'autre pour l'eau)
-    void AjoutBonus(Bonus bon);
+    void setDimx(int x);
+    int getDimx()const;
+    void setDimy(int y);
+    int getDimy()const;
     
+    void PlacerBonus();
+    void EstPosValide(const int x, const int y);
+    void mangeBonus(const int x, const int y);  //il faudra modifier ces fonctions si on impose 2 bonus (un pour le feu et l'autre pour l'eau)
+    void AjoutBonus(Bonus bon);    
     int tempEcoule();
 
 };
-
+#endif

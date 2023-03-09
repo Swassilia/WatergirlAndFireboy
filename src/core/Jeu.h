@@ -1,3 +1,5 @@
+#ifndef _JEU
+#define _JEU
 #include "Personnage.h"
 #include "Obstacle.h"
 #include "Plateau.h"
@@ -26,3 +28,5 @@ public:
     int calculColl(Vect2 a,Vect2 b);
     void AjoutScore(Bonus bon, Personnage per);
 };
+
+#endif
