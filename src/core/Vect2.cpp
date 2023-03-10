@@ -1,8 +1,9 @@
 #include "Vect2.h"
+#include <math.h>
 
 Vect2 make_Vect2 (float x, float y )
  {
-     Point v;
+     Vect2 v;
      v.x = x;
      v.y = y ;
      return v;

@@ -2,9 +2,9 @@
 
 const char plateau1[17][20] = {
     "####################"
-    "  PE  PF            "
-    "################    "
-    "#        ##   ##____"
+    "  PE  PF           #"
+    "################   #"
+    "#        ##   ##___#"
     "#      #############"
     "#  ###             #"
     "###    #####       #"
@@ -22,9 +22,9 @@ const char plateau1[17][20] = {
 }
 const char plateau2[17][20] = {
     "####################"
-    "  PE  PF            "
-    "#########    ###    "
-    "#               ____"
+    "# PE  PF           #"
+    "#########    ###   #"
+    "#               ___#"
     "#      #############"
     "#  ###             #"
     "###    #######     #"
@@ -45,15 +45,16 @@ Plateau::Plateau(){
     dimy=20;
     tabO= nullptr;
     tabB= nullptr;
+
     for(int x=0;x<dimx;++x)
 		for(int y=0;y<dimy;++y)
 		{
 			switch(plateau1[dimy-1-y][x]) //l'inverse plus tot non?
 			{
 				case '#': plateau1[x][y] = WALL; break;
-				case '_': plateau1[x][y] = BLOC; break; //pas des obstacles plus tot?
+				case '_': plateau1[x][y] = BLOC; break; //pas des obstacles plus tot :oui mais ils ont une place precise dans chaque plateau
 				case ' ': plateau1[x][y] = SPACE; break;
-                case '.': plateau1[x][y] = DOT;break; //on a pas de dot pas besoin non?
+                //case '.': plateau1[x][y] = DOT;break; //on a pas de dot pas besoin non :c'est les diamonts mais jenleve vu quon les placera plus tard
 			}
 		}
     for(int x=0;x<dimx;++x)
@@ -64,7 +65,7 @@ Plateau::Plateau(){
 				case '#': plateau2[x][y] = WALL; break;
 				case '_': plateau2[x][y] = BLOC; break;
 				case ' ': plateau2[x][y] = SPACE; break;
-                case '.': plateau2[x][y] = DOT;break;
+                //case '.': plateau2[x][y] = DOT;break;
 			}
 		}
 }
@@ -129,7 +130,7 @@ donc si on veut tirer un nombre entre 5 et 10: random (5,10);
 
 }*/
 
-void Plateau:PlacerObstacle()
+void Plateau::PlacerObstacle()
 {
     int nbObs= (rand () % 4) + 4; //normalement génére entre 4 et 7 obstacles
     for (int i=0; i<nbObs; i++)

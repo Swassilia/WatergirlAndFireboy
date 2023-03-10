@@ -13,9 +13,6 @@ Image::Image()
     dimx=0;
     dimy=0;
     tab=nullptr;
-    m_surface = nullptr;
-    m_texture = nullptr;
-    m_hasChanged = false;
 
 }
 
@@ -40,10 +37,6 @@ Image:: ~Image()
         delete [] tab;
         tab = nullptr;
     }
-    //SDL
-    m_surface = nullptr;
-    m_texture = nullptr;
-    m_hasChanged = false;
 
 }
 

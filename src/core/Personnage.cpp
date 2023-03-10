@@ -10,8 +10,18 @@ Personnage::Personnage(const Type & t, float x, float y)
 {
 
     pos=make_Vect2(x,y);
-    dir= make_Vect2(0, -1)
-    type_p=t;ll        
+    dir= make_Vect2(0, -1);
+    switch(i)
+    {
+    case 0:
+        type_p = Feu;
+        break;
+    case 1:
+        type_p = Eau;
+        break;
+    default:
+        break;
+    }      
     vivant=true;
     //initialisation de prenom et nom?
 }
@@ -53,5 +63,8 @@ float Personnage:: getY()
 }
 void Personnage::entrernom()
 {
-
+    
+}
+Type Personnage::getType(){
+    return type_p;
 }

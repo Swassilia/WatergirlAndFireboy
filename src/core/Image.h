@@ -1,12 +1,7 @@
+#ifndef _IMAGE
 #define _IMAGE
 #include "Pixel.h"
 #include <string>
-
-
-
-
-
-
 
 class Image{
 
@@ -66,7 +61,7 @@ class Image{
     * \param Ymax coordonée entiere superieur de longueur
     * \param couleur Pixel qui sera la nouvelle couleur du rectangle
     */
-   void dessinerRectangle (const unsigned int Xmin, const unsigned int Ymin,const unsigned int Xmax, const unsigned int Ymax,const Pixel couleur);
+   void dessinerRectangle (const unsigned int Xmin, const unsigned int Ymin,const unsigned int Xmax, const unsigned int Ymax,const Pixel& couleur);
 
    /** 
     * @brief Efface l'image en la remplissant de la couleur en paramètre

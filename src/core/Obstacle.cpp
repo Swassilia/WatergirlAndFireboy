@@ -18,7 +18,7 @@ Obstacle::Obstacle(unsigned int posx, unsigned int posy){ //je ne pense pas que 
         tailley=1;
         break;
     case 6:
-        type_ob=bloc;
+        type_ob= Bloc;
         taillex= 2;
         tailley=2;
         break;

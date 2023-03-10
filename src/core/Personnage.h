@@ -6,9 +6,6 @@
 class Personnage
 {
 private:
-    /** 
-     * 
-    */
     Vect2 pos;
     Vect2 dir; 
     char * nom;

@@ -1,6 +1,6 @@
 #include "Bonus.h"
-#include <iostream>
-#include <time.h>
+//#include <iostream>
+//#include <time.h>
 using namespace std;
 
 Bonus::Bonus( unsigned int posx, unsigned int posy){

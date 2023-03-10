@@ -10,13 +10,13 @@ class Jeu
 {
 private:
     Plateau pla;
-    Personnage feu;
-    Personnage eau;
+    Personnage personne;
+    //Personnage eau;
     Obstacle *tab;
     unsigned int score;
     Bonus bon;
 public:
-    Jeu(Plateau pla);
+    Jeu(/*Plateau pla*/);
     ~Jeu();
     Plateau getPlateau();
     Personnage getPersonnage();
