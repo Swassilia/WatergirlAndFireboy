@@ -1,5 +1,7 @@
 #include "Vect2.h"
 #include <math.h>
+#include <iostream>
+using namespace std;
 
 Vect2 make_Vect2 (float x, float y )
  {
@@ -13,12 +15,12 @@ float distance( const Vect2 & a,const Vect2 & b)
 {
     return (sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y)));
 }
-Vect2 operator+(Vect2 a, Vect2 b)
+Vect2 operator+(const Vect2 & a, const Vect2 &b)
 {
     return(make_Vect2(a.x+b.x,a.y+b.y));
 }
 
-Vect2 operator-(const Vect2 a, const Vect2& b)
+Vect2 operator-(const Vect2& a, const Vect2& b)
 {
    return(make_Vect2(a.x-b.x,a.y-b.y));
 }
@@ -32,3 +34,4 @@ Vect2 operator*( const Vect2 & a,int lambda)
 {
     return (make_Vect2(lambda*a.x, lambda*a.y));
 }
+
