@@ -68,3 +68,12 @@ void Personnage::entrernom()
 Type Personnage::getType(){
     return type_p;
 }
+
+void Personnage::entrernom()
+{
+    cout<<"Entrez votre nom"<<endl;
+    cin>>nom;
+    cout<<endl;
+
+}
+
