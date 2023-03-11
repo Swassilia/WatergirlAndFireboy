@@ -2,10 +2,12 @@
  #define _Personnage
  #include "Vect2.h"
  #include "Type.h"
- #include "Plateau.h"
 class Personnage
 {
 private:
+    /** 
+     * 
+    */
     Vect2 pos;
     Vect2 dir; 
     char * nom;
@@ -15,6 +17,8 @@ private:
 public:
     /** @brief constructueur qui definit le type (obligatoire)
      * @param t type du personnage
+     * @param x la position en x 
+     * @param y la position en y 
     */
     Personnage(const Type & t, float x, float y);
 
@@ -44,10 +48,24 @@ public:
      * 
     */
     void entrernom();
+    /**
+     * @brief se deplacer a droite
+     * @def augmente la valeur en position x
+     * 
+    */
     void  DeplacerD ( );
+    /**
+     * @brief se deplacer a gauche
+     * @def diminue la valeur en position x
+     * 
+    */
     void  DeplacerG ();
+    /**
+     * @brief se deplacer en haut 
+     * @def augmente la valeur en position y
+     * 
+    */
     void  DeplacerH ( );
-    Type getType();
     
 
 };
