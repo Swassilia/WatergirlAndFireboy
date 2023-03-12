@@ -20,7 +20,7 @@ public:
      * @param y la position en y 
     */
     Personnage(const Type & t, float x, float y);
-
+    Personnage();
     /** @brief destructeur*/
     ~Personnage();
        

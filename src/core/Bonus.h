@@ -22,7 +22,7 @@ public:
     Bonus(unsigned int posx, unsigned int posy );
 
     ~Bonus();
-    
+
 };
 
 

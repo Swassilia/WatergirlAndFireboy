@@ -1,95 +1,89 @@
 #include "Jeu.h"
-
+//construit 
 Jeu::Jeu(){
-    if(personne.getType()=Eau){
-        personne = Eau;
-    }else
-    if(personne.getType()=Feu){
-        personne = Feu;
-    }
+    feu (Feu, 0,0);
+    eau (Eau, 0,0);
     tab = nullptr;
     score = 0;
 }
 Jeu::~Jeu(){
-    personne.getType()=defaut;
+    feu (Defaut, 0,0);
+    eau (Defaut, 0,0);
     if(tab!=nullptr){
         delete []tab;
         tab = nullptr;
     }
     score = 0;
-    bon = defaut;
+    bon = Defaut;
 }
 
 const Plateau Jeu::getPlateau()const{
     return pla;
 }
-const Personnage Jeu::getPersonnage()const{
-    if(personne.getType()=Eau){
-        return Eau;
-    }else
-    if(personne.getType()=Feu){
-        return Feu;
-    }
+const Personnage Jeu::getPersonnageEau()const{
+    return eau;
 }
+const Personnage Jeu::getPersonnageFeu()const{
+    return feu;
+}
+
 bool Jeu::ActionClavier(){
     int touche;
-    if(personne.getType()=Eau){
+    
     switch(touche) {
             case 'q' :
-                    personne.DeplacerG();
+                    eau.DeplacerG();
                     break;
             case 'd' :
-                    personne.DeplacerD();
+                    eau.DeplacerD();
                     break;
             case 'z' :
-                    personne.DeplacerH();
+                    eau.DeplacerH();
                     break;
-        }
-        if (pla.getXY(personne.getX(),personne.getY())=='.') {
-            pla.mangeBonus(personne.getX(),personne.getY());
-            return true;
-        }
-        return false;
-    }else
-    if(personne.getType()=Feu){
-        switch(touche) {
             case 'k' :
-                    personne.DeplacerG();
+                    feu.DeplacerG();
                     break;
             case 'm' :
-                    personne.DeplacerD();
+                    feu.DeplacerD();
                     break;
             case 'o' :
-                    personne.DeplacerH();
+                    feu.DeplacerH();
                     break;
         }
-        if (pla.getXY(personne.getX(),personne.getY())=='.') {
-            pla.mangeBonus(personne.getX(),personne.getY());
-            return true;
-        }
-        return false;
-    }
 
 }
 void Jeu::ActionAuto(){
-    bon.bougeAuto(pla);
+    while(true){
+        
+    }
 }
 
-bool Jeu::succe(){
-
+bool Jeu::collision(const Personnage per, bool t){
+    //utiliser la distance Vect2
 }
-bool Jeu::perte(){
-
+bool Jeu::collision_P_B(const Personnage per, const Bonus bon ){
+    //utiliser mangeBonus
 }
-
-int Jeu::calculColl(Vect2 a, Vect2 b){
-    
-}
-
-bool Jeu::collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla){
-
-}
-
 void Jeu::AjoutScore(const Bonus bon,const Personnage per){
+    if(collision_P_B(eau,bon) || collision_P_B(feu,bon)){
+        score ++;
+    }
+}
 
+//A MODIFIER DAPRES LE TAB D'OBSTACLE
+bool Jeu::succe()const{
+    if(collision(eau,(ob.type_ob == Eau)) && collision(feu,(ob.type_ob == Feu))){
+        return true;
+    }
+}
+bool Jeu::perte()const{
+    if(collision(eau,(ob.type_ob=Lava)) = true){
+        return true;
+    }else
+    if(collision(feu,(ob.type_ob=Riviere)) = true){
+        return true;
+    }else
+    if(collision(eau,(ob.type_ob=O_Vert)) || collision(feu,(ob.type_ob = O_Vert))){
+        return true;
+    }
 }

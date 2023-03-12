@@ -16,11 +16,13 @@ Personnage::Personnage(const Type & t, float x, float y)
     nom=nullptr;      
     vivant=true;
 }
-
+Personnage::Personnage(){
+    
+}
 Personnage::~Personnage()
 {
     vivant=false;
-    type_p=defaut;
+    type_p=Defaut;
     dir=make_Vect2(0,0);
     pos=make_Vect2(0,0);
     nom= nullptr;

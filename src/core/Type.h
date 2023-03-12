@@ -8,9 +8,12 @@ enum Type {
     DiamantEau,
     DiamantFeu,
     Lava,
-    Riviere, 
+    Riviere,
+    O_Vert, 
     Bloc, 
-    defaut,
+    Defaut,
+    PorteE,
+    PorteF,
 };
 
 #endif

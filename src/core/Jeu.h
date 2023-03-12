@@ -10,8 +10,8 @@ class Jeu
 {
 private:
     Plateau pla;
-    Personnage personne;
-    //Personnage eau;
+    Personnage feu;
+    Personnage eau;
     Obstacle *tab;
     unsigned int score;
     Bonus bon;
@@ -41,7 +41,9 @@ public:
      *  
      * @return ne modifie pas la valeur de retour de personnage 
      */
-    const Personnage getPersonnage()const;
+    const Personnage getPersonnageEau()const;
+
+    const Personnage getPersonnageFeu()const;
 
     /**
      * @brief recupère les actions du clavier faite par le joueur
@@ -57,51 +59,29 @@ public:
      */
     void ActionAuto();
 
-    /**
-     * @brief un booléen qui retourne vrai si la partie a été réussie
-     * 
-     * @return true 
-     * @return false 
-     */
-    bool succe();
+        // /**
+        //  * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
+        //  * en paramètres convient
+        //  * On va tester la collision entre 
+        //  * Personnage et Bonus:
+        //  *  Personnage type eau avec Bonus type DiamondE
+        //  *  Personnage type feu avec Bonus type DiamondF
+        //  * Personnage et Obstacle:
+        //  *  Personnage type eau avec Obstacle type Lava
+        //  *  Personnage type feu avec Obstacle type Riviere
+        //  *Ainsi tester toutes ces collision sur le plateau
+        //  * @param per Personnage
+        //  * @param ob Obstacle
+        //  * @param bon Bonus
+        //  * @param pla Plateau
+        //  * @return true 
+        //  * @return false 
+        //  */
+        // bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
 
-    /**
-     * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
-     * 
-     * @return true 
-     * @return false 
-     */
-    bool perte();
+    bool collision(const Personnage per, bool t);
 
-    /**
-     * @brief calcule la collision entre deux vecteurs a et b
-     * 
-     * @param a 
-     * @param b 
-     * @return int retourne le résultat du calcule
-     */
-    int calculColl(Vect2 a,Vect2 b);
-
-    /**
-     * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
-     * en paramètres convient
-     * On va tester la collision entre 
-     * Personnage et Bonus:
-     *  Personnage type eau avec Bonus type DiamondE
-     *  Personnage type feu avec Bonus type DiamondF
-     * Personnage et Obstacle:
-     *  Personnage type eau avec Obstacle type Lava
-     *  Personnage type feu avec Obstacle type Riviere
-     *Ainsi tester toutes ces collision sur le plateau
-     * @param per Personnage
-     * @param ob Obstacle
-     * @param bon Bonus
-     * @param pla Plateau
-     * @return true 
-     * @return false 
-     */
-    bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
-
+    bool collision_P_B(const Personnage per, const Bonus bon);
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
@@ -109,6 +89,22 @@ public:
      * @param per Personnage (feu et eau)
      */
     void AjoutScore(const Bonus bon,const Personnage per);
+
+    /**
+     * @brief un booléen qui retourne vrai si la partie a été réussie
+     * 
+     * @return true 
+     * @return false 
+     */
+    bool succe()const;
+
+    /**
+     * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
+     * 
+     * @return true 
+     * @return false 
+     */
+    bool perte(const Personnage per, const Obstacle ob)const;
 };
 
 #endif

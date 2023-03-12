@@ -9,7 +9,7 @@ class Obstacle
 
 private:
 
-    Type type_ob;
+    
 
     Vect2 pos;
 
@@ -20,7 +20,7 @@ private:
     unsigned int tailley;
 
 public:
-
+    Type type_ob;
     Obstacle(Type type_ob, Vect2 pos);
 
     ~Obstacle();

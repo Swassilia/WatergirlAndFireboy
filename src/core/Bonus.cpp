@@ -18,8 +18,8 @@ Bonus::Bonus( unsigned int posx, unsigned int posy){
 
 Bonus::~Bonus(){
     
-    diamantE = defaut;
-    diamantF = defaut;
+    diamantE = Defaut;
+    diamantF = Defaut;
 
     pos_E.x=0.0;
     pos_E.y=0.0;
