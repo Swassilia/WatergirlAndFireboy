@@ -11,8 +11,7 @@ Jeu::Jeu(){
     score = 0;
 }
 Jeu::~Jeu(){
-    feu.getType()=default;
-    eau.getType()=default;
+    personne.getType()=defaut;
     if(tab!=nullptr){
         delete []tab;
         tab = nullptr;
@@ -20,10 +19,11 @@ Jeu::~Jeu(){
     score = 0;
     bon = defaut;
 }
-Plateau Jeu::getPlateau(){
+
+const Plateau Jeu::getPlateau()const{
     return pla;
 }
-Personnage Jeu::getPersonnage(){
+const Personnage Jeu::getPersonnage()const{
     if(personne.getType()=Eau){
         return Eau;
     }else
@@ -31,20 +31,18 @@ Personnage Jeu::getPersonnage(){
         return Feu;
     }
 }
-void Jeu::ActionClavier(){
+bool Jeu::ActionClavier(){
+    int touche;
     if(personne.getType()=Eau){
     switch(touche) {
             case 'q' :
-                    pac.gauche(pla);
+                    personne.DeplacerG();
                     break;
             case 'd' :
-                    pac.droite(pla);
+                    personne.DeplacerD();
                     break;
             case 'z' :
-                    pac.haut(pla);
-                    break;
-            case 's' :
-                    pac.bas(pla);
+                    personne.DeplacerH();
                     break;
         }
         if (pla.getXY(personne.getX(),personne.getY())=='.') {
@@ -56,16 +54,13 @@ void Jeu::ActionClavier(){
     if(personne.getType()=Feu){
         switch(touche) {
             case 'k' :
-                    pac.gauche(pla);
+                    personne.DeplacerG();
                     break;
             case 'm' :
-                    pac.droite(pla);
+                    personne.DeplacerD();
                     break;
             case 'o' :
-                    pac.haut(pla);
-                    break;
-            case 'l' :
-                    pac.bas(pla);
+                    personne.DeplacerH();
                     break;
         }
         if (pla.getXY(personne.getX(),personne.getY())=='.') {
@@ -77,5 +72,24 @@ void Jeu::ActionClavier(){
 
 }
 void Jeu::ActionAuto(){
+    bon.bougeAuto(pla);
+}
+
+bool Jeu::succe(){
+
+}
+bool Jeu::perte(){
+
+}
+
+int Jeu::calculColl(Vect2 a, Vect2 b){
     
+}
+
+bool Jeu::collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla){
+
+}
+
+void Jeu::AjoutScore(const Bonus bon,const Personnage per){
+
 }

@@ -2,6 +2,7 @@
 #define _Obstacle
 #include "Type.h"
 #include "Vect2.h"
+#include "Plateau.h"
 
 class Obstacle
 {
@@ -23,8 +24,8 @@ public:
     Obstacle(Type type_ob, Vect2 pos);
 
     ~Obstacle();
-
-    void bougeAuto();
+    Vect2 getPos(float pox, float posy);
+    void bougeAuto(const Plateau &p);
 
 };
 

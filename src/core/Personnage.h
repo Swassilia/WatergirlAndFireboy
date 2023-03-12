@@ -24,12 +24,7 @@ public:
 
     /** @brief destructeur*/
     ~Personnage();
-
-    /** @brief Déplace le personnage
-     
-    */
-
-    
+       
     /**
      * @brief récupere la coordonnée x
      * @return la valeur de x (float)
@@ -48,6 +43,12 @@ public:
      * 
     */
     void entrernom();
+    /**
+     * @brief recupère le type d'un personnage
+     * 
+     * @return Type recupère du enume Type les types feu et eau 
+     */
+    Type getType();
     /**
      * @brief se deplacer a droite
      * @def augmente la valeur en position x

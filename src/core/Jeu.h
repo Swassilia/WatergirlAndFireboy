@@ -16,17 +16,99 @@ private:
     unsigned int score;
     Bonus bon;
 public:
-    Jeu(/*Plateau pla*/);
+    /**
+     * @brief Constructeur de la classe Jeu
+     * 
+     */
+    Jeu();
+
+    /**
+     * @brief Destructeur de la classe Jeu
+     * 
+     */
     ~Jeu();
-    Plateau getPlateau();
-    Personnage getPersonnage();
-    void ActionClavier();
+
+    /**
+     * @brief Recupère le Plateau
+     * 
+     * @return ne modifie pas la valeur de retour du plateau 
+     */
+    const Plateau getPlateau()const;
+
+    /**
+     * @brief Recupère un personnage
+     * de type feu ou de type eau
+     *  
+     * @return ne modifie pas la valeur de retour de personnage 
+     */
+    const Personnage getPersonnage()const;
+
+    /**
+     * @brief recupère les actions du clavier faite par le joueur
+     * 
+     * @return true si la touche est réalisée
+     * @return false si non
+     */
+    bool ActionClavier();
+
+    /**
+     * @brief permet les actions automatiques des obstacles de type Bloc
+     * 
+     */
     void ActionAuto();
+
+    /**
+     * @brief un booléen qui retourne vrai si la partie a été réussie
+     * 
+     * @return true 
+     * @return false 
+     */
     bool succe();
+
+    /**
+     * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
+     * 
+     * @return true 
+     * @return false 
+     */
     bool perte();
-    bool collision(Personnage per,Obstacle ob,Bonus bon,Plateau & pla);
+
+    /**
+     * @brief calcule la collision entre deux vecteurs a et b
+     * 
+     * @param a 
+     * @param b 
+     * @return int retourne le résultat du calcule
+     */
     int calculColl(Vect2 a,Vect2 b);
-    void AjoutScore(Bonus bon, Personnage per);
+
+    /**
+     * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
+     * en paramètres convient
+     * On va tester la collision entre 
+     * Personnage et Bonus:
+     *  Personnage type eau avec Bonus type DiamondE
+     *  Personnage type feu avec Bonus type DiamondF
+     * Personnage et Obstacle:
+     *  Personnage type eau avec Obstacle type Lava
+     *  Personnage type feu avec Obstacle type Riviere
+     *Ainsi tester toutes ces collision sur le plateau
+     * @param per Personnage
+     * @param ob Obstacle
+     * @param bon Bonus
+     * @param pla Plateau
+     * @return true 
+     * @return false 
+     */
+    bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
+
+    /**
+     * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
+     * 
+     * @param bon Bonus (DiamondF et DiamondE)
+     * @param per Personnage (feu et eau)
+     */
+    void AjoutScore(const Bonus bon,const Personnage per);
 };
 
 #endif

@@ -38,6 +38,25 @@ Personnage::~Personnage()
     
 }
 
+float Personnage:: getX()
+{
+    return pos.x; 
+}
+float Personnage:: getY()
+{
+    return pos.y;
+}
+
+void Personnage::entrernom()
+{
+    cout<<"Entrez votre nom"<<endl;
+    cin>>nom;
+    cout<<endl;
+
+}
+Type Personnage::getType(){
+    return type_p;
+}
 void Personnage:: DeplacerG()
 {
     pos.x--;
@@ -53,27 +72,4 @@ void Personnage::DeplacerH ()
     
 }
 
-float Personnage:: getX()
-{
-    return pos.x; 
-}
-float Personnage:: getY()
-{
-    return pos.y;
-}
-void Personnage::entrernom()
-{
-    
-}
-Type Personnage::getType(){
-    return type_p;
-}
-
-void Personnage::entrernom()
-{
-    cout<<"Entrez votre nom"<<endl;
-    cin>>nom;
-    cout<<endl;
-
-}
 

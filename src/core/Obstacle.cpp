@@ -1,8 +1,9 @@
 #include "Obstacle.h"
+#include <math.h>
 
-Obstacle::Obstacle(unsigned int posx, unsigned int posy){ //je ne pense pas que ca se passe comme ca pour la construction
-    pos.x =posx;
-    pos.y =posy;
+Obstacle::Obstacle(Type type_ob,Vect2 pos){ //je ne pense pas que ca se passe comme ca pour la construction
+    pos.x =1.0;
+    pos.y =1.0;
     dir=0;
     int i= (rand()%(7-4))+4;
     switch (i)
@@ -38,7 +39,10 @@ Obstacle::~Obstacle()
     tailley= 0;
 
 }
-
+Vect2 Obstacle::getPos(float posx, float posy){
+    pos.x = posx;
+    pos.y = posy;
+}
 
 void Obstacle::bougeAuto(const Plateau &p){ //pas vraiment compris, precicer que c'est pour les blocs non? #esra 
     int dx [4] = { 1, 0, -1, 0};
