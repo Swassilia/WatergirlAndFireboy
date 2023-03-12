@@ -8,33 +8,22 @@ using namespace std;
 
 Personnage::Personnage(const Type & t, float x, float y)
 {
-
+    assert (x>=0&&y>=0);
+    assert(t==Feu || t==Eau);
     pos=make_Vect2(x,y);
     dir= make_Vect2(0, -1);
-    switch(i)
-    {
-    case 0:
-        type_p = Feu;
-        break;
-    case 1:
-        type_p = Eau;
-        break;
-    default:
-        break;
-    }      
+    type_p=t;
+    nom=nullptr;      
     vivant=true;
-    //initialisation de prenom et nom?
 }
 
 Personnage::~Personnage()
 {
     vivant=false;
-    /*
     type_p=defaut;
     dir=make_Vect2(0,0);
     pos=make_Vect2(0,0);
-    //prenom et nom?
-    */
+    nom= nullptr;
     
 }
 
