@@ -11,7 +11,6 @@ private:
     Vect2 pos;
     Vect2 dir; 
     char * nom;
-    char * prenom;
     Type type_p;
     bool vivant;
 public:
