@@ -61,29 +61,37 @@ void Jeu::ActionAuto(){
 bool Jeu::collision(const Personnage per, bool t){
     //utiliser la distance Vect2
 }
-bool Jeu::collision_P_B(const Personnage per, const Bonus bon ){
-    //utiliser mangeBonus
-}
+// bool Jeu::collision_P_B(const Personnage per, const Bonus bon ){
+//     //utiliser mangeBonus
+// }
 void Jeu::AjoutScore(const Bonus bon,const Personnage per){
-    if(collision_P_B(eau,bon) || collision_P_B(feu,bon)){
+    if(collision(eau,(bon.type_bon == DiamondE)) || collision(feu,(bon.type_bon == DiamondF))){
         score ++;
     }
 }
 
 //A MODIFIER DAPRES LE TAB D'OBSTACLE
 bool Jeu::succe()const{
-    if(collision(eau,(ob.type_ob == Eau)) && collision(feu,(ob.type_ob == Feu))){
-        return true;
-    }
+    for(int i=0; i<pla.dimx;i++){
+        for(int j=0; j<pla.dimy; j++){
+            if(collision(eau,(tabO[i][j].type_ob == PorteE)) && collision(feu,(tabO[i][j].type_ob == PorteF))){
+            return true;
+            }
+        }
+    }   
 }
 bool Jeu::perte()const{
-    if(collision(eau,(ob.type_ob=Lava)) = true){
-        return true;
-    }else
-    if(collision(feu,(ob.type_ob=Riviere)) = true){
-        return true;
-    }else
-    if(collision(eau,(ob.type_ob=O_Vert)) || collision(feu,(ob.type_ob = O_Vert))){
-        return true;
+    for (int i=0; i<pla.dimx;i++){
+        for(int j=0; j<pla.dimy; j++){
+            if(collision(eau,(tabO[i][j].type_ob == Lava))){
+                return true;
+        }else
+            if(collision(feu,(tabO[i][j].type_ob == Riviere))){
+            return true;
+        }else
+            if(collision(eau,(tabO[i][j].type_ob == O_Vert)) || collision(feu,(tabO[i][j].type_ob == O_Vert))){
+            return true;
+        }
+        }
     }
 }
