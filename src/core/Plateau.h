@@ -37,7 +37,7 @@ public:
 
     void PlacerObstacle();
 
-    bool EstPosValide(const int x, const int y)const;
+    void EstPosValide(const int x, const int y);
 
     void mangeBonus(const int x, const int y);  
 

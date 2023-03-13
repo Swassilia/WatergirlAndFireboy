@@ -1,29 +1,22 @@
 #include "Bonus.h"
-//#include <iostream>
-#include <math.h>
 using namespace std;
+
+//Constructeur par défaut
 Bonus::Bonus(){}
+
+//Constructeur de la classe qui initialise le type du diamant, et sa position grâce aux coordonées x et y en paramètre
 Bonus::Bonus( Type t, unsigned int posx, unsigned int posy){
 
     pos.x=posx;
     pos.y=posy;
-    int i =(rand ()% 4 ) + 2 ;//pas sure du random
-    switch (i)
-    {
-    case 2: 
-        type_bon= DiamantEau;
-        break;
-    case 3:
-        type_bon= DiamantFeu;
-        break;
-    default:
-        break;
-    }
+    type_bon=t;
+
 }
+
+//Destructeur de la classe Bonus
 Bonus::~Bonus(){
     
     type_bon= Defaut;
-
     pos.x=0.0;
     pos.y=0.0;
     

@@ -1,44 +1,31 @@
 #include "Obstacle.h"
-#include <math.h>
 
+
+//Constructeur par defaut
 Obstacle::Obstacle(){}
-Obstacle::Obstacle(Type t,const int x, const int y){ 
+
+//Constructeur de la classe qui initialise le type de l'obstacle, et sa position grâce aux coordonées x et y en paramètre
+Obstacle::Obstacle(Type t,unsigned int x, unsigned int y){ 
+
     pos.x =x;
     pos.y =y;
     dir=0;
-    if (t==Bloc || t==PorteE || t==PorteF){
-        type_ob= t;
-    }
-    int i= (rand ()% 7) + 4; //pas sure du random
-    switch (i)
-    {
-    case 4: 
-        type_ob= Lava;
-        break;
-    case 5:
-        type_ob= Riviere;
-        break;
-    case 6:
-        type_ob= O_Vert;
-        break;
-    default:
-        break;
-    }
-
+    type_ob=t;
     
 }
 
+//Destructeur de la classe Bonus
 Obstacle::~Obstacle()
 {
     pos.x =0.0;
     pos.y =0.0;
     dir=0;
     type_ob= Defaut;
-
 }
-Vect2 Obstacle::getPos(float posx, float posy){
-    pos.x = posx;
-    pos.y = posy;
+
+
+Vect2 Obstacle::getPos(){
+    return pos;
 }
 
 void Obstacle::bougeAuto(const Plateau &p){ //pas vraiment compris, precicer que c'est pour les blocs non? #esra 
