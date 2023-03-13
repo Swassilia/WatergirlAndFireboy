@@ -7,19 +7,14 @@ class Bonus
 {
 private:
 
-    Type diamantE;
-
-    Type diamantF;
-
-    Vect2 pos_E;
-
-    Vect2 pos_F;
-
+    Vect2 pos;
 
 
 public:
 
-    Bonus(unsigned int posx, unsigned int posy );
+    Type type_bon;
+
+    Bonus(Type t, unsigned int posx, unsigned int posy );
 
     ~Bonus();
 

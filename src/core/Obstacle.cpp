@@ -1,32 +1,30 @@
 #include "Obstacle.h"
 #include <math.h>
 
-Obstacle::Obstacle(Type type_ob,Vect2 pos){ //je ne pense pas que ca se passe comme ca pour la construction
-    pos.x =1.0;
-    pos.y =1.0;
+Obstacle::Obstacle(Type t,const int x, const int y){ 
+    pos.x =x;
+    pos.y =y;
     dir=0;
-    int i= (rand()%(7-4))+4;
+    if (t==Bloc || t==PorteE || t==PorteF){
+        type_ob= t;
+    }
+    int i= (rand ()% 7) + 4 //pas sure du random
     switch (i)
     {
     case 4: 
         type_ob= Lava;
-        taillex= 1;
-        tailley=1;
         break;
     case 5:
         type_ob= Riviere;
-        taillex= 1;
-        tailley=1;
         break;
     case 6:
-        type_ob= Bloc;
-        taillex= 2;
-        tailley=2;
+        type_ob= O_Vert;
         break;
     default:
         break;
     }
 
+    
 }
 
 Obstacle::~Obstacle()
@@ -35,8 +33,6 @@ Obstacle::~Obstacle()
     pos.y =0.0;
     dir=0;
     type_ob= defaut;
-    taillex=0;
-    tailley= 0;
 
 }
 Vect2 Obstacle::getPos(float posx, float posy){
