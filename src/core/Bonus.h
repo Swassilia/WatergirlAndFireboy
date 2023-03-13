@@ -7,13 +7,13 @@ class Bonus
 {
 private:
 
-    Vect2 pos;
 
 
 public:
 
+    Vect2 pos;
     Type type_bon;
-
+    Bonus();
     Bonus(Type t, unsigned int posx, unsigned int posy );
 
     ~Bonus();

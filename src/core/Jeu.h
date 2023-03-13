@@ -12,9 +12,18 @@ private:
     Plateau pla;
     Personnage feu;
     Personnage eau;
-    Obstacle *tab;
+
+    Obstacle ob_Lava;
+    Obstacle ob_Riviere;
+    Obstacle ob_O_vert;
+
+    Obstacle ob_PorteE;
+    Obstacle ob_PorteF;
+
+    Obstacle ob_Bloc;
+
     unsigned int score;
-    Bonus bon;
+    //Bonus bon;
 public:
     /**
      * @brief Constructeur de la classe Jeu
@@ -22,11 +31,11 @@ public:
      */
     Jeu();
 
-    /**
-     * @brief Destructeur de la classe Jeu
-     * 
-     */
-    ~Jeu();
+    // /**
+    //  * @brief Destructeur de la classe Jeu
+    //  * 
+    //  */
+    // ~Jeu();
 
     /**
      * @brief Recupère le Plateau
@@ -44,7 +53,17 @@ public:
     const Personnage getPersonnageEau()const;
 
     const Personnage getPersonnageFeu()const;
+    const Obstacle getObstacle_Lava()const;
+    const Obstacle getObstacle_Riviere()const;
+    const Obstacle getObstacle_O_vert()const;
 
+    const Obstacle getObstacle_PE()const;
+    const Obstacle getObstacle_PF()const;
+
+    const Obstacle getObstacle_Bloc()const;
+
+    /************************************************************************/
+    
     /**
      * @brief recupère les actions du clavier faite par le joueur
      * 
@@ -78,10 +97,9 @@ public:
         //  * @return false 
         //  */
         // bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
+    bool collision_O(const Personnage per, const Obstacle ob);
 
-    bool collision(const Personnage per, bool t);
-
-    bool collision_P_B(const Personnage per, const Bonus bon);
+    bool collision_B(const Personnage per, const Bonus bon);
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
@@ -104,7 +122,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool perte(const Personnage per, const Obstacle ob)const;
+    bool perte()const;
 };
 
 #endif

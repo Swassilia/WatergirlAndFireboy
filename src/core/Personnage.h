@@ -14,13 +14,19 @@ private:
     Type type_p;
     bool vivant;
 public:
+
+    /**
+     * @brief Constructeur par defaut
+     * 
+     */
+    Personnage();
     /** @brief constructueur qui definit le type (obligatoire)
      * @param t type du personnage
      * @param x la position en x 
      * @param y la position en y 
     */
     Personnage(const Type & t, float x, float y);
-    Personnage();
+    
     /** @brief destructeur*/
     ~Personnage();
        
@@ -36,6 +42,7 @@ public:
      * 
     */
     float getY();
+    Vect2 getPos(float posx, float posy);
     /**
      * @brief permet d'entrer le nom et prenom de l'utilisateur
      * @return la valeur de y (float)

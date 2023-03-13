@@ -1,6 +1,7 @@
 #include "Obstacle.h"
 #include <math.h>
 
+Obstacle::Obstacle(){}
 Obstacle::Obstacle(Type t,const int x, const int y){ 
     pos.x =x;
     pos.y =y;
@@ -8,7 +9,7 @@ Obstacle::Obstacle(Type t,const int x, const int y){
     if (t==Bloc || t==PorteE || t==PorteF){
         type_ob= t;
     }
-    int i= (rand ()% 7) + 4 //pas sure du random
+    int i= (rand ()% 7) + 4; //pas sure du random
     switch (i)
     {
     case 4: 
@@ -32,7 +33,7 @@ Obstacle::~Obstacle()
     pos.x =0.0;
     pos.y =0.0;
     dir=0;
-    type_ob= defaut;
+    type_ob= Defaut;
 
 }
 Vect2 Obstacle::getPos(float posx, float posy){

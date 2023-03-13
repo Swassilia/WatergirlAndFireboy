@@ -5,7 +5,12 @@
 #include "Personnage.h"
 using namespace std;
 
-
+Personnage::Personnage(){
+    pos = make_Vect2(0,0);
+    dir = make_Vect2(0, -1);
+    nom = nullptr;
+    vivant = true;
+}
 Personnage::Personnage(const Type & t, float x, float y)
 {
     assert (x>=0&&y>=0);
@@ -16,9 +21,6 @@ Personnage::Personnage(const Type & t, float x, float y)
     nom=nullptr;      
     vivant=true;
 }
-Personnage::Personnage(){
-    
-}
 Personnage::~Personnage()
 {
     vivant=false;
@@ -28,7 +30,10 @@ Personnage::~Personnage()
     nom= nullptr;
     
 }
-
+Vect2 Personnage::getPos(float posx, float posy){
+    pos.x = posx;
+    pos.y = posy;
+}
 float Personnage:: getX()
 {
     return pos.x; 

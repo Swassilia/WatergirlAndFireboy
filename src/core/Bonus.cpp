@@ -1,13 +1,13 @@
 #include "Bonus.h"
 //#include <iostream>
-//#include <time.h>
+#include <math.h>
 using namespace std;
-
+Bonus::Bonus(){}
 Bonus::Bonus( Type t, unsigned int posx, unsigned int posy){
 
     pos.x=posx;
     pos.y=posy;
-    int i =(rand ()% 4 ) + 2 //pas sure du random
+    int i =(rand ()% 4 ) + 2 ;//pas sure du random
     switch (i)
     {
     case 2: 
@@ -19,7 +19,7 @@ Bonus::Bonus( Type t, unsigned int posx, unsigned int posy){
     default:
         break;
     }
-
+}
 Bonus::~Bonus(){
     
     type_bon= Defaut;

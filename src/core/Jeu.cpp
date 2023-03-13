@@ -1,20 +1,21 @@
 #include "Jeu.h"
-//construit 
+
+//Constructeurs  
 Jeu::Jeu(){
-    feu (Feu, 0,0);
-    eau (Eau, 0,0);
-    tab = nullptr;
+    feu = Personnage(Feu, 0,0);
+    eau = Personnage(Eau, 0,0);
+
+    pla = Plateau();
+    
+    ob_Lava = Obstacle(Lava,0,0);
+    ob_Riviere = Obstacle(Riviere,0,0);
+    ob_O_vert = Obstacle(O_Vert ,0,0);
+
+    ob_PorteE = Obstacle(PorteE,0,0);
+    ob_PorteF = Obstacle(PorteF,0,0);
+
+    ob_Bloc = Obstacle(Bloc,0,0);
     score = 0;
-}
-Jeu::~Jeu(){
-    feu (Defaut, 0,0);
-    eau (Defaut, 0,0);
-    if(tab!=nullptr){
-        delete []tab;
-        tab = nullptr;
-    }
-    score = 0;
-    bon = Defaut;
 }
 
 const Plateau Jeu::getPlateau()const{
@@ -27,6 +28,27 @@ const Personnage Jeu::getPersonnageFeu()const{
     return feu;
 }
 
+const Obstacle Jeu::getObstacle_Lava()const{
+    return ob_Lava;
+}
+const Obstacle Jeu::getObstacle_Riviere()const{
+    return ob_Riviere;
+}
+const Obstacle Jeu::getObstacle_O_vert()const{
+    return ob_O_vert;
+}
+
+const Obstacle Jeu::getObstacle_PE()const{
+    return ob_PorteE;
+}
+const Obstacle Jeu::getObstacle_PF()const{
+    return ob_PorteF;
+}
+
+const Obstacle Jeu::getObstacle_Bloc()const{
+    return ob_Bloc;
+}
+/******************************************************************************************/
 bool Jeu::ActionClavier(){
     int touche;
     
@@ -53,28 +75,45 @@ bool Jeu::ActionClavier(){
 
 }
 void Jeu::ActionAuto(){
-    while(true){
-        
-    }
+    ob_Bloc.bougeAuto(pla);
 }
 
-bool Jeu::collision(const Personnage per, bool t){
-    //utiliser la distance Vect2
-}
-// bool Jeu::collision_P_B(const Personnage per, const Bonus bon ){
-//     //utiliser mangeBonus
-// }
-void Jeu::AjoutScore(const Bonus bon,const Personnage per){
-    if(collision(eau,(bon.type_bon == DiamondE)) || collision(feu,(bon.type_bon == DiamondF))){
-        score ++;
+bool Jeu::collision_O(const Personnage per, const Obstacle ob){
+    float posx, posy;
+    if(distance((feu.getPos(feu.getX(),feu.getY())),(ob_Riviere.getPos(posx,posy)))){
+        return true;
+    }else
+    if(distance((feu.getPos(feu.getX(),feu.getY())),(ob_PorteF.getPos(posx,posy)))){ 
+        return true;
+    }else
+    if(distance((feu.getPos(feu.getX(),feu.getY())),(ob_O_vert.getPos(posx,posy)))){
+        return true;
+    }else
+    if(distance((eau.getPos(feu.getX(),feu.getY())),(ob_Lava.getPos(posx,posy)))){
+        return true;
+    }else
+    if(distance((eau.getPos(feu.getX(),feu.getY())),(ob_PorteE.getPos(posx,posy)))){
+        return true;
+    }else
+    if(distance((eau.getPos(feu.getX(),feu.getY())),(ob_O_vert.getPos(posx,posy)))){
+        return true;
     }
+
+}
+ bool Jeu::collision_B(const Personnage per,const Bonus bon){
+     if(distance(eau.getPos(eau.getX(),eau.getY()), bon.pos)){
+        return true;
+     }else
+     if(distance(feu.getPos(feu.getX(),eau.getY()), bon.pos)){
+        return true;
+     }
 }
 
-//A MODIFIER DAPRES LE TAB D'OBSTACLE
+//A DEMANDER LE PROF :((((
 bool Jeu::succe()const{
     for(int i=0; i<pla.dimx;i++){
         for(int j=0; j<pla.dimy; j++){
-            if(collision(eau,(tabO[i][j].type_ob == PorteE)) && collision(feu,(tabO[i][j].type_ob == PorteF))){
+            if(collision_O(eau,ob_PorteE) && collision_O(feu,ob_PorteF)){
             return true;
             }
         }
@@ -83,13 +122,13 @@ bool Jeu::succe()const{
 bool Jeu::perte()const{
     for (int i=0; i<pla.dimx;i++){
         for(int j=0; j<pla.dimy; j++){
-            if(collision(eau,(tabO[i][j].type_ob == Lava))){
+            if(collision_O(eau,ob_Lava)){
                 return true;
         }else
-            if(collision(feu,(tabO[i][j].type_ob == Riviere))){
+            if(collision_O(feu,ob_Riviere)){
             return true;
         }else
-            if(collision(eau,(tabO[i][j].type_ob == O_Vert)) || collision(feu,(tabO[i][j].type_ob == O_Vert))){
+            if(collision_O(eau,ob_O_vert) || collision_O(feu,ob_O_vert)){
             return true;
         }
         }

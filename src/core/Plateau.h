@@ -23,7 +23,7 @@ public:
 
     ~Plateau();
 
-    int getXY();
+    int getXY(const int x, const int y);
 
     void setDimx(int x);
 
@@ -37,7 +37,7 @@ public:
 
     void PlacerObstacle();
 
-    void EstPosValide(const int x, const int y);
+    bool EstPosValide(const int x, const int y)const;
 
     void mangeBonus(const int x, const int y);  
 

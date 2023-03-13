@@ -15,7 +15,7 @@ private:
 
 public:
     Type type_ob;
-
+    Obstacle();
     Obstacle(Type t, const int x, const int y);
 
     ~Obstacle();
