@@ -1,5 +1,6 @@
 #include "Plateau.h"
 #include <stdlib.h>
+#include <cassert>
 
 const char plateau1[17][21] = {     //le tableau on le voit en format paysage -> rotation à gauche 
     "####################",
@@ -99,35 +100,36 @@ int Plateau::getDimy()const{
     return dimy;
 }
 
-void Plateau::EstPosValide(const int x, const int y){
+bool Plateau::EstPosValide(const int x, const int y){
     return ((x>=0) && (x<dimx) && (y>=0) && (y<dimy) && (plateau[x][y]!='#') && (plateau[x][y]!='_'));
 }
 
-void Plateau::Placerbonus(){
+void Plateau::PlacerBonus(){
     Type t;
     int nbBonus= (rand () % 7) + 3; //genrer entre 3 et 6 bonus
     tabB= new Bonus[nbBonus];
     for (int i=0; i<nbBonus; i++)
     {
-        do{
+        
             unsigned int x= (rand ()% dimx); //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
             unsigned int y= (rand ()% dimy);
+        do{
             int i =(rand ()% 4 ) + 2;
             switch (i)
                 {
                 case 2: 
-                    tabB = Bonus(DiamantEau,x,y);
+                    tabB[i] = Bonus(DiamantEau,x,y);
                     break;
                 case 3:
-                    tabB = Bonus(DiamantFeu,x,y);
+                    tabB[i] = Bonus(DiamantFeu,x,y);
                     break;
                 default:
                     break;
                 }
             
-            plateau[x][y]='.';
+            plateau[x][y] = BONUS;
         }
-        while(EstPosValide(x,y) ||  plateau[x][y] != '.') //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
+        while(EstPosValide(x,y) &&  plateau[x][y] != BONUS); //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
     }
 
 }
@@ -148,35 +150,36 @@ void Plateau::PlacerObstacle()
     int nbObs= (rand () % 8) + 4; 
     for (int i=0; i<nbObs; i++)
     {
+        unsigned int x= (rand ()% dimx); //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
+        unsigned int y= (rand ()% dimy);
         do{
-            unsigned int x= (rand ()% dimx); //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
-            unsigned int y= (rand ()% dimy);
+            
             int i= (rand ()% 7) + 4;         
             switch (i)
                 {
                 case 4: 
-                    tabO= Obstacle(Lava,x,y);
+                    tabO[i]= Obstacle(Lava,x,y);
                     break;
                 case 5:
-                    tabO= Obstacle(Riviere,x,y);
+                    tabO[i]= Obstacle(Riviere,x,y);
                     break;
                 case 6:
-                    tabO= Obstacle(O_Vert,x,y);
+                    tabO[i]= Obstacle(O_Vert,x,y);
                     break;
                 default:
                     break;
                 }
-            plateau[x][y]='o';
+            plateau[x][y]=OBS;
         }
-        while(EstPosValide(x,y) ||  plateau[x][y] != 'o')
+        while(EstPosValide(x,y) ||  plateau[x][y] != OBS)
     }
 }
 
-void Plateau::mangeBonus(){
+void Plateau::mangeBonus(const int x, const int y){
     assert(x>=0);
 	assert(y>=0);
-	assert(x<m_dimx);
-	assert(y<m_dimy);
+	assert(x<dimx);
+	assert(y<dimy);
 	plateau[x][y]=BONUS;
 
 }
