@@ -32,13 +32,13 @@ public:
        
     /**
      * @brief recupere les coordonnées 
-     * @return la valeur de y (int)
+     * @return un Vect2 donc un x et y
      * 
     */
     Vect2 getPos()const;
     /**
      * @brief permet d'entrer le nom et prenom de l'utilisateur
-     * @return la valeur de y (int)
+     
      * 
     */
     void entrernom();
