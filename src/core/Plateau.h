@@ -8,14 +8,13 @@
 #define _Plateau
 #include "Bonus.h"
 #include "Obstacle.h"
+#include "NomCase.h"
 /**
 @brief Un plateau = un tableau contenant des obstacles et des bonus entre des murs
 */
 class Plateau
 {
 private:
-
-    enum NomCase { WALL='#', BLOC='_', SPACE=' ', BONUS='.', OBS='o', PORTEEAU='E', PORTEFEU= 'F'};
 
     int dimx, dimy;
 
@@ -59,7 +58,7 @@ public:
      * 
      * @return NomCase
     */
-    NomCase getPlateau (const int x, const int y);
+    NomCase getPlateau (const int x, const int y) const;
 
     /**
      * @brief Accesseur : recupere l'obstacle dans le tableau d'obstacle des coordonnees x et y
@@ -67,6 +66,13 @@ public:
      * @return Obstacle
     */
     Obstacle getObstacle (const int x, const int y);
+
+    /**
+     * @brief Accesseur : recupere le bonus dans le tableau d'obstacle des coordonnees x et y
+     * 
+     * @return Obstacle
+    */
+    Bonus getBonus (const int x, const int y);
 
     /**
      * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y

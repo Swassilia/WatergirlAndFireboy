@@ -3,7 +3,6 @@
 #include "Plateau.h"
 using namespace std;
 
-
 //construction du labyrinthe via un tableau de char
 const char plateau1[15][32] = {
     "###############################", 
@@ -20,9 +19,7 @@ const char plateau1[15][32] = {
     "#            ######        ####",
     "##############    #####    ####",
     "#                       #######",
-    "###############################",
-
-    
+    "###############################", 
 };
 
 //Constructeur de la classe qui initialise les dimensions avec des entiers définis
@@ -50,7 +47,7 @@ Plateau::Plateau(){
     
     //placer les bonus dans le plateau
     int nbBonus= (rand () % 7) + 3;     //generer entre 3 et 6 bonus
-    tabB= new Bonus[dimx][dimy];        //allocation d'un tableau dynamique
+    tabB= new Bonus[31][15];        //allocation d'un tableau dynamique
     for (int i=0; i<nbBonus; i++)
     {
         
@@ -121,7 +118,7 @@ Plateau::Plateau(){
                 }
             plateau[x][y]=OBS;
         }
-        while(EstPosValide(x,y) ||  plateau[x][y] != OBS)
+        while(EstPosValide(x,y) ||  plateau[x][y] != OBS);
 }
 }
 
@@ -151,7 +148,7 @@ int Plateau::getDimy()const{
     return dimy;
 }
 
-NomCase Plateau::getPlateau (const int x, const int y){
+NomCase Plateau::getPlateau (const int x, const int y) const{
     return plateau[x][y];
 }
 
