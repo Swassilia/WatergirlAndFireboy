@@ -6,15 +6,6 @@ Jeu::Jeu(){
     eau = Personnage(Eau, 0,0);
 
     pla = Plateau();
-    
-    ob_Lava = Obstacle(Lava,0,0);
-    ob_Riviere = Obstacle(Riviere,0,0);
-    ob_O_vert = Obstacle(O_Vert ,0,0);
-
-    ob_PorteE = Obstacle(PorteE,0,0);
-    ob_PorteF = Obstacle(PorteF,0,0);
-
-    ob_Bloc = Obstacle(Bloc,0,0);
     score = 0;
 }
 
@@ -78,35 +69,31 @@ void Jeu::ActionAuto(){
     ob_Bloc.bougeAuto(pla);
 }
 
-bool Jeu::collision_O(const Personnage per, const Obstacle ob){
-    float posx, posy;
-    if(distance((feu.getPos(feu.getX(),feu.getY())),(ob_Riviere.getPos(posx,posy)))){
+bool Jeu::collision_O(const Personnage& per,const Obstacle& ob){
+    if(distance(per.getPos(), ob.getPos())<0.1 && (per.getType()==Feu)&&// test si le personnage est de type feu
+    (ob.getType()==PorteF ||ob.getType()==O_Vert|| ob.getType()==Riviere )){
         return true;
     }else
-    if(distance((feu.getPos(feu.getX(),feu.getY())),(ob_PorteF.getPos(posx,posy)))){ 
-        return true;
-    }else
-    if(distance((feu.getPos(feu.getX(),feu.getY())),(ob_O_vert.getPos(posx,posy)))){
-        return true;
-    }else
-    if(distance((eau.getPos(feu.getX(),feu.getY())),(ob_Lava.getPos(posx,posy)))){
-        return true;
-    }else
-    if(distance((eau.getPos(feu.getX(),feu.getY())),(ob_PorteE.getPos(posx,posy)))){
-        return true;
-    }else
-    if(distance((eau.getPos(feu.getX(),feu.getY())),(ob_O_vert.getPos(posx,posy)))){
+    if(distance(per.getPos(), ob.getPos())<0.1 && (per.getType()==Eau)&&// test si le personnage est de type eau 
+    (ob.getType()==PorteE ||ob.getType()==O_Vert|| ob.getType()==Lava ))
+    {
         return true;
     }
 
 }
- bool Jeu::collision_B(const Personnage per,const Bonus bon){
-     if(distance(eau.getPos(eau.getX(),eau.getY()), bon.pos)){
-        return true;
-     }else
-     if(distance(feu.getPos(feu.getX(),eau.getY()), bon.pos)){
-        return true;
-     }
+ bool Jeu::collision_B(const Personnage & per,const Bonus & bon){
+    if (per.getType()==Eau)
+    {
+        return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantEau)
+    }
+    else if 
+    {
+        if (per.getType==Eau)
+        {
+            return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantFeu)
+        }
+    }
+     
 }
 
 //A DEMANDER LE PROF :((((

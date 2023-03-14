@@ -13,15 +13,6 @@ private:
     Personnage feu;
     Personnage eau;
 
-    Obstacle ob_Lava;
-    Obstacle ob_Riviere;
-    Obstacle ob_O_vert;
-
-    Obstacle ob_PorteE;
-    Obstacle ob_PorteF;
-
-    Obstacle ob_Bloc;
-
     unsigned int score;
     //Bonus bon;
 public:
@@ -97,7 +88,7 @@ public:
         //  * @return false 
         //  */
         // bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
-    bool collision_O(const Personnage per, const Obstacle ob);
+    bool collision_O(const Personnage& per, const Obstacle& ob);
 
     bool collision_B(const Personnage per, const Bonus bon);
     /**
