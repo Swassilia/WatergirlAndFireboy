@@ -31,18 +31,11 @@ public:
     ~Personnage();
        
     /**
-     * @brief récupere la coordonnée x
-     * @return la valeur de x (float)
-     * 
-    */
-    float getX();
-    /**
-     * @brief recupere la coordonnée y
+     * @brief recupere les coordonnées 
      * @return la valeur de y (float)
      * 
     */
-    float getY();
-    Vect2 getPos(float posx, float posy);
+    Vect2 getPos()const;
     /**
      * @brief permet d'entrer le nom et prenom de l'utilisateur
      * @return la valeur de y (float)
@@ -54,7 +47,7 @@ public:
      * 
      * @return Type recupère du enume Type les types feu et eau 
      */
-    Type getType();
+    Type getType()const;
     /**
      * @brief se deplacer a droite
      * @def augmente la valeur en position x

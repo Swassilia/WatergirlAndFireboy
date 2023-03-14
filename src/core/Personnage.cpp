@@ -30,19 +30,9 @@ Personnage::~Personnage()
     nom= nullptr;
     
 }
-Vect2 Personnage::getPos(float posx, float posy){
-    pos.x = posx;
-    pos.y = posy;
+Vect2 Personnage::getPos()const{
+    return pos;
 }
-float Personnage:: getX()
-{
-    return pos.x; 
-}
-float Personnage:: getY()
-{
-    return pos.y;
-}
-
 void Personnage::entrernom()
 {
     cout<<"Entrez votre nom"<<endl;
@@ -50,7 +40,7 @@ void Personnage::entrernom()
     cout<<endl;
 
 }
-Type Personnage::getType(){
+Type Personnage::getType()const {
     return type_p;
 }
 void Personnage:: DeplacerG()
