@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Vect2 make_Vect2 (float x, float y )
+Vect2 make_Vect2 (int x, int y )
  {
      Vect2 v;
      v.x = x;
@@ -11,7 +11,7 @@ Vect2 make_Vect2 (float x, float y )
      return v;
  }
 
-float distance( const Vect2 & a,const Vect2 & b)
+int distance( const Vect2 & a,const Vect2 & b)
 {
     return (sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y)));
 }

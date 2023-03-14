@@ -3,7 +3,7 @@
 
 struct Vect2
 {
-    float x, y;
+    int x, y;// coordonnées
 };
 
 /**
@@ -12,13 +12,13 @@ struct Vect2
  * @param b 
 */
 
-Vect2 make_Vect2 (float x, float y );
+Vect2 make_Vect2 (int x, int y );
 /**
  * @brief Calcule la distance entre deux vecteur2D
  * @param a 
  * @param b 
 */
-float distance( const Vect2 & a ,const Vect2& b);
+int distance( const Vect2 & a ,const Vect2& b);
 
 /**
  * @brief Operateur + entre deux vecteurs
@@ -38,7 +38,7 @@ Vect2 operator-(const Vect2& a, const Vect2& b);
  * @param lambda 
  * @param a
 */
-Vect2 operator*( const Vect2 &a, const float lambda);
+Vect2 operator*( const Vect2 &a, const int lambda);
 /**
  * @brief Calcule produit un vecteur et un entié
  * @param lambda 
