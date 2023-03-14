@@ -21,25 +21,25 @@ public:
 
     Plateau();
 
-    ~Plateau();
+    // ~Plateau();
 
-    int getXY(const int x, const int y);
+    // int getXY(const int x, const int y);
 
-    void setDimx(int x);
+    // void setDimx(int x);
 
-    int getDimx()const;
+    // int getDimx()const;
 
-    void setDimy(int y);
+    // void setDimy(int y);
 
-    int getDimy()const;
+    // int getDimy()const;
     
-    void PlacerBonus();
+    // void PlacerBonus();
 
-    void PlacerObstacle();
+    // void PlacerObstacle();
 
-    bool EstPosValide(const int x, const int y);
+    // bool EstPosValide(const int x, const int y);
 
-    void mangeBonus(const int x, const int y);  
+    // void mangeBonus(const int x, const int y);  
 
 
 };
