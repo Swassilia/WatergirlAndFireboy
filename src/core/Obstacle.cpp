@@ -24,10 +24,14 @@ Obstacle::~Obstacle()
 }
 
 
-Vect2 Obstacle::getPos(){
+Vect2 Obstacle::getPos()const {
     return pos;
 }
 
+Type Obstacle:: getType()const 
+{
+    return type_ob;
+}
 void Obstacle::bougeAuto(const Plateau &p){ //pas vraiment compris, precicer que c'est pour les blocs non? #esra 
     int dx [4] = { 1, 0, -1, 0};
     int dy [4] = { 0, 1, 0, -1};

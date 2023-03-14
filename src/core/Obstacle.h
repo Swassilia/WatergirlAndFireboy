@@ -21,8 +21,10 @@ private:
 
     int dir; //direction de l'obstacle pour les mouvements 
 
-public:
     Type type_ob; //type de l'obstacle
+
+public:
+   
 
     /**
      * @brief constructeur par defaut
@@ -46,7 +48,14 @@ public:
      * 
      * @return un vecteur compris entre les dimensions du plateau
     */
-    Vect2 getPos();
+    Vect2 getPos()const;
+     /**
+     * @brief Accesseur : récupère le type de l'obstacle
+     * 
+     * @return un type
+    */
+    Type getType()const;
+
     
     /**
      * @brief procédure qui déplace un bloc automatiquement
