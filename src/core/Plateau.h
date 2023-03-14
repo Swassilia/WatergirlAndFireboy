@@ -7,9 +7,9 @@ class Plateau
 {
 private:
 
-    enum CasePlateau { WALL='#', BLOC='_', SPACE=' ', BONUS='.', OBS='o', PORTE='p'};
+    enum CasePlateau { WALL='#', BLOC='_', SPACE=' ', BONUS='.', OBS='o', PORTEEAU='E', PORTEFEU= 'F'};
 
-    Obstacle * tabO; // tableau qui contient les obstacles du plateau
+    Obstacle * tabO; 
     
     Bonus * tabB; 
 
@@ -17,29 +17,25 @@ private:
 
 public:
 
-    unsigned int dimx, dimy;
+    int dimx, dimy;
 
     Plateau();
 
-    // ~Plateau();
+    ~Plateau();
 
-    // int getXY(const int x, const int y);
+    int getXY(const int x, const int y);
 
-    // void setDimx(int x);
+    int getDimx()const;
 
-    // int getDimx()const;
+    int getDimy()const;
 
-    // void setDimy(int y);
+    CasePlateau getPlateau (const int x, const int y);
 
-    // int getDimy()const;
-    
-    // void PlacerBonus();
+    Obstacle getObstacle (const int x, const int y);
 
-    // void PlacerObstacle();
+    bool EstPosValide(const int x, const int y);
 
-    // bool EstPosValide(const int x, const int y);
-
-    // void mangeBonus(const int x, const int y);  
+    void mangeBonus(const int x, const int y);  
 
 
 };
