@@ -11,7 +11,7 @@ Personnage::Personnage(){
     nom = nullptr;
     vivant = true;
 }
-Personnage::Personnage(const Type & t, float x, float y)
+Personnage::Personnage(const Type & t, int x, int y)
 {
     assert (x>=0&&y>=0);
     assert(t==Feu || t==Eau);

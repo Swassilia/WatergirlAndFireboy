@@ -25,20 +25,20 @@ public:
      * @param x la position en x 
      * @param y la position en y 
     */
-    Personnage(const Type & t, float x, float y);
+    Personnage(const Type & t, int x, int y);
     
     /** @brief destructeur*/
     ~Personnage();
        
     /**
      * @brief recupere les coordonnées 
-     * @return la valeur de y (float)
+     * @return la valeur de y (int)
      * 
     */
     Vect2 getPos()const;
     /**
      * @brief permet d'entrer le nom et prenom de l'utilisateur
-     * @return la valeur de y (float)
+     * @return la valeur de y (int)
      * 
     */
     void entrernom();
