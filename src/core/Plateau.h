@@ -18,7 +18,7 @@ private:
 
     int dimx, dimy;
 
-    Obstacle * tabO;    //tableau d'obstacle
+    Obstacle tabO [31][15];    //tableau d'obstacle //comment faire pour utiliser dimx et dimy
     
     Bonus * tabB;       //tableau de bonus
 

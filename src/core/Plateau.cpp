@@ -47,7 +47,7 @@ Plateau::Plateau(){
     
     //placer les bonus dans le plateau
     int nbBonus= (rand () % 7) + 3;     //generer entre 3 et 6 bonus
-    tabB= new Bonus[31][15];        //allocation d'un tableau dynamique
+    tabB= new Bonus[dimx*dimy];        //allocation d'un tableau dynamique
     for (int i=0; i<nbBonus; i++)
     {
         
@@ -58,10 +58,10 @@ Plateau::Plateau(){
             switch (r)
                 {
                 case 2: 
-                    tabB[x][y] = Bonus(DiamantEau,x,y);
+                    tabB[y*dimx+x] = Bonus(DiamantEau,x,y);
                     break;
                 case 3:
-                    tabB[x][y] = Bonus(DiamantFeu,x,y);
+                    tabB[y*dimx+x] = Bonus(DiamantFeu,x,y);
                     break;
                 default:
                     break;
@@ -73,7 +73,7 @@ Plateau::Plateau(){
     }
 
     //placer les blocs et les portes dans le tableau obstacle (pour definir leur positionnement)
-    tabO= new Obstacle[dimx][dimy];     //allocation d'un tableau dynamique
+    //tabO= new Obstacle[dimx][dimy];     //allocation d'un tableau dynamique
     for (int i=0; i<dimx; i++)
     {
         for (int j=0; j<dimy; j++)
@@ -129,9 +129,10 @@ Plateau::~Plateau(){
         delete [] tabB;
         tabB = nullptr;
     }
-    if(tabO!= nullptr){ 
-        delete [] tabO;
-        tabO = nullptr;
+    for(int i=0; i<dimx; i++)
+    {
+        for(int j=0; j<dimy; j++)
+        tabO[i][j]= Obstacle(Defaut,0,0);
     }
     for(int i=0; i<50; i++)
     {
@@ -157,7 +158,7 @@ Obstacle Plateau:: getObstacle (const int x, const int y){
 }
 
 Bonus Plateau:: getBonus (const int x, const int y){
-    return tabB[x][y];
+    return tabB[y*dimx+x];
 }
 
 bool Plateau::EstPosValide(const int x, const int y){
