@@ -6,24 +6,30 @@
 #endif // WIN32
 #include "WinTxt.h"
 
-#include "Jeu.h"
+#include "../core/Jeu.h"
 
 void txtAff(WinTXT & win, const Jeu & jeu) {
 	const Plateau& pla = jeu.getPlateau();
 	const Personnage& feu = jeu.getPersonnageFeu();
     const Personnage& eau = jeu.getPersonnageEau();
-	Obstacle *tab;
+	Obstacle *tabO;
 	win.clear();
 
     // Affichage des murs et des pastilles
 	for(int x=0;x<pla.getDimx();++x)
 		for(int y=0;y<pla.getDimy();++y)
-			win.print( x, y, pla.getXY(x,y));
+			win.print( x, y, pla.getDimx());//a changer
 
     // Affichage de fire boy
 	win.print(feu.getPos().x,feu.getPos().y,'F');
 	// Affichage du water girl
 	win.print(eau.getPos().x,eau.getPos().y,'E');
+
+	// for(unsigned int i=0;i<pla.getDimx();i++){
+	// 	for(unsigned int j=0; j<pla.getDimy();j++){
+	// 		if()
+	// 	}
+	// }
 
 	win.draw();
 }

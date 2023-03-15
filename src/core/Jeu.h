@@ -44,14 +44,6 @@ public:
     const Personnage getPersonnageEau()const;
 
     const Personnage getPersonnageFeu()const;
-    const Obstacle getObstacle_Lava()const;
-    const Obstacle getObstacle_Riviere()const;
-    const Obstacle getObstacle_O_vert()const;
-
-    const Obstacle getObstacle_PE()const;
-    const Obstacle getObstacle_PF()const;
-
-    const Obstacle getObstacle_Bloc()const;
 
     /************************************************************************/
     
@@ -61,7 +53,7 @@ public:
      * @return true si la touche est réalisée
      * @return false si non
      */
-    bool ActionClavier();
+    bool ActionClavier(const char touche);
 
     /**
      * @brief permet les actions automatiques des obstacles de type Bloc
@@ -90,7 +82,7 @@ public:
         // bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
     bool collision_O(const Personnage& per, const Obstacle& ob);
 
-    bool collision_B(const Personnage per, const Bonus bon);
+    bool collision_B(const Personnage& per, const Bonus bon);
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
@@ -105,7 +97,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool succe()const;
+    bool succe(const Personnage& per, const Obstacle& ob);
 
     /**
      * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
@@ -113,7 +105,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool perte()const;
+    bool perte(const Personnage&per , const Obstacle& ob);
 };
 
 #endif

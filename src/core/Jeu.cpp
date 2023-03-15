@@ -19,30 +19,9 @@ const Personnage Jeu::getPersonnageFeu()const{
     return feu;
 }
 
-const Obstacle Jeu::getObstacle_Lava()const{
-    return ob_Lava;
-}
-const Obstacle Jeu::getObstacle_Riviere()const{
-    return ob_Riviere;
-}
-const Obstacle Jeu::getObstacle_O_vert()const{
-    return ob_O_vert;
-}
 
-const Obstacle Jeu::getObstacle_PE()const{
-    return ob_PorteE;
-}
-const Obstacle Jeu::getObstacle_PF()const{
-    return ob_PorteF;
-}
-
-const Obstacle Jeu::getObstacle_Bloc()const{
-    return ob_Bloc;
-}
 /******************************************************************************************/
-bool Jeu::ActionClavier(){
-    int touche;
-    
+bool Jeu::ActionClavier(const char touche){    
     switch(touche) {
             case 'q' :
                     eau.DeplacerG();
@@ -66,7 +45,7 @@ bool Jeu::ActionClavier(){
 
 }
 void Jeu::ActionAuto(){
-    ob_Bloc.bougeAuto(pla);
+    //ob_Bloc.bougeAuto(pla);//a faire avec esra
 }
 
 bool Jeu::collision_O(const Personnage& per,const Obstacle& ob){
@@ -79,45 +58,46 @@ bool Jeu::collision_O(const Personnage& per,const Obstacle& ob){
     {
         return true;
     }
-
+    return false;
 }
- bool Jeu::collision_B(const Personnage & per,const Bonus & bon){
+ bool Jeu::collision_B(const Personnage & per,const Bonus  bon){
     if (per.getType()==Eau)
     {
-        return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantEau)
+        return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantEau);
     }
-    else if 
+    if (per.getType()==Feu)
     {
-        if (per.getType==Eau)
-        {
-            return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantFeu)
-        }
+        return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantFeu);
     }
-     
+    return false;
 }
 
-//A DEMANDER LE PROF :((((
-bool Jeu::succe()const{
-    for(int i=0; i<pla.dimx;i++){
-        for(int j=0; j<pla.dimy; j++){
-            if(collision_O(eau,ob_PorteE) && collision_O(feu,ob_PorteF)){
-            return true;
-            }
-        }
-    }   
-}
-bool Jeu::perte()const{
-    for (int i=0; i<pla.dimx;i++){
-        for(int j=0; j<pla.dimy; j++){
-            if(collision_O(eau,ob_Lava)){
-                return true;
-        }else
-            if(collision_O(feu,ob_Riviere)){
-            return true;
-        }else
-            if(collision_O(eau,ob_O_vert) || collision_O(feu,ob_O_vert)){
+
+bool Jeu::succe(const Personnage& per, const Obstacle& ob){
+    if(per.getType()==Eau && ob.getType()==PorteE){
+        if(collision_O(per,ob)){ 
             return true;
         }
+    }else 
+    if(per.getType()== Feu && ob.getType()==PorteF){
+        if(collision_O(per,ob)){
+            return true;
         }
     }
+    return false;
+}
+bool Jeu::perte(const Personnage&per , const Obstacle& ob){
+    if(per.getType()==Eau && ob.getType()== Lava){
+        if(collision_O(per,ob))return true;
+    }else
+    if(per.getType()== Eau && ob.getType()== O_Vert){
+        if(collision_O(per,ob))return true;
+    }else
+    if(per.getType()== Feu && ob.getType() == Riviere){
+        if(collision_O(per,ob))return true;
+    }else
+    if(per.getType()== Feu && ob.getType()== O_Vert){
+        if(collision_O(per,ob))return true;
+    }
+    return false;
 }

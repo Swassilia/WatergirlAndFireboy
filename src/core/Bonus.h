@@ -37,7 +37,7 @@ public:
     */
     ~Bonus();
 
-    Vect2 getPos();
+    Vect2 getPos()const;
 
     Type getType();
 

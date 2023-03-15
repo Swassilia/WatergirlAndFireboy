@@ -21,7 +21,7 @@ Bonus::~Bonus(){
     pos.y=0.0;
     
 }
-Vect2 Bonus:: getPos()
+Vect2 Bonus:: getPos()const
 {
     return pos;
 }
