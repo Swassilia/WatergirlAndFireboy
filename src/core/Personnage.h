@@ -27,8 +27,8 @@ public:
     */
     Personnage(const Type & t, int x, int y);
     
-    /** @brief destructeur*/
-    ~Personnage();
+    // /** @brief destructeur*/
+     ~Personnage();
        
     /**
      * @brief recupere les coordonnées 
@@ -65,7 +65,7 @@ public:
      * @def augmente la valeur en position y
      * 
     */
-    void  DeplacerH ( );
+    void  DeplacerH ();
     
 
 };
