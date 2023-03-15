@@ -1,7 +1,16 @@
-#include "Jeu.h"
-#include "Plateau.h"
+#include <iostream>
+#include "Personnage.h"
+#include "Obstacle.h"
+#include "Bonus.h"
+using namespace std;
+
+
 
 int main(){
-    Jeu jeu;
+    Personnage p;
+    Obstacle ob;
+    Bonus b;
+    cout<<b.getType()<<" "<<ob.getType()<<" "<<p.getPos().x<<endl;
+
     return 0;
 }

@@ -39,7 +39,7 @@ public:
      * \param posx position en x à initialiser
      * \param posy position en y à initialiser
     */ 
-    Obstacle(Type t, unsigned int x, unsigned int y);
+    Obstacle(const Type& t, unsigned int x, unsigned int y);
 
     /**
      * @brief Accesseur : récupère la position de l'obstacle
@@ -55,11 +55,7 @@ public:
     */
     Type getType()const;
 
-    /**
-     * @brief procédure qui déplace un bloc automatiquement
-     * \param p donnée référence à la classe Plateau
-    */
-    void bougeAuto(const Plateau &p);
+
 };
 
 #endif
