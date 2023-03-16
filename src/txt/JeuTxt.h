@@ -3,7 +3,9 @@
 
 #include "../core/Jeu.h"
 
-void txtBoucle (Jeu & j);
+
+void toto(void);
+void MontxtBoucle (Jeu & j);
 
 
 #endif

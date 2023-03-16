@@ -27,12 +27,14 @@ const char plateau1[15][32] = {
 //Initalise le tableau de Bonus avec les mêmes dimensions que plateau pour pouvoir placer des bonus à des position valides (estposvalide)
 //Place les obstacles de types Bloc et Porte dans le tableau d'obstacle à des positions deja definies dans le plateau (fait correspondre '_' à Obstacle type bloc etc )
 //Initialise le tableau d'obstacle avec les mêmes dimensions que plateau pour pouvoir placer des obstacles à des positions valides 
-Plateau::Plateau(){
+Plateau::Plateau()
+{
 
     dimx=31;
     dimy=15;
-    for(int y=0;y<dimy;++y)
-        for(int x=0;x<dimx;++x)
+    for(int y=0; y<dimy; ++y)
+    {
+        for(int x=0; x<dimx; ++x)
 		{
 			switch(plateau1[dimy-1-y][x])   //par rapport au caractere stocke dans la case de plateau1,
 			{                               //plateau recupere un nom de case
@@ -45,34 +47,36 @@ Plateau::Plateau(){
                 case 'F': plateau[x][y] = PORTEFEU; break;
 			}
 		}
-    
+    }
+ 
     //placer les bonus dans le plateau
     int nbBonus= (rand () % 7) + 3;     //generer entre 3 et 6 bonus
     tabB= new Bonus[dimx*dimy];        //allocation d'un tableau dynamique
-    for (int i=0; i<nbBonus; i++)
-    {
-        
-            int x= (rand ()% dimx);     //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
-            int y= (rand ()% dimy);
-        do{                             //le but étant de placer les bonus aleatoirement tant que la case du plateau correspondant n'est pas deja prise
-            int r =(rand ()% 4 ) + 2;   //choisir aléatoirement entre diamantFeu et diamantEau
-            switch (r)
-                {
-                case 2: 
-                    tabB[y*dimx+x] = Bonus(DiamantEau,x,y);
-                    break;
-                case 3:
-                    tabB[y*dimx+x] = Bonus(DiamantFeu,x,y);
-                    break;
-                default:
-                    break;
-                }
-            
-            plateau[x][y] = BONUS;      //preciser que maintenant dans plateau, aux coordonnee x et y, il y a un Bonus
-        }
-        while(EstPosValide(x,y) &&  plateau[x][y] != BONUS);     //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
-    }
-
+    //  for (int i=0; i<nbBonus; i++)
+    //  {
+      
+    //      int x;    //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
+    //      int y;
+    //      do
+    //      {       
+    //          x=(rand ()% dimx);
+    //          y= (rand ()% dimy);                     //le but étant de placer les bonus aleatoirement tant que la case du plateau correspondant n'est pas deja prise
+    //          int r =(rand () % 4 ) + 2;   //choisir aléatoirement entre diamantFeu et diamantEau
+    //          switch (r)
+    //          {
+    //              case 2: 
+    //                  tabB[y*dimx+x] = Bonus(DiamantEau,x,y);
+    //                  break;
+    //              case 3:
+    //                  tabB[y*dimx+x] = Bonus(DiamantFeu,x,y);
+    //                  break;
+    //              default:
+    //                  break;
+    //          }
+    //          plateau[x][y] = BONUS;      //preciser que maintenant dans plateau, aux coordonnee x et y, il y a un Bonus
+    //      }
+    //      while(EstPosValide(x,y) &&  plateau[x][y] != BONUS);     //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
+    //  }
     //placer les blocs et les portes dans le tableau obstacle (pour definir leur positionnement)
     //tabO= new Obstacle[dimx][dimy];     //allocation d'un tableau dynamique
     for (int i=0; i<dimx; i++)
@@ -96,31 +100,32 @@ Plateau::Plateau(){
     
     //placer les autres obstacles dans le tableau obstacle
     int nbObs= (rand () % 8) + 4; 
-    for (int i=0; i<nbObs; i++)
-    {
-        int x= (rand ()% dimx);     //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
-        int y= (rand ()% dimy);
-        do{
-            
-            int r= (rand ()% 7) + 4;         
-            switch (r)
-                {
-                case 4: 
-                    tabO[x][y]= Obstacle(Lava,x,y);
-                    break;
-                case 5:
-                    tabO[x][y]= Obstacle(Riviere,x,y);
-                    break;
-                case 6:
-                    tabO[x][y]= Obstacle(O_Vert,x,y);
-                    break;
-                default:
-                    break;
-                }
-            plateau[x][y]=OBS;
-        }
-        while(EstPosValide(x,y) ||  plateau[x][y] != OBS);
-}
+     for (int i=0; i<nbObs; i++)
+     {
+         int x;     //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
+         int y;
+         do{
+             x= (rand ()% dimx);
+             y= (rand ()% dimy);
+             int r= (rand ()% 7) + 4;         
+             switch (r)
+                 {
+                 case 4: 
+                     tabO[x][y]= Obstacle(Lava,x,y);
+                     break;
+                 case 5:
+                     tabO[x][y]= Obstacle(Riviere,x,y);
+                     break;
+                 case 6:
+                     tabO[x][y]= Obstacle(O_Vert,x,y);
+                     break;
+                 default:
+                     break;
+                 }
+             plateau[x][y]=OBS;
+         }
+         while(EstPosValide(x,y) ||  plateau[x][y] != OBS);
+ }
 }
 
 Plateau::~Plateau(){
