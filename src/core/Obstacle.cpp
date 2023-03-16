@@ -1,10 +1,14 @@
+#include <cassert>
+#include <cstddef>
 #include "Obstacle.h"
+
 
 //Constructeur par defaut
 Obstacle::Obstacle(){}
 
 //Constructeur de la classe qui initialise le type de l'obstacle, et sa position grâce aux coordonées x et y en paramètre
 Obstacle::Obstacle(const Type & t,unsigned int x, unsigned int y){ 
+    assert(x>=0 && y>=0);
     pos=make_Vect2(x,y);
     dir=0;
     type_ob=t; 

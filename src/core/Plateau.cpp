@@ -28,6 +28,7 @@ const char plateau1[15][32] = {
 //Place les obstacles de types Bloc et Porte dans le tableau d'obstacle à des positions deja definies dans le plateau (fait correspondre '_' à Obstacle type bloc etc )
 //Initialise le tableau d'obstacle avec les mêmes dimensions que plateau pour pouvoir placer des obstacles à des positions valides 
 Plateau::Plateau(){
+
     dimx=31;
     dimy=15;
     for(int y=0;y<dimy;++y)
@@ -150,19 +151,28 @@ int Plateau::getDimy()const{
 }
 
 NomCase Plateau::getPlateau (const int x, const int y) const{
+    assert(x>=0 && y>=0);
+    assert(x<dimx && y<dimy);
     return plateau[x][y];
 }
 
 Obstacle Plateau:: getObstacle (const int x, const int y){
+    assert(x>=0 && y>=0);
+    assert(x<dimx && y<dimy);
     return tabO[x][y];
 }
 
 Bonus Plateau:: getBonus (const int x, const int y){
+    assert(x>=0 && y>=0);
+    assert(x<dimx && y<dimy);
     return tabB[y*dimx+x];
 }
 
 bool Plateau::EstPosValide(const int x, const int y){
-    return ((x>=0) && (x<dimx) && (y>=0) && (y<dimy) && (plateau[x][y]!=WALL) && (plateau[x][y]!=BLOC) && (plateau[x][y]!=PORTEFEU) && (plateau[x][y]!=PORTEEAU));
+    assert(x>=0 && y>=0);
+    assert(x<dimx && y<dimy);
+    return ((plateau[x][y]!=WALL) && (plateau[x][y]!=BLOC) && 
+        (plateau[x][y]!=PORTEFEU) && (plateau[x][y]!=PORTEEAU));
 }
 
 void Plateau::mangeBonus(const int x, const int y){
