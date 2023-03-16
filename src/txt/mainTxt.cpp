@@ -5,11 +5,11 @@
 #include <unistd.h>
 
 int main(int argc, char** argv){
-    //termClear();
-    toto();
+    termClear();
+    //toto();
     Jeu jeu;
-    //MontxtBoucle(jeu);
-    //termClear();
+    MontxtBoucle(jeu);
+    termClear();
 /*
     
     termClear();

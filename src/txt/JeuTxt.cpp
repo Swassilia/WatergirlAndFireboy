@@ -34,26 +34,27 @@
  }
 
 
-void toto(void) {
+/*void toto(void) {
 	std::cout << "Toto fait du vélo :D" << std::endl<< std::endl<< std::endl;
-}
+}*/
 
  void MontxtBoucle (Jeu & jeu) {
  	// Creation d'une nouvelle fenetre en mode texte
  	// => fenetre de dimension et position (WIDTH,HEIGHT,STARTX,STARTY)
-    //WinTXT win (jeu.getPlateau().getDimx(),jeu.getPlateau().getDimy());
+    WinTXT win (jeu.getPlateau().getDimx(),jeu.getPlateau().getDimy());
 
-    std::cout << "Toto fait du vélo :D" << std::endl<< std::endl<< std::endl;
-	exit(-1);
+    //std::cout << "Toto fait du vélo :D" << std::endl<< std::endl<< std::endl;
+	//exit(-1);
 
-    termClear();
+    /*termClear();
     WinTXT win (40, 40);
     win.print(5, 5, "toto");
     win.draw();
-    sleep(1);
+    sleep(1000);
     termClear();
     exit(-1);
 
+*/
 
  	bool ok = true;
  	int c;
