@@ -9,6 +9,7 @@
 #include "JeuTxt.h"
 #include "../core/Jeu.h"
 #include <iostream>
+using namespace std;
 
 
  void txtAff(WinTXT & win, const Jeu & jeu) {
@@ -66,23 +67,13 @@
  		usleep(100000);
         #endif // WIN32
  		//jeu.ActionAuto();
- 		c = win.getCh();
- 		switch (c) {
- 			case 'k':
- 				jeu.ActionClavier('g');
- 				break;
- 			case 'm':
- 				jeu.ActionClavier('d');
- 				break;
- 			case 'l':
- 				jeu.ActionClavier('h');
- 				break;
- 			case 'o':
- 				jeu.ActionClavier('b');
- 				break;
- 			case 'q':
- 				ok = false;
- 				break;
- 		}
+		
+ 		 c = win.getCh();
+		 jeu.ActionClavier(c);
+		 cout<<c<< "a ete presser";
+		 if (c=='a')
+		 {
+			ok=false;
+		 }
  	} while (ok);
  }
