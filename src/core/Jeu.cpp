@@ -1,3 +1,5 @@
+#include <cassert>
+#include <cstddef>
 #include "Jeu.h"
 
 //Constructeurs  
@@ -61,7 +63,8 @@ bool Jeu::collision_O(const Personnage& per,const Obstacle& ob){
     }
     return false;
 }
- bool Jeu::collision_B(const Personnage & per,const Bonus  bon){
+ bool Jeu::collision_B(const Personnage & per,const Bonus & bon){
+    assert(per.getType()==Eau || per.getType()==Feu);
     if (per.getType()==Eau)
     {
         return(distance(per.getPos(), bon.getPos())<0.1 && bon.type_bon==DiamantEau);

@@ -82,14 +82,14 @@ public:
         // bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
     bool collision_O(const Personnage& per, const Obstacle& ob);
 
-    bool collision_B(const Personnage& per, const Bonus bon);
+    bool collision_B(const Personnage& per, const Bonus & bon);
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
      * @param bon Bonus (DiamondF et DiamondE)
      * @param per Personnage (feu et eau)
      */
-    void AjoutScore(const Bonus bon,const Personnage per);
+    void AjoutScore(const Bonus & bon,const Personnage & per);
 
     /**
      * @brief un booléen qui retourne vrai si la partie a été réussie
