@@ -1,5 +1,5 @@
 EXEC_NAME = bin/test 
-OBJ_FILES =obj/mainTest.o obj/Bonus.o  obj/Obstacle.o obj/Personnage.o obj/Vect2.o
+OBJ_FILES =obj/mainTest.o obj/Bonus.o  obj/Obstacle.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o
 
 CC = g++
 CFLAGS = -Wall -ggdb
@@ -7,16 +7,21 @@ INCLUDES = -I./extern/include
 
 all: $(EXEC_NAME)
 
-
-bin/test: obj/mainTest.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o obj/Vect2.o
-	$(CC) -g  obj/mainTest.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o  obj/Vect2.o -o bin/test
+bin/test: obj/mainTest.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o obj/Vect2.o obj/Plateau.o obj/Jeu.o
+	$(CC) -g  obj/mainTest.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o  obj/Plateau.o obj/Vect2.o -o bin/test
 	
-obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o  obj/Obstacle.o obj/Bonus.o
+obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o  obj/Obstacle.o obj/Bonus.o obj/Plateau.o obj/Jeu.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/mainTest.cpp -o obj/mainTest.o
 
+obj/Jeu.o:  src/core/Jeu.h src/core/Jeu.cpp src/core/Vect2.h src/core/Type.h src/core/Obstacle.h src/core/Bonus.h src/core/Personnage.h 
+	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Jeu.cpp  -o obj/Jeu.o
+
+obj/Plateau.o:  src/core/Plateau.h src/core/Plateau.cpp src/core/Vect2.h src/core/Type.h src/core/Obstacle.h src/core/Bonus.h
+	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Plateau.cpp  -o obj/Plateau.o
 
 obj/Bonus.o:  src/core/Bonus.h src/core/Bonus.cpp src/core/Vect2.h src/core/Type.h 
 	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Bonus.cpp  -o obj/Bonus.o
+
 
 obj/Obstacle.o:  src/core/Obstacle.h src/core/Obstacle.cpp src/core/Vect2.h src/core/Type.h 
 	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Obstacle.cpp  -o obj/Obstacle.o

@@ -21,7 +21,7 @@ const Personnage Jeu::getPersonnageFeu()const{
 
 
 /******************************************************************************************/
-bool Jeu::ActionClavier(const char touche){    
+void Jeu::ActionClavier(const char touche){    
     switch(touche) {
             case 'q' :
                     eau.DeplacerG();
@@ -42,6 +42,7 @@ bool Jeu::ActionClavier(const char touche){
                     feu.DeplacerH();
                     break;
         }
+        
 
 }
 void Jeu::ActionAuto(){
