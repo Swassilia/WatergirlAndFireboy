@@ -22,12 +22,6 @@ public:
      */
     Jeu();
 
-    // /**
-    //  * @brief Destructeur de la classe Jeu
-    //  * 
-    //  */
-    // ~Jeu();
-
     /**
      * @brief Recupère le Plateau
      * 
@@ -106,6 +100,12 @@ public:
      * @return false 
      */
     bool perte(const Personnage&per , const Obstacle& ob);
+
+    /**
+     * @brief Teste le focntionnement de l'ensemble des fonction de la classe
+     * 
+     */
+    void testRegression_Jeu();
 };
 
 #endif

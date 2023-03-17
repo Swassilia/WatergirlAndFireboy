@@ -8,12 +8,12 @@ INCLUDES = -I./extern/include
 all: $(EXEC_NAME)
 
 bin/test: obj/mainTest.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o obj/Vect2.o obj/Plateau.o obj/Jeu.o
-	$(CC) -g  obj/mainTest.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o  obj/Plateau.o obj/Vect2.o -o bin/test
+	$(CC) -g  obj/mainTest.o obj/Jeu.o obj/Personnage.o  obj/Obstacle.o obj/Bonus.o  obj/Plateau.o obj/Vect2.o -o bin/test
 
 bin/text: obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Bonus.o obj/Personnage.o  obj/Obstacle.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o 
 	$(CC) -g  obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Bonus.o obj/Personnage.o  obj/Obstacle.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o -o bin/text
 	
-obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o  obj/Obstacle.o obj/Bonus.o obj/Plateau.o obj/Jeu.o
+obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o obj/Obstacle.o obj/Bonus.o obj/Plateau.o obj/Jeu.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/mainTest.cpp -o obj/mainTest.o
 
 obj/mainTxt.o: src/txt/mainTxt.cpp obj/WinTxt.o obj/JeuTxt.o 

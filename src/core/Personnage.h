@@ -67,6 +67,7 @@ public:
     */
     void  DeplacerH ();
     
+    void testRegression_Per();
 
 };
 

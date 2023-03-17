@@ -1,6 +1,9 @@
 #include <cassert>
 #include <cstddef>
+#include <iostream>
 #include "Jeu.h"
+
+using namespace std;
 
 //Constructeurs  
 Jeu::Jeu(){
@@ -104,4 +107,13 @@ bool Jeu::perte(const Personnage&per , const Obstacle& ob){
         if(collision_O(per,ob))return true;
     }
     return false;
+}
+
+void Jeu::testRegression_Jeu(){
+    Jeu jeu;
+    const Personnage& Fille = jeu.getPersonnageEau();
+    const Personnage& Garcon = jeu.getPersonnageFeu();
+    
+    const Plateau& terrain = jeu.getPlateau();
+
 }

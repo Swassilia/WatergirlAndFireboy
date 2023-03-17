@@ -33,12 +33,22 @@ public:
     Bonus(Type t, unsigned int posx, unsigned int posy );
 
     /**
-     * @brief destructeur
+     * @brief destructeur de la classe
     */
     ~Bonus();
 
+    /**
+     * @brief Renvoie la position x et y du bonus en vect2
+     * 
+     * @return Vect2 
+     */
     Vect2 getPos()const;
 
+    /**
+     * @brief Renvoie le type du Bonus
+     * 
+     * @return Type 
+     */
     Type getType();
 
 };
