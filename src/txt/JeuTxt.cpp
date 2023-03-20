@@ -32,6 +32,7 @@ using namespace std;
  	// Affichage du water girl
  	win.print(eau.getPos().x,eau.getPos().y,'E');	
  	win.draw();
+	
  }
 
 
@@ -60,6 +61,7 @@ using namespace std;
  	bool ok = true;
  	int c;
  	do {
+		termClear();
  	    txtAff(win,jeu);
         #ifdef _WIN32
         Sleep(100);
