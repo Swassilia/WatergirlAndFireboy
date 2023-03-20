@@ -28,9 +28,9 @@ using namespace std;
  		for(int y=0;y<pla.getDimy();++y)
  			win.print( x, y, pla.getPlateau(x,y));
      // Affichage de fire boy
- 	win.print(feu.getPos().x,feu.getPos().y,'F');
+ 	win.print(feu.getPos().x,feu.getPos().y,'f');
  	// Affichage du water girl
- 	win.print(eau.getPos().x,eau.getPos().y,'E');	
+ 	win.print(eau.getPos().x,eau.getPos().y,'e');	
  	win.draw();
 	
  }
@@ -71,7 +71,31 @@ using namespace std;
  		//jeu.ActionAuto();
 		
  		 c = win.getCh();
-		 jeu.ActionClavier(c);
+		 switch (c){
+			case 'q':
+				jeu.ActionClavier('q');
+				break;
+			case 'd':
+				jeu.ActionClavier('d');
+				break;
+			case 'z':
+				jeu.ActionClavier('z');
+				break;
+			case 'k':
+				jeu.ActionClavier('k');
+				break;
+			case 'm':
+				jeu.ActionClavier('m');
+				break;
+			case 'o':
+				jeu.ActionClavier('o');
+				break;
+			case 'a':
+				ok = false;
+				break;
+
+		 }
+		 //jeu.ActionClavier(c);
 		 
 		 if (c=='a')
 		 {

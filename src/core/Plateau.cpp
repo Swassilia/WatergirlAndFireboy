@@ -5,20 +5,20 @@ using namespace std;
 
 //construction du labyrinthe via un tableau de char
 const char plateau1[15][32] = {
-    "###############################", 
-    "#  E       ########        F  #",
-    "#######    ##########    ######",
-    "#       ##          ###       #",
-    "#    #########                #",
-    "#  #################   ########",
-    "#             ######          #",
-    "#__           ###### __########",
-    "############        ###########",
-    "#            ######           #",
-    "#   ########        ###########",
-    "#            ######        ####",
+    "###############################",
+    "#                       #######", 
     "##############    #####    ####",
-    "#                       #######",
+    "#            ######        ####",
+    "#   ########        ###########",
+    "#            ######           #",
+    "############        ###########",
+    "#__           ###### __########",
+    "#             ######          #",
+    "#  #################   ########",
+    "#    #########                #",
+    "#       ##          ###       #",
+    "#######    ##########    ######",
+    "#  E       ########        F  #",
     "###############################", 
 };
 
@@ -97,7 +97,7 @@ void Plateau::placerBonus()
              }
              plateau[x][y] = BONUS;      //preciser que maintenant dans plateau, aux coordonnee x et y, il y a un Bonus
          }
-         while(EstPosValide(x,y) &&  plateau[x][y] != BONUS);     //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
+         while(EstPosValide(x,y) &&  plateau[x][y] != '.');     //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
      }
     //placer les blocs et les portes dans le tableau obstacle (pour definir leur positionnement)
     //tabO= new Obstacle[dimx][dimy];     //allocation d'un tableau dynamique
@@ -183,8 +183,8 @@ Bonus Plateau:: getBonus (const int x, const int y){
 bool Plateau::EstPosValide(const int x, const int y){
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
-    return ((plateau[x][y]!=WALL) && (plateau[x][y]!=BLOC) && 
-        (plateau[x][y]!=PORTEFEU) && (plateau[x][y]!=PORTEEAU));
+    return ((plateau[x][y]!='#') && (plateau[x][y]!='_') && 
+        (plateau[x][y]!='E') && (plateau[x][y]!='F'));
 }
 
 void Plateau::mangeBonus(const int x, const int y){
@@ -194,4 +194,9 @@ void Plateau::mangeBonus(const int x, const int y){
 	assert(y<dimy);
 	plateau[x][y]=BONUS;
 
+}
+void Plateau::testRegression_Pla(){
+    Plateau pla;
+
+    
 }

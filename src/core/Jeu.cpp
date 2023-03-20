@@ -115,5 +115,13 @@ void Jeu::testRegression_Jeu(){
     const Personnage& Garcon = jeu.getPersonnageFeu();
     
     const Plateau& terrain = jeu.getPlateau();
+    const Bonus& bon = Bonus();
+    const Obstacle& porte = Obstacle();
+    const Obstacle& riviere = Obstacle();
+
+    jeu.ActionClavier('c');
+    jeu.collision_B(Fille, bon);
+    jeu.collision_O(Fille,porte);
+    jeu.collision_O(Garcon,riviere);
 
 }

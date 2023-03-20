@@ -61,6 +61,11 @@ public:
     */
     void  DeplacerG ();
     /**
+     * @brief se deplacer en bas
+     * 
+     */
+    void  DeplacerB();
+    /**
      * @brief se deplacer en haut 
      * @def augmente la valeur en position y
      * 
