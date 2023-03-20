@@ -14,14 +14,14 @@ using namespace std;
 
  void txtAff(WinTXT & win, const Jeu & jeu) {
 	win.clear();
-	win.print(5, 5, 't');
+	//win.print(5, 5, 't');
 	win.draw();
  	const Plateau& pla = jeu.getPlateau();
  	const Personnage& feu = jeu.getPersonnageFeu();
      const Personnage& eau = jeu.getPersonnageEau();
  	//Obstacle *tabO;
  	win.clear();
-	win.print(5, 5, 't');
+	//win.print(5, 5, 't');
 	win.draw();
      // Affichage des murs et des pastilles
  	for(int x=0;x<pla.getDimx();++x)
@@ -70,9 +70,11 @@ using namespace std;
 		
  		 c = win.getCh();
 		 jeu.ActionClavier(c);
-		 cout<<c<< "a ete presser";
+		 
 		 if (c=='a')
 		 {
+			cout<<endl;
+		 	cout<< "Vous avez bien quitté"<<endl;
 			ok=false;
 		 }
  	} while (ok);
