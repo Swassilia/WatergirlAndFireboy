@@ -57,7 +57,7 @@ void Personnage:: DeplacerD ()
 void Personnage::DeplacerH ()
 {
     // assert(pos.y>0);
-    pos.y+=3;
+    pos.y-=1;
     
 }
 

@@ -7,8 +7,8 @@ using namespace std;
 
 //Constructeurs  
 Jeu::Jeu(){
-    feu = Personnage(Feu, 0,0);
-    eau = Personnage(Eau, 0,0);
+    feu = Personnage(Feu, 29,13);
+    eau = Personnage(Eau, 3,13);
 
     pla = Plateau();
     score = 0;
