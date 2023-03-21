@@ -4,7 +4,7 @@
 #include "../core/Jeu.h"
 
 
-void toto(void);
+
 void MontxtBoucle (Jeu & j);
 
 

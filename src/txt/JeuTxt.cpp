@@ -13,22 +13,22 @@ using namespace std;
 
 
  void txtAff(WinTXT & win, const Jeu & jeu) {
-	win.clear();
-	//win.print(5, 5, 't');
+	//win.clear();  
 	win.draw();
  	const Plateau& pla = jeu.getPlateau();
  	const Personnage& feu = jeu.getPersonnageFeu();
      const Personnage& eau = jeu.getPersonnageEau();
- 	//Obstacle *tabO;
- 	win.clear();
-	//win.print(5, 5, 't');
+ 	//win.clear();
 	win.draw();
+
      // Affichage des murs et des pastilles
  	for(int x=0;x<pla.getDimx();++x)
  		for(int y=0;y<pla.getDimy();++y)
  			win.print( x, y, pla.getPlateau(x,y));
+
      // Affichage de fire boy
  	win.print(feu.getPos().x,feu.getPos().y,'f');
+
  	// Affichage du water girl
  	win.print(eau.getPos().x,eau.getPos().y,'e');	
  	win.draw();
