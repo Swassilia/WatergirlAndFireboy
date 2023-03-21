@@ -4,31 +4,32 @@
 
 
 //Constructeur par defaut
-Obstacle::Obstacle(){}
+Obstacle::Obstacle(){
+    
+    idO = Objet();
+}
 
 //Constructeur de la classe qui initialise le type de l'obstacle, et sa position grâce aux coordonées x et y en paramètre
 Obstacle::Obstacle(const Type & t,unsigned int x, unsigned int y){ 
     assert(x>=0 && y>=0);
-    pos=make_Vect2(x,y);
-    dir=0;
-    type_ob=t; 
+    idO= Objet(t,x,y);
+    dir=0; 
 }
 
 //Destructeur de la classe Bonus
 Obstacle::~Obstacle()
 {
-    pos=make_Vect2(0,0);
     dir=0;
-    type_ob= Defaut;
+    idO=~Objet();
 }
 
-//Assesseur: récupère la position 
-Vect2 Obstacle::getPos()const {
-    return pos;
-}
-//Assesseur: récupère la Type
-Type Obstacle:: getType()const 
-{
-    return type_ob;
-}
+// //Assesseur: récupère la position 
+// Vect2 Obstacle::getPos()const {
+//     return pos;
+// }
+// //Assesseur: récupère la Type
+// Type Obstacle:: getType()const 
+// {
+//     return type_ob;
+// }
 
