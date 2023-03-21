@@ -7,7 +7,7 @@ using namespace std;
 
 //Constructeurs  
 Jeu::Jeu(){
-    feu = Personnage(Feu, 29,13);
+    feu = Personnage(Feu, 3,11);
     eau = Personnage(Eau, 3,13);
 
     pla = Plateau();
