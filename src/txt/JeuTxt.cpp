@@ -4,7 +4,6 @@
 #else
 #include <unistd.h>
 #endif // WIN32
-#include "WinTxt.h"
 
 #include "JeuTxt.h"
 // #include "../core/Jeu.h"
