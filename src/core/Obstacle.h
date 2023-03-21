@@ -16,7 +16,7 @@ class Obstacle
 private:
 
     Vect2 pos;      //vecteur position 2D de l'obstacle
-
+    string nomF;
     int dir;        //direction de l'obstacle pour les mouvements 
 
     Type type_ob;   //type de l'obstacle

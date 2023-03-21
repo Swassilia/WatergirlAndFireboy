@@ -12,6 +12,7 @@ private:
     Vect2 dir; 
     char * nom;
     Type type_p;
+    string nomF;
     bool vivant;
 public:
 

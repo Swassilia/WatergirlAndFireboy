@@ -53,31 +53,31 @@ using namespace std;
  		//jeu.ActionAuto();
 		
  		 c = win.getCh();
-		 switch (c){
-			case 'q':
-				jeu.ActionClavier('q');
-				break;
-			case 'd':
-				jeu.ActionClavier('d');
-				break;
-			case 'z':
-				jeu.ActionClavier('z');
-				break;
-			case 'k':
-				jeu.ActionClavier('k');
-				break;
-			case 'm':
-				jeu.ActionClavier('m');
-				break;
-			case 'o':
-				jeu.ActionClavier('o');
-				break;
-			case 'a':
-				ok = false;
-				break;
+		//  switch (c){
+		// 	case 'q':
+		// 		jeu.ActionClavier('q');
+		// 		break;
+		// 	case 'd':
+		// 		jeu.ActionClavier('d');
+		// 		break;
+		// 	case 'z':
+		// 		jeu.ActionClavier('z');
+		// 		break;
+		// 	case 'k':
+		// 		jeu.ActionClavier('k');
+		// 		break;
+		// 	case 'm':
+		// 		jeu.ActionClavier('m');
+		// 		break;
+		// 	case 'o':
+		// 		jeu.ActionClavier('o');
+		// 		break;
+		// 	case 'a':
+		// 		ok = false;
+		// 		break;
 
-		 }
-		 //jeu.ActionClavier(c);
+		//  }
+		jeu.ActionClavier(c);
 		 
 		 if (c=='a')
 		 {

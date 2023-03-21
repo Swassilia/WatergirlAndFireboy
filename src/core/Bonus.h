@@ -19,7 +19,7 @@ public:
 
     Vect2 pos; //vecteur position 2D du bonus 
     Type type_bon; //type du Bonus
-
+    string nomF;
     /**
         * @brief constructeur par défaut
     */
