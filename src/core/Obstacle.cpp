@@ -22,11 +22,11 @@ Obstacle::~Obstacle()
     type_ob= Defaut;
 }
 
-
+//Assesseur: récupère la position 
 Vect2 Obstacle::getPos()const {
     return pos;
 }
-
+//Assesseur: récupère la Type
 Type Obstacle:: getType()const 
 {
     return type_ob;
