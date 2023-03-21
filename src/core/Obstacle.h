@@ -6,8 +6,10 @@
 
 #ifndef _Obstacle
 #define _Obstacle
-#include "Type.h"
-#include "Vect2.h"
+// #include "Type.h"
+// #include "Vect2.h"
+#include "Objet.h"
+
 /**
 @brief Un obstacle = un objet typé avec une position 2D et une direction
 */
@@ -15,11 +17,11 @@ class Obstacle
 {
 private:
 
-    Vect2 pos;      //vecteur position 2D de l'obstacle
+    //Vect2 pos;      //vecteur position 2D de l'obstacle
+    //Type type_ob;   //type de l'obstacle
     string nomF;
     int dir;        //direction de l'obstacle pour les mouvements 
-
-    Type type_ob;   //type de l'obstacle
+    Objet ido;
 
 public:
 
@@ -41,19 +43,19 @@ public:
     */ 
     Obstacle(const Type& t, unsigned int x, unsigned int y);
 
-    /**
-     * @brief Accesseur : récupère la position de l'obstacle
-     * 
-     * @return un vecteur compris entre les dimensions du plateau
-    */
-    Vect2 getPos()const;
+    // /**
+    //  * @brief Accesseur : récupère la position de l'obstacle
+    //  * 
+    //  * @return un vecteur compris entre les dimensions du plateau
+    // */
+    // Vect2 getPos()const;
 
-     /**
-     * @brief Accesseur : récupère le type de l'obstacle
-     * 
-     * @return un type
-    */
-    Type getType()const;
+    //  /**
+    //  * @brief Accesseur : récupère le type de l'obstacle
+    //  * 
+    //  * @return un type
+    // */
+    // Type getType()const;
 
 
 };
