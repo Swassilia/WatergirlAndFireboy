@@ -6,18 +6,8 @@
 
 int main(int argc, char** argv){
     termClear();
-    //toto();
     Jeu jeu;
     MontxtBoucle(jeu);
 
-/*
-    
-    termClear();
-    WinTXT win (40, 40);
-    win.print(5, 5, "toto");
-    win.draw();
-    sleep(1);
-    termClear();
-*/
     return 0;
 }
