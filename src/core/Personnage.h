@@ -62,7 +62,7 @@ public:
     */
     void  DeplacerG ();
     /**
-     * @brief se deplacer en bas
+     * @brief se deplacer en bas (gravité)
      * 
      */
     void  DeplacerB();

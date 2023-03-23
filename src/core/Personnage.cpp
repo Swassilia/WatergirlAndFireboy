@@ -62,4 +62,8 @@ void Personnage::DeplacerH ()
     //pos.y = Orig_y;
 }
 
+void  Personnage::DeplacerB()
+{
+    pos.y+=1; // la coordonné (0,0) est en haut a gauche y doit donc augmenter pour descendre
+}
 
