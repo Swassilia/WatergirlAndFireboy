@@ -19,9 +19,9 @@ private:
 
     //Vect2 pos;      //vecteur position 2D de l'obstacle
     //Type type_ob;   //type de l'obstacle
-    string nomF;
+    
     int dir;        //direction de l'obstacle pour les mouvements 
-    Objet ido;
+    Objet idO;
 
 public:
 
@@ -43,6 +43,7 @@ public:
     */ 
     Obstacle(const Type& t, unsigned int x, unsigned int y);
 
+    Objet getObjet();
     // /**
     //  * @brief Accesseur : récupère la position de l'obstacle
     //  * 

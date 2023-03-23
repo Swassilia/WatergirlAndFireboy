@@ -20,9 +20,12 @@ Obstacle::Obstacle(const Type & t,unsigned int x, unsigned int y){
 Obstacle::~Obstacle()
 {
     dir=0;
-    idO=~Objet();
-}
 
+}
+Objet Obstacle:: getObjet()
+{
+    return idO;
+}
 // //Assesseur: récupère la position 
 // Vect2 Obstacle::getPos()const {
 //     return pos;

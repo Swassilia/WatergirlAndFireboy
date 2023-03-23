@@ -19,7 +19,7 @@ private:
     int dimx, dimy;
 
     Obstacle tabO [31][15];    //tableau d'obstacle //comment faire pour utiliser dimx et dimy
-    string fileName;
+    // string fileName;
     Bonus * tabB;       //tableau de bonus
 
     NomCase plateau[50][50];    //plateau contenant tous les éléments 

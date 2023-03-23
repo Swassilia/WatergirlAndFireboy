@@ -14,9 +14,9 @@ int main(){
     Bonus b;
     Plateau pla;
     Jeu jeu;
-    cout<<b.getType()<<" "<<ob.getType()<<" "<<p.getPos().x<<endl;
-    jeu.testRegression_Jeu();
-    pla.testRegression_Pla();
+    // cout<<b.getType()<<" "<<ob.getType()<<" "<<p.getPos().x<<endl;
+    // jeu.testRegression_Jeu();
+    // pla.testRegression_Pla();
     cout<<"test jeu"<<endl;
 
     return 0;

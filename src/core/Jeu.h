@@ -55,28 +55,23 @@ public:
      */
     void ActionAuto();
 
-        // /**
-        //  * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
-        //  * en paramètres convient
-        //  * On va tester la collision entre 
-        //  * Personnage et Bonus:
-        //  *  Personnage type eau avec Bonus type DiamondE
-        //  *  Personnage type feu avec Bonus type DiamondF
-        //  * Personnage et Obstacle:
-        //  *  Personnage type eau avec Obstacle type Lava
-        //  *  Personnage type feu avec Obstacle type Riviere
-        //  *Ainsi tester toutes ces collision sur le plateau
-        //  * @param per Personnage
-        //  * @param ob Obstacle
-        //  * @param bon Bonus
-        //  * @param pla Plateau
-        //  * @return true 
-        //  * @return false 
-        //  */
-        // bool collision(const Personnage per,const Obstacle ob,const Bonus bon,const Plateau & pla);
-    bool collision_O(const Personnage& per, const Obstacle& ob);
-
-    bool collision_B(const Personnage& per, const Bonus & bon);
+    /**
+     * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
+    * en paramètres convient
+     * On va tester la collision entre 
+     * Personnage et Bonus:
+     *  Personnage type eau avec Bonus type DiamondE
+     *  Personnage type feu avec Bonus type DiamondF
+     * Personnage et Obstacle:
+     *  Personnage type eau avec Obstacle type Lava
+     *  Personnage type feu avec Obstacle type Riviere
+     *Ainsi tester toutes ces collision sur le plateau
+     * @param per Personnage
+     * @param obj Ob
+     * @return true 
+     * @return false 
+     */
+    bool collision(const Personnage& per,const Objet & obj);
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
@@ -91,7 +86,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool succe(const Personnage& per, const Obstacle& ob);
+    bool succe(const Personnage& per, const Objet& obj);
 
     /**
      * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
@@ -99,7 +94,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool perte(const Personnage&per , const Obstacle& ob);
+    bool perte(const Personnage& per, const Objet& obj);
 
     /**
      * @brief Teste le focntionnement de l'ensemble des fonction de la classe

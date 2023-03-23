@@ -7,7 +7,7 @@ Objet::Objet(){
 
 }
 
-Objet::Objet(Type t, const unsigned int x, const unsigned int y){
+Objet::Objet(const Type& t, const unsigned int x, const unsigned int y){
 
     typeO = t;
     posO.x=x;
@@ -22,10 +22,12 @@ Objet::~Objet(){
 
 }
 
-Vect2 getPos() const {
+Vect2 Objet::getPos()const  {
+
     return posO;
 }
 
-Type getType() const {
+Type Objet::getType()const  {
+
     return typeO;
 }
