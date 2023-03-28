@@ -1,6 +1,8 @@
 #include <cassert>
 #include <cstddef>
 #include <iostream>
+#include <chrono>
+#include <math.h>
 #include "Jeu.h"
 
 using namespace std;
@@ -9,7 +11,6 @@ using namespace std;
 Jeu::Jeu(){
     feu = Personnage(Feu, 3,11);
     eau = Personnage(Eau, 3,13);
-
     pla = Plateau();
     score = 0;
 }
@@ -50,11 +51,11 @@ void Jeu::ActionClavier(const char touche){
         
 
 }
-// void Jeu::ActionAuto(){
-//      temps=elapsedTime();
-//     int m=(2*cos(400*temps));
-//     pla.setblock()
-// }
+void Jeu::ActionAuto(){
+    //  int temps=elapseTime();
+    int m=(2*cos(400));
+    pla.setblocky(m);
+}
 
 bool Jeu::collision(const Personnage& per,const Objet & obj){
     assert(per.getType()==Eau || per.getType()==Feu);
@@ -86,7 +87,7 @@ bool Jeu::collision(const Personnage& per,const Objet & obj){
 }
 
 
-bool Jeu::succe(const Personnage& per, const Objet& obj){
+bool Jeu::succes(const Personnage& per, const Objet& obj){
     if(per.getType()==Eau && obj.getType()==PorteE){
         if(collision(per,obj)){ 
             return true;
@@ -121,9 +122,5 @@ void Jeu::testRegression_Jeu(){
     const Personnage& Garcon = jeu.getPersonnageFeu();
     
     const Plateau& terrain = jeu.getPlateau();
-    jeu.ActionClavier('c');
-    // jeu.collision(Fille, bon.idB);
-    // jeu.collision(Fille,porte.getObjet());
-    // jeu.collision(Garcon,riviere.getObjet());
 
 }

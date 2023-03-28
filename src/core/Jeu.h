@@ -83,7 +83,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool succe(const Personnage& per, const Objet& obj);
+    bool succes(const Personnage& per, const Objet& obj);
 
     /**
      * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
