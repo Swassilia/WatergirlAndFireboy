@@ -10,6 +10,7 @@ enum NomCase {
     OBS='o', 
     PORTEEAU='E', 
     PORTEFEU= 'F',
+    RIVIERE= 'R',
 
     };
 

@@ -56,10 +56,7 @@ void Personnage:: DeplacerD ()
 }
 void Personnage::DeplacerH ()
 {
-    // assert(pos.y>0);
-    //int Orig_y = pos.y;
     pos.y-=1;
-    //pos.y = Orig_y;
 }
 
 void  Personnage::DeplacerB()

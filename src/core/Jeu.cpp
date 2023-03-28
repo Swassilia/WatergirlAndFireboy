@@ -50,14 +50,18 @@ void Jeu::ActionClavier(const char touche){
         
 
 }
-void Jeu::ActionAuto(){
-    //ob_Bloc.bougeAuto(pla);//a faire avec esra
-}
+// void Jeu::ActionAuto(){
+//      temps=elapsedTime();
+//     int m=(2*cos(400*temps));
+//     pla.setblock()
+// }
 
 bool Jeu::collision(const Personnage& per,const Objet & obj){
     assert(per.getType()==Eau || per.getType()==Feu);
+
     if(distance(per.getPos(), obj.getPos())<0.1 && (per.getType()==Feu)&&// test si le personnage est de type feu
-    (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere )){
+    (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere ))
+    {
         return true;
     }else
     if(distance(per.getPos(), obj.getPos())<0.1 && (per.getType()==Eau)&&// test si le personnage est de type eau 
@@ -120,7 +124,6 @@ void Jeu::testRegression_Jeu(){
     const Plateau& terrain = jeu.getPlateau();
     Obstacle porte;
     Obstacle riviere ;
-
     jeu.ActionClavier('c');
     jeu.collision(Fille, bon.idB);
     jeu.collision(Fille,porte.getObjet());
