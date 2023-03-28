@@ -52,7 +52,12 @@ using namespace std;
         #endif // WIN32
  		//jeu.ActionAuto();
  		 c = win.getCh();
+		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);
+		if (jeu.collision(jeu.getPersonnageEau(),pla.getObjet(jeu.getPersonnageEau().getPos().x)))
+		{
+			cout<<"Ne peut pas sauter car c'est un mur"<<endl;
+		}
 		 if (c=='a')
 		 {
 			cout<<endl;

@@ -10,7 +10,6 @@ private:
     Plateau pla;
     Personnage feu;
     Personnage eau;
-
     unsigned int score;
     //Bonus bon;
 public:

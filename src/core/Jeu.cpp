@@ -51,11 +51,11 @@ void Jeu::ActionClavier(const char touche){
         
 
 }
-void Jeu::ActionAuto(){
-    //  int temps=elapseTime();
-    int m=(2*cos(400));
-    pla.setblocky(m);
-}
+// void Jeu::ActionAuto(){
+//     //  int temps=elapseTime();
+//     int m=(2*cos(400));
+
+// }
 
 bool Jeu::collision(const Personnage& per,const Objet & obj){
     assert(per.getType()==Eau || per.getType()==Feu);
