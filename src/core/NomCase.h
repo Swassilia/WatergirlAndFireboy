@@ -12,6 +12,7 @@ enum NomCase {
     RIVIEREvert='v',
     PORTEEAU='E', 
     PORTEFEU= 'F',
+    RIVIERE= 'R',
 
     };
 
