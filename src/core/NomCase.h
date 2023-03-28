@@ -7,7 +7,9 @@ enum NomCase {
     BLOC='_', 
     SPACE=' ', 
     BONUS='.', 
-    OBS='o', 
+    RIVIEREeau='e', 
+    RIVIEREfeu='f',
+    RIVIEREvert='v',
     PORTEEAU='E', 
     PORTEFEU= 'F',
 

@@ -5,16 +5,16 @@ using namespace std;
 
 //construction du labyrinthe via un tableau de char
 const char plateau1[15][32] = {
-    "###############################",
+    "###############ff##############",
     "#                       #######", 
-    "##############    #####    ####",
-    "#            ######        ####",
-    "#   ########        ###########",
-    "#            ######           #",
-    "############        ###########",
+    "######eee#####    #####    ####",
+    "#   #         ######        ###",
+    "#   ##  ####        ###########",
+    "#            ##vv##           #",
+    "######ff####        ###########",
     "#__           ###### __########",
     "#             ######          #",
-    "#  #################   ########",
+    "#  #############ee##   ########",
     "#    #########                #",
     "#       ##          ###       #",
     "#######    ##########    ######",
@@ -42,9 +42,11 @@ Plateau::Plateau()
 				case '_': plateau[x][y] = BLOC; break; 
 				case ' ': plateau[x][y] = SPACE; break;
                 case '.': plateau[x][y] = BONUS; break; 
-                case 'o': plateau[x][y] = OBS; break;
                 case 'E': plateau[x][y] = PORTEEAU; break;
                 case 'F': plateau[x][y] = PORTEFEU; break;
+                case 'e': plateau[x][y] = RIVIEREeau; break;
+                case 'f': plateau[x][y] = RIVIEREfeu; break;
+                case 'v': plateau[x][y] = RIVIEREvert; break;
 			}
 		}
     }
@@ -53,14 +55,13 @@ Plateau::Plateau()
 Plateau::~Plateau(){
     dimx=0;
     dimy=0;
-    if(tabB!= nullptr){ 
+    /*if(tabB!= nullptr){ 
         delete [] tabB;
         tabB = nullptr;
-    }
-    for(int i=0; i<dimx; i++)
+    }*/
+    for(int i=0; i<20; i++)
     {
-        for(int j=0; j<dimy; j++)
-        tabO[i][j]= Obstacle(Defaut,0,0);
+        tabObj[i]= Objet(Defaut,0,0);
     }
     for(int i=0; i<50; i++)
     {
@@ -69,14 +70,69 @@ Plateau::~Plateau(){
     }
 }
 
-void Plateau::placerBonus()
+void Plateau::placerObjet()
+{
+    //placer les bonus aléatoirement 
+    int nb=8;
+    for (int i=0; i<nb; i++)
+     {
+         int x;
+         int y;
+         do
+         {       
+             x=(rand ()% dimx);
+             y= (rand ()% dimy);                    
+             switch (r)
+             {
+                 case 2: 
+                     tabObj[i] = Objet(DiamantEau,x,y);
+                     break;
+                 case 3:
+                     tabObj[i] = Objet(DiamantFeu,x,y);
+                     break;
+                 default:
+                     break;
+             }
+             plateau[x][y] = BONUS;      
+         }
+         while(EstPosValide(x,y) &&  plateau[x][y] != '.'); //ou plateau[x][y]!= BONUS.
+     }
+     //placer 5 obstacles rivières
+     tabObj[8]=Objet(Lava,14,13);
+     tabObj[9]=Objet(Lava,14,14);
+     plateau[14][13] = RIVIEREfeu;
+     plateau[14][14] = RIVIEREfeu;
+
+     tabObj[10]=Objet(Riviere,12,5);
+     tabObj[11]=Objet(Riviere,12,6);
+     tabObj[12]=Objet(Riviere,12,7);
+     plateau[12][5] = RIVIEREeau;
+     plateau[12][6] = RIVIEREeau;
+     plateau[12][7] = RIVIEREeau;
+
+     tabObj[13]=Objet(O_Vert,7,13);
+     tabObj[14]=Objet(O_Vert,7,14);
+     plateau[7][13] = RIVIEREvert;
+     plateau[7][14] = RIVIEREvert;
+    
+     tabObj[15]=Objet(Lava,6,5);
+     tabObj[16]=Objet(Lava,6,6);
+     plateau[6][5] = RIVIEREfeu;
+     plateau[6][6] = RIVIEREfeu;
+
+     tabObj[17]=Objet(Riviere,12,6);
+     tabObj[18]=Objet(Riviere,12,7);
+     plateau[1][5] = RIVIEREeau;
+     plateau[12][6] = RIVIEREeau;
+
+}
+/*void Plateau::placerBonus()
 {
     //placer les bonus dans le plateau
-    int nbBonus= (rand () % 7) + 3;     //generer entre 3 et 6 bonus
-    tabB= new Bonus[dimx*dimy];        //allocation d'un tableau dynamique
-     for (int i=0; i<nbBonus; i++)
+    int nb= (rand () % 8) + 4;     
+    //tabB= new Bonus[dimx*dimy];        //allocation d'un tableau dynamique
+    for (int i=0; i<nb; i++)
      {
-      
          int x;    //generer une coordonnee x compris entre 0 et dimx (dimension du tableau)
          int y;
          do
@@ -87,7 +143,7 @@ void Plateau::placerBonus()
              switch (r)
              {
                  case 2: 
-                     tabB[y*dimx+x] = Bonus(DiamantEau,x,y);
+                     tabB[y*dimx+x] = Bonus(DiamantEau,x,y);q
                      break;
                  case 3:
                      tabB[y*dimx+x] = Bonus(DiamantFeu,x,y);
@@ -99,11 +155,13 @@ void Plateau::placerBonus()
          }
          while(EstPosValide(x,y) &&  plateau[x][y] != '.');     //tant que c'est une position valide (pas de mur ni de bloc qui bouge) ET qu'il n'y a pas deja un bonus
      }
+
     //placer les blocs et les portes dans le tableau obstacle (pour definir leur positionnement)
     //tabO= new Obstacle[dimx][dimy];     //allocation d'un tableau dynamique
 }
+*/
 
-void Plateau::placerObstacle()
+/*void Plateau::placerObstacle()
 {
     for (int i=0; i<dimx; i++)
     {
@@ -153,7 +211,7 @@ void Plateau::placerObstacle()
          while(EstPosValide(x,y) ||  plateau[x][y] != OBS);
  }
 }
-
+*/
 int Plateau::getDimx()const{
     return dimx;
 }
@@ -168,17 +226,17 @@ NomCase Plateau::getPlateau (const int x, const int y) const{
     return plateau[x][y];
 }
 
-Obstacle Plateau:: getObstacle (const int x, const int y){
-    assert(x>=0 && y>=0);
-    assert(x<dimx && y<dimy);
-    return tabO[x][y];
+Objet Plateau:: getObjet (const int x){
+    assert(x>=0);
+    assert(x<30);
+    return tabObj[x];
 }
 
-Bonus Plateau:: getBonus (const int x, const int y){
+/*Bonus Plateau:: getBonus (const int x, const int y){
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
     return tabB[y*dimx+x];
-}
+}*/
 
 bool Plateau::EstPosValide(const int x, const int y){
     assert(x>=0 && y>=0);
