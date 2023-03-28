@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Personnage.h"
-#include "Obstacle.h"
-#include "Bonus.h"
 #include "Plateau.h"
 #include "Jeu.h"
 using namespace std;
@@ -10,8 +8,6 @@ using namespace std;
 
 int main(){
     Personnage p;
-    Obstacle ob;
-    Bonus b;
     Plateau pla;
     Jeu jeu;
     // cout<<b.getType()<<" "<<ob.getType()<<" "<<p.getPos().x<<endl;

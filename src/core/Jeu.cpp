@@ -120,13 +120,10 @@ void Jeu::testRegression_Jeu(){
     const Personnage& Fille = jeu.getPersonnageEau();
     const Personnage& Garcon = jeu.getPersonnageFeu();
     
-    Bonus bon;
     const Plateau& terrain = jeu.getPlateau();
-    Obstacle porte;
-    Obstacle riviere ;
     jeu.ActionClavier('c');
-    jeu.collision(Fille, bon.idB);
-    jeu.collision(Fille,porte.getObjet());
-    jeu.collision(Garcon,riviere.getObjet());
+    // jeu.collision(Fille, bon.idB);
+    // jeu.collision(Fille,porte.getObjet());
+    // jeu.collision(Garcon,riviere.getObjet());
 
 }

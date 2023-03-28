@@ -7,6 +7,7 @@
 #ifndef _Plateau
 #define _Plateau
 #include "NomCase.h"
+#include "Objet.h"
 
 /**
 @brief Un plateau = un tableau contenant des obstacles et des bonus entre des murs
@@ -79,5 +80,6 @@ public:
      * 
      */
     void testRegression_Pla();
+    void placerObjet();
 };
 #endif

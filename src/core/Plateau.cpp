@@ -1,6 +1,7 @@
 #include <cassert>
 #include <iostream>
 #include "Plateau.h"
+#include "Objet.h"
 using namespace std;
 
 //construction du labyrinthe via un tableau de char
@@ -79,7 +80,8 @@ void Plateau::placerObjet()
          int x;
          int y;
          do
-         {       
+         {      
+            int r; 
              x=(rand ()% dimx);
              y= (rand ()% dimy);                    
              switch (r)
