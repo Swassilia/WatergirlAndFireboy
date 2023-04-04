@@ -56,7 +56,7 @@ using namespace std;
 		jeu.ActionClavier(c);
 		if (jeu.collisionRivE(jeu.getPersonnageEau(),pla.getObjet(1)))
 		{
-			cout<<""<<endl;
+			cout<<"z"<<endl;
 		}
 		 if (c=='a')
 		 {

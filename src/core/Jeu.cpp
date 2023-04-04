@@ -28,7 +28,6 @@ const Personnage Jeu::getPersonnageFeu()const{
 
 /******************************************************************************************/
 void Jeu::ActionClavier(const char touche){  
-    // do{
         eau.Gravite(pla);
         feu.Gravite(pla); 
         switch(touche) {
@@ -51,7 +50,6 @@ void Jeu::ActionClavier(const char touche){
                 feu.DeplacerH(pla);
                 break;
         }  
-    // }while(pla.EstPosValide(eau.getPos().x,eau.getPos().y));
     
         
 
@@ -63,10 +61,10 @@ void Jeu::ActionClavier(const char touche){
 // }
 
 bool Jeu::collisionRivE(const Personnage& per,const Objet & obj){
-    assert(per.getType()==Eau || per.getType()==Feu);
+    assert(per.getType()==Eau || obj.getType()==O_Vert||obj.getType()==Lava);
 
-    if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Feu)&&// test si le personnage est de type feu
-    (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere ))
+    if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y &&// test si le personnage est de type feu
+    (obj.getType()==O_Vert|| obj.getType()==Riviere ))
 
         return true;
 
