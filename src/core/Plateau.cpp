@@ -5,24 +5,27 @@
 using namespace std;
 
 //construction du labyrinthe via un tableau de char
-const char plateau1[19][32] = {
+const char plateau1[22][32] = {
 "###############ff##############",
-"#               b       #######",
+"#                       #######",
+"#              b             ##",
 "########ee####    ####     ####",
-"#   ####      ######        ###",
-"#     ##  ###          ##     #",
-"#     r      ##vv##    #b###  #",
+"#   ####      ######         ##",
+"#    ###                      #",
+"#     ##  ###          ####   #",
+"#     f      ##vv##    # b    #",
 "#                   ####      #",
 "############                  #",
-"########ff#                   #",
+"#######ff#                    #",
 "#####          #######__#######",
-"#__            ######       r #",
+"#__            ######       f #",
 "#              ######         #",
 "#  ##############ee##   #######",
-"#    ##########             r #",
+"#    ##########             f #",
 "#       ##            ##      #",
-"####  #        ######    ######",
-"# E   r    ############     F #",
+"##       b                    #",
+"#####          ######    ######",
+"# E        ###########      F #",
 "#          ############       #",
 "###############################",
 };
@@ -33,7 +36,7 @@ Plateau::Plateau()
 {
 
     dimx=31;
-    dimy=19;
+    dimy=22;
     int i=0;
     for(int y=0; y<dimy; ++y)
     {
@@ -127,7 +130,7 @@ Objet Plateau:: getObjet (const int x){
     return tabObj[x];
 }
 
-bool Plateau::EstPosValide(const int x, const int y){
+bool Plateau::EstPosValide(const int x, const int y)const{
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
     return (plateau[x][y]!='#');

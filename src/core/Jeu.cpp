@@ -27,45 +27,51 @@ const Personnage Jeu::getPersonnageFeu()const{
 // gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/
-void Jeu::ActionClavier(const char touche){   
-    eau.Gravite();
-    feu.Gravite(); 
-    switch(touche) {
+void Jeu::ActionClavier(const char touche){  
+    // do{
+        eau.Gravite(pla);
+        feu.Gravite(pla); 
+        switch(touche) {
             case 'q' :
-                    eau.DeplacerG();
-                    break;
+                eau.DeplacerG(pla);
+                break;
             case 'd' :
-                    eau.DeplacerD();
-                    break;
+                eau.DeplacerD(pla);
+                break;
             case 'z' :
-                    eau.DeplacerH();
-                    break;
+                eau.DeplacerH(pla);
+                break;
             case 'k' :
-                    feu.DeplacerG();
-                    break;
+                feu.DeplacerG(pla);
+                break;
             case 'm' :
-                    feu.DeplacerD();
-                    break;
-            case 'o' :
-                    feu.DeplacerH();
-                    break;
-        }
+                feu.DeplacerD(pla);
+                break;
+             case 'o' :
+                feu.DeplacerH(pla);
+                break;
+        }  
+    // }while(pla.EstPosValide(eau.getPos().x,eau.getPos().y));
+    
         
 
 }
 // void Jeu::ActionAuto(){
-//     //  int temps=elapseTime();
+//     //  int temps=elapseTime(pla);
 //     int m=(2*cos(400));
 
 // }
 
-// bool Jeu::collisionRiv(const Personnage& per,const Objet & obj){
-//     assert(per.getType()==Eau || per.getType()==Feu);
+bool Jeu::collisionRivE(const Personnage& per,const Objet & obj){
+    assert(per.getType()==Eau || per.getType()==Feu);
 
-//     if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Feu)&&// test si le personnage est de type feu
-//     (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere ))
-//     {
-//         return true;
+    if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Feu)&&// test si le personnage est de type feu
+    (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere ))
+
+        return true;
+
+    return false;
+}
 //     }else
 //     if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Eau)&&// test si le personnage est de type eau 
 //     (obj.getType()==PorteE ||obj.getType()==O_Vert|| obj.getType()==Lava ))//x1==x2

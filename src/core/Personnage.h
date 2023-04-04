@@ -2,6 +2,7 @@
  #define _Personnage
  #include "Vect2.h"
  #include "Type.h"
+ #include "Plateau.h"
 class Personnage
 {
 private:
@@ -9,11 +10,11 @@ private:
      * 
     */
     Vect2 pos;
-    Vect2 dir; 
     char * nom;
     Type type_p;
     // string nomF;
     bool vivant;
+    Plateau pla;
 public:
 
     /**
@@ -54,24 +55,24 @@ public:
      * @def augmente la valeur en position x
      * 
     */
-    void  DeplacerD ( );
+    void  DeplacerD (const  Plateau &pla);
     /**
      * @brief se deplacer a gauche
      * @def diminue la valeur en position x
      * 
     */
-    void  DeplacerG ();
+    void  DeplacerG ( const  Plateau &pla);
     /**
      * @brief se deplacer en bas (gravité)
      * 
      */
-    void  Gravite();
+    void  Gravite( const  Plateau &pla);
     /**
      * @brief se deplacer en haut 
      * @def augmente la valeur en position y
      * 
     */
-    void  DeplacerH ();
+    void  DeplacerH ( const  Plateau &pla);
     
     void testRegression_Per();
 
