@@ -24,10 +24,12 @@ const Personnage Jeu::getPersonnageEau()const{
 const Personnage Jeu::getPersonnageFeu()const{
     return feu;
 }
-
+// gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/
-void Jeu::ActionClavier(const char touche){    
+void Jeu::ActionClavier(const char touche){   
+    eau.Gravite();
+    feu.Gravite(); 
     switch(touche) {
             case 'q' :
                     eau.DeplacerG();
@@ -57,64 +59,64 @@ void Jeu::ActionClavier(const char touche){
 
 // }
 
-bool Jeu::collision(const Personnage& per,const Objet & obj){
-    assert(per.getType()==Eau || per.getType()==Feu);
+// bool Jeu::collisionRiv(const Personnage& per,const Objet & obj){
+//     assert(per.getType()==Eau || per.getType()==Feu);
 
-    if(distance(per.getPos(), obj.getPos())<0.1 && (per.getType()==Feu)&&// test si le personnage est de type feu
-    (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere ))
-    {
-        return true;
-    }else
-    if(distance(per.getPos(), obj.getPos())<0.1 && (per.getType()==Eau)&&// test si le personnage est de type eau 
-    (obj.getType()==PorteE ||obj.getType()==O_Vert|| obj.getType()==Lava ))
-    {
-        return true;
-    }
-    else
-    if (per.getType()==Eau)
-    {
-        score++;
-        return(distance(per.getPos(), obj.getPos())<0.1 && obj.getType()==DiamantEau);
-    }
-    else
-    if (per.getType()==Feu)
-    {
-        score++;
-        return(distance(per.getPos(), obj.getPos())<0.1 && obj.getType()==DiamantFeu);
+//     if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Feu)&&// test si le personnage est de type feu
+//     (obj.getType()==PorteF ||obj.getType()==O_Vert|| obj.getType()==Riviere ))
+//     {
+//         return true;
+//     }else
+//     if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Eau)&&// test si le personnage est de type eau 
+//     (obj.getType()==PorteE ||obj.getType()==O_Vert|| obj.getType()==Lava ))//x1==x2
+//     {
+//         return true;
+//     }
+//     else
+//     if (per.getType()==Eau)
+//     {
+//         score++;
+//         return(distance(per.getPos(), obj.getPos())==0 && obj.getType()==DiamantEau);
+//     }
+//     else
+//     if (per.getType()==Feu)
+//     {
+//         score++;
+//         return(distance(per.getPos(), obj.getPos())==0 && obj.getType()==DiamantFeu);
         
-    }
-    return false;
-}
+//     }
+//     return false;
+// }
 
 
-bool Jeu::succes(const Personnage& per, const Objet& obj){
-    if(per.getType()==Eau && obj.getType()==PorteE){
-        if(collision(per,obj)){ 
-            return true;
-        }
-    }else 
-    if(per.getType()== Feu && obj.getType()==PorteF){
-        if(collision(per,obj)){
-            return true;
-        }
-    }
-    return false;
-}
-bool Jeu::perte(const Personnage&per , const Objet& obj){
-    if(per.getType()==Eau && obj.getType()== Lava){
-        if(collision(per,obj))return true;
-    }else
-    if(per.getType()== Eau && obj.getType()== O_Vert){
-        if(collision(per,obj))return true;
-    }else
-    if(per.getType()== Feu && obj.getType() == Riviere){
-        if(collision(per,obj))return true;
-    }else
-    if(per.getType()== Feu && obj.getType()== O_Vert){
-        if(collision(per,obj))return true;
-    }
-    return false;
-}
+// bool Jeu::succes(const Personnage& per, const Objet& obj){
+//     if(per.getType()==Eau && obj.getType()==PorteE){
+//         if(collision(per,obj)){ 
+//             return true;
+//         }
+//     }else 
+//     if(per.getType()== Feu && obj.getType()==PorteF){
+//         if(collision(per,obj)){
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+// bool Jeu::perte(const Personnage&per , const Objet& obj){
+//     if(per.getType()==Eau && obj.getType()== Lava){
+//         if(collision(per,obj))return true;
+//     }else
+//     if(per.getType()== Eau && obj.getType()== O_Vert){
+//         if(collision(per,obj))return true;
+//     }else
+//     if(per.getType()== Feu && obj.getType() == Riviere){
+//         if(collision(per,obj))return true;
+//     }else
+//     if(per.getType()== Feu && obj.getType()== O_Vert){
+//         if(collision(per,obj))return true;
+//     }
+//     return false;
+// }
 
 void Jeu::testRegression_Jeu(){
     Jeu jeu;

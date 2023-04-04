@@ -54,10 +54,10 @@ using namespace std;
  		 c = win.getCh();
 		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);
-		if (jeu.collision(jeu.getPersonnageEau(),pla.getObjet(jeu.getPersonnageEau().getPos().x)))
-		{
-			cout<<"Ne peut pas sauter car c'est un mur"<<endl;
-		}
+		// if (jeu.collisionRivE(jeu.getPersonnageEau(),pla.getObjet(6)))
+		// {
+		// 	cout<<""<<endl;
+		// }
 		 if (c=='a')
 		 {
 			cout<<endl;

@@ -65,7 +65,7 @@ public:
      * @brief se deplacer en bas (gravité)
      * 
      */
-    void  DeplacerB();
+    void  Gravite();
     /**
      * @brief se deplacer en haut 
      * @def augmente la valeur en position y
