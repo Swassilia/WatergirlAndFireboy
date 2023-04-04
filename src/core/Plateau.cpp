@@ -5,26 +5,29 @@
 using namespace std;
 
 //construction du labyrinthe via un tableau de char
-const char plateau1[19][32] = {
-"###############ff##############",
-"#               b       #######",
-"########ee####    ####     ####",
-"#   ####      ######        ###",
-"#     ##  ###          ##     #",
-"#     r      ##vv##    #b###  #",
-"#                   ####      #",
-"############                  #",
-"########ff#                   #",
-"#####          #######__#######",
-"#__            ######       r #",
-"#              ######         #",
-"#  ##############ee##   #######",
-"#    ##########             r #",
-"#       ##            ##      #",
-"####  #        ######    ######",
-"# E   r    ############     F #",
-"#          ############       #",
+const char plateau1[22][32] = {
 "###############################",
+"#          ############       #",
+"# E        ###########      F #",
+"#####          ######    ######",
+"##                            #",
+"#       ##            ##      #",
+"#    ##########               #",
+"#  ##############ee##   #######",
+"#              ######         #",
+"#__            ######         #",
+"#####          #######__#######",
+"#######ff#                    #",
+"############                  #",
+"#                   ####      #",
+"#            ##vv##    #      #",
+"#     ##  ###          ####   #",
+"#    ###                      #",
+"#   ####      ######         ##",
+"########ee####    ####     ####",
+"#                            ##",
+"#                       #######",
+"###############ff##############",
 };
 
 //Constructeur de la classe qui initialise les dimensions avec des entiers définis
@@ -33,7 +36,7 @@ Plateau::Plateau()
 {
 
     dimx=31;
-    dimy=19;
+    dimy=22;
     int i=0;
     for(int y=0; y<dimy; ++y)
     {
@@ -127,7 +130,7 @@ Objet Plateau:: getObjet (const int x){
     return tabObj[x];
 }
 
-bool Plateau::EstPosValide(const int x, const int y){
+bool Plateau::EstPosValide(const int x, const int y)const{
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
     return (plateau[x][y]!='#');
