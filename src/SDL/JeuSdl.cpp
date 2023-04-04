@@ -118,7 +118,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
     
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("Avion", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx/2, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx/2, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == NULL) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -128,7 +128,11 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
-        im_perso_eau.loadFromFile("data/personnage_eau.png",renderer);
+        im_mur.loadFromFile("data/mur.png",renderer);
+        im_fond.loadFromFile("data/fond.jpg",renderer);
+        im_diamond_eau.loadFromFile("data/diamondEau.png",renderer);
+        im_diamond_feu.loadFromFile("data/diamondFeu.png",renderer);
+
     
     //FONT
         if (TTF_Init() < 0)
@@ -144,7 +148,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
                 exit(1);
         }
         font_color.r = 50;font_color.g = 50;font_color.b = 255;
-        font_im.setSurface(TTF_RenderText_Solid(font,"Avion",font_color));
+        font_im.setSurface(TTF_RenderText_Solid(font,"Fire Boy and Water Girl",font_color));
         font_im.loadFromCurrentSurface(renderer);
         
 }
@@ -158,75 +162,76 @@ SDLSimple::~SDLSimple(){
     SDL_Quit();
 }
 
-// void SDLSimple::sdlAff(){
-//         // Avion &av= jeu.getAvion();
+ void SDLSimple::sdlAff(){
+         // Avion &av= jeu.getAvion();
+         int x,y;
+         const Plateau &pla=jeu.getPlateau();
+         const Personnage &eau = jeu.getPersonnageEau();
+         const Personnage &feu = jeu.getPersonnageFeu();
+         SDL_Event event;
+         bool ouvert=false;
+         Uint32 t = SDL_GetTicks(), nt;
+         while(!ouvert){
+             nt = SDL_GetTicks();
+         if (nt-t>500) {
+             //jeu.actionsAutomatiques();
+             t = nt;
+         }
+             while(SDL_PollEvent(&event)) {
+              if (event.type==SDL_QUIT) 
+                 ouvert=true;
+                 else if (event.type == SDL_KEYDOWN) {  // Si une touche est enfoncee
+                 bool mangeObstacle = false;
+ 				switch (event.key.keysym.scancode) {
+ 				case SDL_SCANCODE_UP:
+ 					jeu.ActionClavier('q');   
+ 					break;
+                     case SDL_SCANCODE_DOWN:
+ 					jeu.ActionClavier('z');
+                     break;  
+ 					case SDL_SCANCODE_ESCAPE:
+                     case SDL_SCANCODE_Q:
+                     ouvert=false;
+                     break;
+                     default:break;}
+             }
+         }
+         for(unsigned int i=0; i<pla.getDimx(); i++){
+            for (unsigned int j=0; j<pla.getDimy(); j++){
+                SDL_Surface* mur = IMG_Load("data/mur.png");
+                SDL_Surface* fond = IMG_Load("data/fond.png"); 
+                SDL_Texture* c=SDL_CreateTextureFromSurface(renderer, mur);
+                SDL_Texture* c=SDL_CreateTextureFromSurface(renderer, fond);
+                SDL_RenderClear(renderer);
+                SDL_RenderCopy(renderer, c, NULL, NULL);
+                SDL_DestroyTexture(c);
 
-//         int x,y;
-//         const Obstacle &obs = jeu.getConstObstacle();
-//         const Plateau &pla=jeu.getConstPlateau();
-//         const Avion &av=jeu.getConstAvion();
-//         SDL_Event event;
-//         bool ouvert=false;
-//         Uint32 t = SDL_GetTicks(), nt;
-
-
-//         while(!ouvert){
-//             nt = SDL_GetTicks();
-//         if (nt-t>500) {
-//             jeu.actionsAutomatiques_avion();
-//             jeu.actionsAutomatiques_obj();
-//             t = nt;
-//         }
-//             while(SDL_PollEvent(&event)) {
-//              if (event.type==SDL_QUIT) 
-//                 ouvert=true;
-//                 else if (event.type == SDL_KEYDOWN) {  // Si une touche est enfoncee
-//                 bool mangeObstacle = false;
-// 				switch (event.key.keysym.scancode) {
-// 				case SDL_SCANCODE_UP:
-// 					jeu.actionClavier('q');   
-// 					break;
-//                     case SDL_SCANCODE_DOWN:
-// 					jeu.actionClavier('z');
-//                     break;  
-// 					case SDL_SCANCODE_ESCAPE:
-//                     case SDL_SCANCODE_Q:
-//                     ouvert=false;
-//                     break;
-//                     default:break;}
-//             }
-//         }
-
-//         SDL_Surface* ciel=IMG_Load("data/ciel.png");
-//         SDL_Texture* c=SDL_CreateTextureFromSurface(renderer, ciel);
-//         SDL_RenderClear(renderer);
-//         SDL_RenderCopy(renderer, c, NULL, NULL);
-//         SDL_DestroyTexture(c);
-        
-//         int x;
-//         int y;
-        
-//         SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);        
-//         for (x=0; x<pla.getdimX(); ++x){
-//             for (y=0; y<pla.getdimY(); y++){
-//                 if (pla.getXY(x,y)=='O'){
-//                     im_bonus.draw(renderer,obs.getX_bo()*TAILLE_SPRITE,obs.getY_bo()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                 }
-//                 if (pla.getXY(x,y)=='.')
-//                 {
-//                     im_ennemi1.draw(renderer,obs.getX_en1()*TAILLE_SPRITE,obs.getY_en1()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                     im_ennemi2.draw(renderer,obs.getX_en2()*TAILLE_SPRITE,obs.getY_en2()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                     im_ennemi3.draw(renderer,obs.getX_en3()*TAILLE_SPRITE,obs.getY_en3()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-
-//                 }
-//                 }}
-
-//         //affichage de l'avion
-//         im_avion.draw(renderer, av.getX_coordonnee()*TAILLE_SPRITE,av.getY_coordonnee()*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE*3);
-//         SDL_RenderPresent(renderer);
-//         }
-//         SDL_DestroyRenderer(renderer);
-// }
-
+            }
+         }
+         }
+ }
+      
+//          int x;
+//          int y;
+      
+//          SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);        
+//          for (x=0; x<pla.getdimX(); ++x){
+//              for (y=0; y<pla.getdimY(); y++){
+//                  if (pla.getXY(x,y)=='O'){
+//                      im_bonus.draw(renderer,obs.getX_bo()*TAILLE_SPRITE,obs.getY_bo()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
+//                  }
+//                  if (pla.getXY(x,y)=='.')
+//                  {
+//                      im_ennemi1.draw(renderer,obs.getX_en1()*TAILLE_SPRITE,obs.getY_en1()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
+//                      im_ennemi2.draw(renderer,obs.getX_en2()*TAILLE_SPRITE,obs.getY_en2()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
+//                      im_ennemi3.draw(renderer,obs.getX_en3()*TAILLE_SPRITE,obs.getY_en3()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
+//                  }
+//                  }}
+//          //affichage de l'avion
+//          im_avion.draw(renderer, av.getX_coordonnee()*TAILLE_SPRITE,av.getY_coordonnee()*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE*3);
+//          SDL_RenderPresent(renderer);
+//          }
+//          SDL_DestroyRenderer(renderer);
+  
 
 
