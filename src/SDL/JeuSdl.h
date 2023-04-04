@@ -48,10 +48,15 @@ private :
     Mix_Chunk * sound;
     bool withSound;
 
-    Image im_pacman;
+    Image im_perso_eau;
+    Image im_perso_feu;
+
+    Image im_diamond_eau;
+    Image im_diamond_feu;
+
     Image im_mur;
-    Image im_pastille;
-    Image im_fantome;
+    Image im_fond;
+
 
     bool souris;
     bool touche;

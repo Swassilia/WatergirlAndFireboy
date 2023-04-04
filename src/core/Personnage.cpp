@@ -59,7 +59,7 @@ void Personnage::DeplacerH ()
     pos.y-=1;
 }
 
-void  Personnage::DeplacerB()
+void  Personnage::Gravite()
 {
     pos.y+=1; // la coordonné (0,0) est en haut a gauche y doit donc augmenter pour descendre
 }
