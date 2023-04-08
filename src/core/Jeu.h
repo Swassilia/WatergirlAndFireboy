@@ -6,11 +6,7 @@
 
 class Jeu
 {
-private:
-    Plateau pla;
-    Personnage feu;
-    Personnage eau;
-    
+
 public:
     unsigned int score;
     /**
@@ -50,7 +46,7 @@ public:
      * @brief permet les actions automatiques des obstacles de type Bloc
      * 
      */
-    void ActionAuto();
+    void ActionAuto(const Plateau &pla);
 
     /**
      * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
@@ -149,6 +145,14 @@ public:
      * 
      */
     void testRegression_Jeu();
+    
+    private:
+    Plateau pla;
+    Personnage feu;
+    Personnage eau;
+
+    Objet ob;
+    
 };
 
 #endif

@@ -34,11 +34,12 @@ obj/Personnage.o: src/core/Personnage.cpp src/core/Personnage.h src/core/Vect2.h
 obj/Plateau.o: src/core/Plateau.cpp src/core/Plateau.h  src/core/NomCase.h src/core/Objet.h 
 	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Plateau.cpp  -o obj/Plateau.o 
 
+obj/Objet.o: src/core/Objet.cpp src/core/Plateau.h src/core/Vect2.h src/core/Type.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Objet.cpp -o obj/Objet.o
+
 obj/Vect2.o: src/core/Vect2.cpp src/core/Vect2.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Vect2.cpp -o obj/Vect2.o
 
-obj/Objet.o: src/core/Objet.cpp 
-	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Objet.cpp -o obj/Objet.o
 
 
 

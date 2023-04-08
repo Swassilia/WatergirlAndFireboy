@@ -9,10 +9,11 @@ using namespace std;
 
 //Constructeurs  
 Jeu::Jeu(){
-    feu = Personnage(Feu, 2,15);
+    feu = Personnage(Feu,2,18);
     eau = Personnage(Eau, 2,17);
     pla = Plateau();
     score = 0;
+    ob = Objet(Bloc,ob.getPos().x, ob.getPos().y);
 }
 
 const Plateau Jeu::getPlateau()const{
@@ -24,6 +25,7 @@ const Personnage Jeu::getPersonnageEau()const{
 const Personnage Jeu::getPersonnageFeu()const{
     return feu;
 }
+
 // gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/
@@ -54,11 +56,22 @@ void Jeu::ActionClavier(const char touche){
         
 
 }
-// void Jeu::ActionAuto(){
-//     //  int temps=elapseTime(pla);
-//     int m=(2*cos(400));
+ void Jeu::ActionAuto(const Plateau &pla){
+    int dx [4] = { 0, 1, 0, 1};
+    int dy [4] = { 0, -1, 0, -1};
+    int xtmp,ytmp;
+    int x = ob.getPos().x;
+    int y = ob.getPos().y;
+    xtmp = x - dx[ob.dir];
+    ytmp = y - dy[ob.dir];
+    if (pla.EstPosValide(xtmp,ytmp)) {
+        cout<<"ici"<<endl;
+        x = +xtmp;
+        y = +ytmp;
+    }else ob.dir = rand()%4;
 
-// }
+ }
+
 
 bool Jeu::collisionRivE(const Personnage& per,const Objet & obj){
     assert(per.getType()==Eau || obj.getType()==O_Vert||obj.getType()==Lava);

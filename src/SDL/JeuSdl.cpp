@@ -111,10 +111,10 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
     }
 
 	int dimx, dimy;
-	// dimx = jeu.getConstPlateau().getdimX();
-	// dimy = jeu.getConstPlateau().getdimY();
-	// dimx = dimx * TAILLE_SPRITE;
-	// dimy = dimy * TAILLE_SPRITE;
+	 dimx = jeu.getPlateau().getDimx();
+	 dimy = jeu.getPlateau().getDimy();
+	 dimx = dimx * TAILLE_SPRITE;
+	 dimy = dimy * TAILLE_SPRITE;
     
 
     // Creation de la fenetre

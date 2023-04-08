@@ -15,7 +15,8 @@ using namespace std;
 	win.draw();
  	const Plateau& pla = jeu.getPlateau();
  	const Personnage& feu = jeu.getPersonnageFeu();
-     const Personnage& eau = jeu.getPersonnageEau();
+    const Personnage& eau = jeu.getPersonnageEau();
+	//const Objet& ob  = jeu.getObjet();
 
 	win.draw();
      // Affichage des murs et des pastilles
@@ -27,7 +28,9 @@ using namespace std;
  	win.print(feu.getPos().x,feu.getPos().y,'f');
 
  	// Affichage du water girl
- 	win.print(eau.getPos().x,eau.getPos().y,'e');	
+ 	win.print(eau.getPos().x,eau.getPos().y,'e');
+
+	//.print(ob.getPos().x,ob.getPos().y,'__');	
  	win.draw();
 	
  }
@@ -50,7 +53,7 @@ using namespace std;
  		#else
  		usleep(100000);
         #endif // WIN32
- 		//jeu.ActionAuto();
+ 		//jeu.ActionAuto(jeu.getPlateau());
  		 c = win.getCh();
 		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);

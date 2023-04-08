@@ -15,11 +15,6 @@
 
 class Plateau
 {
-private:
-
-    int dimx, dimy;
-    NomCase plateau[50][50];    //plateau contenant tous les éléments 
-    Objet tabObj [30];
 
 public:
 
@@ -75,11 +70,18 @@ public:
      * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y
     */
   //  void mangeBonus(const int x, const int y); 
-  
+
     /**
      * @brief Teste le focntionnement de l'ensemble des fonction de la classe
      * 
      */
     void testRegression_Pla();
+  
+  private:
+
+    int dimx, dimy;
+    NomCase plateau[50][50];    //plateau contenant tous les éléments 
+    Objet tabObj [30];
+
 };
 #endif

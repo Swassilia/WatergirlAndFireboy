@@ -1,5 +1,10 @@
+#include <math.h>
+#include <iostream>
+
 #include "Objet.h"
 
+using namespace std;
+ 
 Objet::Objet(){
 
     typeO = Defaut;
@@ -31,3 +36,17 @@ Type Objet::getType()const  {
 
     return typeO;
 }
+
+// void Objet::bougeAuto(const Plateau & pla){
+//     int dx [4] = { 0, 1, 0, 1};
+//     int dy [4] = { 0, -1, 0, -1};
+//     int xtmp,ytmp;
+    
+//     xtmp = posO.x - dx[dir];
+//     ytmp = posO.y - dy[dir];
+//     if (pla.EstPosValide(xtmp,ytmp)) {
+//         cout<<"ici"<<endl;
+//         posO.x = +xtmp;
+//         posO.y = +ytmp;
+//     }else dir = rand()%4;
+// }

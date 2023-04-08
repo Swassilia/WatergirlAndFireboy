@@ -5,16 +5,7 @@
  #include "Plateau.h"
 class Personnage
 {
-private:
-    /** 
-     * 
-    */
-    Vect2 pos;
-    char * nom;
-    Type type_p;
-    // string nomF;
-    bool vivant;
-    Plateau pla;
+
 public:
 
     /**
@@ -75,6 +66,18 @@ public:
     void  DeplacerH ( const  Plateau &pla);
     
     void testRegression_Per();
+    
+private:
+
+    /** 
+     * 
+    */
+    Vect2 pos;
+    char * nom;
+    Type type_p;
+    // string nomF;
+    bool vivant;
+    Plateau pla;
 
 };
 

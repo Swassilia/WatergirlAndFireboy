@@ -1,16 +1,13 @@
 #ifndef _Objet
 #define _Objet
+//#include "Plateau.h"
 #include "Type.h"
 #include "Vect2.h"
 
 class Objet {
-    private:
-
-    Type typeO; //le type de l'objet
-
-    Vect2 posO; //position de l'objet
 
     public:
+    
 
     Objet();
 
@@ -22,6 +19,17 @@ class Objet {
 
     Type getType() const;
 
+    //void bougeAuto(const Plateau & pla);
+
+    int dir;
+
+    private:
+
+    Type typeO; //le type de l'objet
+
+    Vect2 posO; //position de l'objet
+
+   
 
 };
 #endif
