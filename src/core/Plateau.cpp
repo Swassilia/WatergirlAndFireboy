@@ -5,7 +5,8 @@
 using namespace std;
 
 //construction du labyrinthe via un tableau de char
-const char plateau1[22][32] = {
+const char plateau1[23][32] = {
+"###############################",
 "###############ff##############",
 "#                       #######",
 "#              b             ##",
@@ -34,8 +35,8 @@ const char plateau1[22][32] = {
 Plateau::Plateau()
 {
 
-    dimx=31;
-    dimy=22;
+    dimx=32;
+    dimy=23;
     int i=0;
     for(int y=0; y<dimy; ++y)
     {

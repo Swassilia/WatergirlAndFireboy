@@ -1,6 +1,7 @@
 
 #include "Animation.h"  
-    int Animation(SDL_Texture* texture, int frame_width, int frame_height, int frame_time) {
+
+   int Animation:: Animation(SDL_Texture* texture, int frame_width, int frame_height, int frame_time) {
         this->texture = texture;
         this->frame_time = frame_time;
         for (int i = 0; i < 3; i++) {

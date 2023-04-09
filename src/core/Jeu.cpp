@@ -83,6 +83,16 @@ bool Jeu::collisionRivE(const Personnage& per,const Objet & obj){
 
     return false;
 }
+bool Jeu::collisionRivF(const Personnage& per,const Objet & obj){
+    assert(per.getType()==Feu|| obj.getType()==O_Vert||obj.getType()==Riviere);
+
+    if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y &&// test si le personnage est de type feu
+    (obj.getType()==O_Vert|| obj.getType()==Riviere ))
+
+        return true;
+
+    return false;
+}
 //     }else
 //     if(distance(per.getPos(), obj.getPos())==0 && (per.getType()==Eau)&&// test si le personnage est de type eau 
 //     (obj.getType()==PorteE ||obj.getType()==O_Vert|| obj.getType()==Lava ))//x1==x2
@@ -119,23 +129,24 @@ bool Jeu::collisionRivE(const Personnage& per,const Objet & obj){
 //     }
 //     return false;
 // }
-// bool Jeu::perte(const Personnage&per , const Objet& obj){
-//     if(per.getType()==Eau && obj.getType()== Lava){
-//         if(collision(per,obj))return true;
-//     }else
-//     if(per.getType()== Eau && obj.getType()== O_Vert){
-//         if(collision(per,obj))return true;
-//     }else
-//     if(per.getType()== Feu && obj.getType() == Riviere){
-//         if(collision(per,obj))return true;
-//     }else
-//     if(per.getType()== Feu && obj.getType()== O_Vert){
-//         if(collision(per,obj))return true;
-//     }
-//     return false;
-// }
+bool Jeu::perte(const Personnage&per , const Objet& obj){
+    // if(per.getType()==Eau && obj.getType()== Lava){
+    //     if(collision(per,obj))return true;
+    // }else
+    // if(per.getType()== Eau && obj.getType()== O_Vert){
+    //     if(collision(per,obj))return true;
+    // }else
+    if(per.getType()== Feu && obj.getType() == Riviere){
+        if(collisionRivF(per,obj))return true;
+    }//else
+    // if(per.getType()== Feu && obj.getType()== O_Vert){
+    //     if(collision(per,obj))return true;
+    // }
+    return false;
+}
 
-void Jeu::testRegression_Jeu(){
+
+void Jeu:: testRegressionJeu(){
     Jeu jeu;
     const Personnage& Fille = jeu.getPersonnageEau();
     const Personnage& Garcon = jeu.getPersonnageFeu();

@@ -144,7 +144,7 @@ public:
      * @brief Teste le focntionnement de l'ensemble des fonction de la classe
      * 
      */
-    void testRegression_Jeu();
+    void testRegressionJeu();
     
     private:
     Plateau pla;
