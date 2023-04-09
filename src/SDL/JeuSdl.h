@@ -11,11 +11,6 @@
 //! \brief Pour gérer une image avec SDL2
 class Image {
 
-private:
-
-    SDL_Surface * surface;
-    SDL_Texture * texture;
-    bool has_Changed;
 
 public:
      Image();
@@ -25,6 +20,13 @@ public:
     void draw (SDL_Renderer * renderer, int x, int y, int w=-1, int h=-1);
     SDL_Texture * getTexture() const;
     void setSurface(SDL_Surface * surf);
+
+private:
+
+    SDL_Surface * surface;
+    SDL_Texture * texture;
+    bool has_Changed;
+
 };
 
 
@@ -33,6 +35,14 @@ public:
     La classe gerant le jeu avec un affichage SDL
 */
 class SDLSimple {
+
+
+public :
+
+    SDLSimple ();
+    ~SDLSimple ();
+    void sdlBoucle ();
+    void sdlAff ();
 
 private :
 
@@ -60,13 +70,6 @@ private :
 
     bool souris;
     bool touche;
-public :
-
-    SDLSimple ();
-    ~SDLSimple ();
-    void sdlBoucle ();
-    void sdlAff ();
-
 };
 
 #endif
