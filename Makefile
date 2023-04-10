@@ -1,5 +1,5 @@
 EXEC_NAME = bin/test bin/text bin/sdl
-OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o 
+OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o obj/Animation.o
 
 CC = g++
 CFLAGS = -Wall -ggdb
@@ -10,11 +10,11 @@ all: $(EXEC_NAME)
 bin/test: obj/mainTest.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/Objet.o 
 	$(CC) -g  obj/mainTest.o obj/Jeu.o obj/Personnage.o obj/Plateau.o obj/Vect2.o obj/Objet.o -o bin/test 
 
-bin/text: obj/mainTxt.o obj/WinTxt.o obj/Vect2.o  obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o 
+bin/text: obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o 
 	$(CC) -g  obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o -o bin/text 
 	
 bin/sdl: obj/mainSdl.o obj/JeuSdl.o obj/Jeu.o obj/Vect2.o  obj/Personnage.o obj/Plateau.o obj/Objet.o
-	$(CC) -g obj/mainSdl.o obj/JeuSdl.o obj/Jeu.o -o bin/sdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+	$(CC) -g obj/mainSdl.o obj/JeuSdl.o obj/Jeu.o obj/Vect2.o  obj/Personnage.o obj/Plateau.o obj/Objet.o -o bin/sdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/Objet.o 
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/mainTest.cpp -o obj/mainTest.o
