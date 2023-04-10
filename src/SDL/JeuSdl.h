@@ -1,11 +1,12 @@
 #ifndef _SDLJEU_H
 #define _SDLJEU_H
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include "../core/Jeu.h"
+
+
 
 //! \brief Pour gérer une image avec SDL2
 class Image {
@@ -56,7 +57,30 @@ private :
 
     Mix_Chunk * sound;
     bool withSound;
+    
+    //Animation
 
+    Image im_perso_eau1;
+    Image im_perso_eau2;
+    Image im_perso_eau3;
+
+    Image im_perso_feu1;
+    Image im_perso_feu2;
+    Image im_perso_feu3;
+
+    Image riviere1;
+    Image riviere2;
+    Image riviere3;
+
+    Image lava1;
+    Image lava2;
+    Image lava3;
+
+    Image vert1;
+    Image vert2;
+    Image vert3;
+
+    //Intacte
     Image im_perso_eau;
     Image im_perso_feu;
 
@@ -65,6 +89,10 @@ private :
 
     Image im_mur;
     Image im_fond;
+    Image im_bloc;
+
+    Image im_porte_eau;
+    Image im_porte_feu;
 
 
     bool souris;

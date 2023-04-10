@@ -2,6 +2,7 @@
 #include "Personnage.h"
 #include "Plateau.h"
 #include "Jeu.h"
+#include "Animation.h"
 using namespace std;
 
 

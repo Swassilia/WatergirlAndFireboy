@@ -1,8 +1,11 @@
+#include <cassert>
+#include <time.h>
+#include "JeuSdl.h"
 #include <stdlib.h>
 
 #include <iostream>
-#include "JeuSdl.h"
 using namespace std;
+
 
 const int TAILLE_SPRITE = 32;
 
@@ -88,6 +91,17 @@ SDL_Texture * Image::getTexture() const {return texture;}
 
 void Image::setSurface(SDL_Surface * surf) {surface = surf;}
 
+
+
+
+
+
+
+
+
+
+
+
 // ============= CLASS Jeu =============== //
 
 SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
@@ -132,7 +146,9 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         im_fond.loadFromFile("data/fond.jpg",renderer);
         im_diamond_eau.loadFromFile("data/diamondEau.png",renderer);
         im_diamond_feu.loadFromFile("data/diamondFeu.png",renderer);
-
+        im_bloc.loadFromFile("",renderer);
+        im_porte_eau.loadFromFile("",renderer);
+        im_porte_feu.loadFromFile("",renderer);
     
     //FONT
         if (TTF_Init() < 0)
@@ -163,75 +179,74 @@ SDLSimple::~SDLSimple(){
 }
 
  void SDLSimple::sdlAff(){
-         // Avion &av= jeu.getAvion();
+         
+         //Remplir l'écran de blanc
+         SDL_SetRenderDrawColor(renderer, 230,240,255,255);
+         SDL_RenderClear(renderer);
+         
          int x,y;
          const Plateau &pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
-         SDL_Event event;
-         bool ouvert=false;
-         Uint32 t = SDL_GetTicks(), nt;
-         while(!ouvert){
-             nt = SDL_GetTicks();
-         if (nt-t>500) {
-             //jeu.actionsAutomatiques();
-             t = nt;
-         }
-             while(SDL_PollEvent(&event)) {
-              if (event.type==SDL_QUIT) 
-                 ouvert=true;
-                 else if (event.type == SDL_KEYDOWN) {  // Si une touche est enfoncee
-                 bool mangeObstacle = false;
- 				switch (event.key.keysym.scancode) {
- 				case SDL_SCANCODE_UP:
- 					jeu.ActionClavier('q');   
- 					break;
-                     case SDL_SCANCODE_DOWN:
- 					jeu.ActionClavier('z');
-                     break;  
- 					case SDL_SCANCODE_ESCAPE:
-                     case SDL_SCANCODE_Q:
-                     ouvert=false;
-                     break;
-                     default:break;}
-             }
-         }
-         for(unsigned int i=0; i<pla.getDimx(); i++){
-            for (unsigned int j=0; j<pla.getDimy(); j++){
-                SDL_Surface* mur = IMG_Load("data/mur.png");
-                SDL_Surface* fond = IMG_Load("data/fond.png"); 
-                SDL_Texture* c=SDL_CreateTextureFromSurface(renderer, mur);
-                SDL_Texture* c=SDL_CreateTextureFromSurface(renderer, fond);
-                SDL_RenderClear(renderer);
-                SDL_RenderCopy(renderer, c, NULL, NULL);
-                SDL_DestroyTexture(c);
+         
+         
+         for (x=0;x<pla.getDimx();++x)
+            for (y=0;y<pla.getDimy();++y)
+                if (pla.getPlateau(x,y)=='#') im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='_') im_bloc.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)==' ') im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='r') im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='E') im_porte_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='F') im_porte_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        
+        im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_perso_feu.draw(renderer,feu.getPos().x*TAILLE_SPRITE,feu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
 
-            }
-         }
-         }
- }
-      
-//          int x;
-//          int y;
-      
-//          SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);        
-//          for (x=0; x<pla.getdimX(); ++x){
-//              for (y=0; y<pla.getdimY(); y++){
-//                  if (pla.getXY(x,y)=='O'){
-//                      im_bonus.draw(renderer,obs.getX_bo()*TAILLE_SPRITE,obs.getY_bo()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                  }
-//                  if (pla.getXY(x,y)=='.')
-//                  {
-//                      im_ennemi1.draw(renderer,obs.getX_en1()*TAILLE_SPRITE,obs.getY_en1()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                      im_ennemi2.draw(renderer,obs.getX_en2()*TAILLE_SPRITE,obs.getY_en2()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                      im_ennemi3.draw(renderer,obs.getX_en3()*TAILLE_SPRITE,obs.getY_en3()*TAILLE_SPRITE,TAILLE_SPRITE*2,TAILLE_SPRITE*2);
-//                  }
-//                  }}
-//          //affichage de l'avion
-//          im_avion.draw(renderer, av.getX_coordonnee()*TAILLE_SPRITE,av.getY_coordonnee()*TAILLE_SPRITE, TAILLE_SPRITE*2, TAILLE_SPRITE*3);
-//          SDL_RenderPresent(renderer);
-//          }
-//          SDL_DestroyRenderer(renderer);
-  
+}
 
+void SDLSimple::sdlBoucle(){
+    SDL_Event event;
+    bool ouvert=false;
+    Uint32 t = SDL_GetTicks(), nt;
 
+    while (!ouvert) {
+
+        nt = SDL_GetTicks();
+        
+		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
+			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
+                bool mangeBonus = false;
+				switch (event.key.keysym.scancode) {
+				case SDL_SCANCODE_UP:
+					mangeBonus = jeu.ActionClavier('b');    // car Y inverse
+					break;
+				case SDL_SCANCODE_DOWN:
+					mangeBonus = jeu.ActionClavier('h');     // car Y inverse
+					break;
+				case SDL_SCANCODE_LEFT:
+					mangeBonus = jeu.ActionClavier('g');
+					break;
+				case SDL_SCANCODE_RIGHT:
+					mangeBonus = jeu.ActionClavier('d');
+					break;
+                case SDL_SCANCODE_ESCAPE:
+                case SDL_SCANCODE_Q:
+                    ouvert = true;
+                    break;
+				default: break;
+				}
+				
+			}
+		}
+
+		// on affiche le jeu sur le buffer caché
+		sdlAff();
+
+		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
+        SDL_RenderPresent(renderer);
+	}
+    
+}

@@ -29,7 +29,7 @@ const Personnage Jeu::getPersonnageFeu()const{
 // gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/
-void Jeu::ActionClavier(const char touche){  
+bool Jeu::ActionClavier(const char touche){  
         eau.Gravite(pla);
         feu.Gravite(pla); 
         switch(touche) {
@@ -53,8 +53,7 @@ void Jeu::ActionClavier(const char touche){
                 break;
         }  
     
-        
-
+    return false;
 }
  void Jeu::ActionAuto(const Plateau &pla){
     int dx [4] = { 0, 1, 0, 1};
