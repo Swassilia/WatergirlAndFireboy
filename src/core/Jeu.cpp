@@ -77,7 +77,7 @@ bool Jeu::collisionRivE(const Personnage& per,const Objet & obj){
     assert(per.getType()==Eau || obj.getType()==O_Vert||obj.getType()==Lava);
 
     if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y &&// test si le personnage est de type feu
-    (obj.getType()==O_Vert|| obj.getType()==Riviere ))
+    (obj.getType()==O_Vert|| obj.getType()==Lava ))
 
         return true;
 
@@ -130,14 +130,14 @@ bool Jeu::collisionRivF(const Personnage& per,const Objet & obj){
 //     return false;
 // }
 bool Jeu::perte(const Personnage&per , const Objet& obj){
-    // if(per.getType()==Eau && obj.getType()== Lava){
-    //     if(collision(per,obj))return true;
-    // }else
-    // if(per.getType()== Eau && obj.getType()== O_Vert){
-    //     if(collision(per,obj))return true;
-    // }else
+    if(per.getType()==Eau && obj.getType()== Lava){
+        return collisionRivE(per,obj);
+    }else
+    if(per.getType()== Eau && obj.getType()== O_Vert){
+        return (collisionRivE(per,obj));
+    }else
     if(per.getType()== Feu && obj.getType() == Riviere){
-        if(collisionRivF(per,obj))return true;
+        return(collisionRivF(per,obj));
     }//else
     // if(per.getType()== Feu && obj.getType()== O_Vert){
     //     if(collision(per,obj))return true;

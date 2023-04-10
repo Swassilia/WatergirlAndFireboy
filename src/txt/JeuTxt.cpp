@@ -57,11 +57,17 @@ using namespace std;
  		 c = win.getCh();
 		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);
-		if (jeu.collisionRivE(jeu.getPersonnageEau(),pla.getObjet(1)))
-		{
-			cout<<"z"<<endl;
-		}
+		// if (jeu.collisionRivE(jeu.getPersonnageEau(),pla.getObjet(0)))
+		// {
+		// 	cout<<"z"<<endl;
+		// }
 		 if (c=='a')
+		 {
+			cout<<endl;
+		 	cout<< "Vous avez bien quitté"<<endl;
+			ok=false;
+		 }
+		 if (jeu.perte(jeu.getPersonnageEau(),pla.getObjet(0))||jeu.perte(jeu.getPersonnageFeu(),pla.getObjet(0)))
 		 {
 			cout<<endl;
 		 	cout<< "Vous avez bien quitté"<<endl;
