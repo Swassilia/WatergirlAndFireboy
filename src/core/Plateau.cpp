@@ -144,14 +144,15 @@ bool Plateau::EstPosValide(const int x, const int y)const{
     return (plateau[x][y]!='#');
 }
 
-/*void Plateau::mangeBonus(const int x, const int y){
-    assert(x>=0);
-	assert(y>=0);
-	assert(x<dimx);
-	assert(y<dimy);
-	plateau[x][y]=BONUS;
+// void Plateau::mangeBonus(const int x, const int y){
+//     assert(x>=0);
+// 	assert(y>=0);
+// 	assert(x<dimx);
+// 	assert(y<dimy);
+// 	plateau1[x][y]=BONUSEAU;
+//     plateau1[x][y]=BONUSFEU;
 
-}*/
+// }
 
 void Plateau::testRegression_Pla(){
     Plateau pla;

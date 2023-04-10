@@ -40,7 +40,7 @@ public:
      * @return true si la touche est réalisée
      * @return false si non
      */
-    void ActionClavier(const char touche);
+    bool ActionClavier(const char touche);
 
     /**
      * @brief permet les actions automatiques des obstacles de type Bloc

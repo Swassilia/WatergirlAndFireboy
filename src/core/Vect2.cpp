@@ -1,6 +1,7 @@
-#include "Vect2.h"
 #include <math.h>
 #include <iostream>
+#include "Vect2.h"
+
 using namespace std;
 
 Vect2 make_Vect2 (int x, int y )

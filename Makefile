@@ -53,7 +53,8 @@ obj/Objet.o: src/core/Objet.cpp src/core/Plateau.h src/core/Vect2.h src/core/Typ
 obj/Vect2.o: src/core/Vect2.cpp src/core/Vect2.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Vect2.cpp -o obj/Vect2.o
 
-
+obj/Animation.o: src/core/Animation.cpp src/core/Animation.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Animation.cpp -o obj/Animation.o
 
 
 clean:
