@@ -146,15 +146,15 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         im_fond.loadFromFile("data/fond.jpg",renderer);
         im_diamond_eau.loadFromFile("data/diamondEau.png",renderer);
         im_diamond_feu.loadFromFile("data/diamondFeu.png",renderer);
-        // im_perso_eau.loadFromFile("data/eauDroite.png",renderer);
         im_bloc.loadFromFile("data/bloc.png",renderer);
         im_perso_eau.loadFromFile("data/Eau.png",renderer);
         im_perso_feu.loadFromFile("data/Feu.png",renderer);
         im_porte_eau.loadFromFile("data/porteEau.png",renderer);
         im_porte_feu.loadFromFile("data/porteFeu.png",renderer);
 
-        riviere1.loadFromFile("data/riviere-1.png",renderer);
+        
         lava1.loadFromFile("data/lava-1.png",renderer);
+        riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
     //cout<<"image";
     //FONT
