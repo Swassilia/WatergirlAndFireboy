@@ -231,24 +231,24 @@ void SDLSimple::sdlBoucle(){
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
-                bool mangeBonus = false;
+                bool deplace = false;
 				switch (event.key.keysym.scancode) {
-				case SDL_SCANCODE_UP:
-					mangeBonus = jeu.ActionClavier('b');    // car Y inverse
+				case SDL_SCANCODE_A:
+					deplace = jeu.ActionClavier('q');    // car Y inverse
 					break;
-				case SDL_SCANCODE_DOWN:
-					mangeBonus = jeu.ActionClavier('h');     // car Y inverse
+				case SDL_SCANCODE_W:
+					deplace = jeu.ActionClavier('z');     // car Y inverse
 					break;
-				case SDL_SCANCODE_LEFT:
-					mangeBonus = jeu.ActionClavier('g');
+				case SDL_SCANCODE_D:
+					deplace = jeu.ActionClavier('d');
 					break;
-				case SDL_SCANCODE_RIGHT:
-					mangeBonus = jeu.ActionClavier('d');
-					break;
-                case SDL_SCANCODE_ESCAPE:
-                case SDL_SCANCODE_Q:
-                    ouvert = true;
-                    break;
+				// case SDL_SCANCODE_RIGHT:
+				// 	deplace = jeu.ActionClavier('d');
+				// 	break;
+                // case SDL_SCANCODE_ESCAPE:
+                // case SDL_SCANCODE_Q:
+                //     ouvert = true;
+                //     break;
 				default: break;
 				}
 				
