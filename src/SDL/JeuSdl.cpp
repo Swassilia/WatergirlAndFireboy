@@ -198,6 +198,7 @@ SDLSimple::~SDLSimple(){
          const Objet &diamondEau = jeu.getObjet();
          const Objet &diamondFeu = jeu.getObjet();
          
+        
          //cout<<"init";
          for (x=0;x<pla.getDimx();++x)
             for (y=0;y<pla.getDimy();++y)
