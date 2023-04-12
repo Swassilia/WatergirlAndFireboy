@@ -32,6 +32,8 @@ public:
 
     const Personnage getPersonnageFeu()const;
 
+    const Objet getObjet()const;
+
     /************************************************************************/
     
     /**

@@ -25,7 +25,9 @@ const Personnage Jeu::getPersonnageEau()const{
 const Personnage Jeu::getPersonnageFeu()const{
     return feu;
 }
-
+const Objet Jeu::getObjet()const{
+    return ob;
+}
 // gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/

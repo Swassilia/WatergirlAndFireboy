@@ -123,7 +123,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         SDL_Quit();
         exit(1);
     }
-
+    //cout<<"init";
 	int dimx, dimy;
 	 dimx = jeu.getPlateau().getDimx();
 	 dimy = jeu.getPlateau().getDimy();
@@ -132,13 +132,13 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
     
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx/2, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == NULL) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
         exit(1);
     }
-
+    //cout<<"window";
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
@@ -146,10 +146,16 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         im_fond.loadFromFile("data/fond.jpg",renderer);
         im_diamond_eau.loadFromFile("data/diamondEau.png",renderer);
         im_diamond_feu.loadFromFile("data/diamondFeu.png",renderer);
-        im_bloc.loadFromFile("",renderer);
-        im_porte_eau.loadFromFile("",renderer);
-        im_porte_feu.loadFromFile("",renderer);
-    
+
+        im_bloc.loadFromFile("data/bloc.png",renderer);
+
+        im_porte_eau.loadFromFile("data/porteEau.png",renderer);
+        im_porte_feu.loadFromFile("data/porteFeu.png",renderer);
+
+        riviere1.loadFromFile("data/riviere-1.png",renderer);
+        lava1.loadFromFile("data/lava-1.png",renderer);
+        vert1.loadFromFile("data/vert-1.png",renderer);
+    //cout<<"image";
     //FONT
         if (TTF_Init() < 0)
         {
@@ -166,7 +172,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         font_color.r = 50;font_color.g = 50;font_color.b = 255;
         font_im.setSurface(TTF_RenderText_Solid(font,"Fire Boy and Water Girl",font_color));
         font_im.loadFromCurrentSurface(renderer);
-        
+        //cout<<"font";
 }
 
 SDLSimple::~SDLSimple(){
@@ -179,17 +185,19 @@ SDLSimple::~SDLSimple(){
 }
 
  void SDLSimple::sdlAff(){
-         
+         //cout<<"init";
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 230,240,255,255);
          SDL_RenderClear(renderer);
-         
+         //cout<<"init";
          int x,y;
          const Plateau &pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
+         const Objet &diamondEau = jeu.getObjet();
+         const Objet &diamondFeu = jeu.getObjet();
          
-         
+         //cout<<"init";
          for (x=0;x<pla.getDimx();++x)
             for (y=0;y<pla.getDimy();++y)
                 if (pla.getPlateau(x,y)=='#') im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -199,10 +207,14 @@ SDLSimple::~SDLSimple(){
                     else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='E') im_porte_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='F') im_porte_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        
+                    else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='f') lava1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='v') vert1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+
         im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
         im_perso_feu.draw(renderer,feu.getPos().x*TAILLE_SPRITE,feu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-
+        im_diamond_eau.draw(renderer,diamondEau.getPos().x*TAILLE_SPRITE,diamondEau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_diamond_feu.draw(renderer,diamondFeu.getPos().x*TAILLE_SPRITE,diamondFeu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
 }
 
 void SDLSimple::sdlBoucle(){

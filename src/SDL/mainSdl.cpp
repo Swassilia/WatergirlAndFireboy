@@ -2,6 +2,6 @@
 
 int main (int argc, char** argv) {
 	SDLSimple sj;
-	//sj.sdlBoucle();
+	sj.sdlBoucle();
 	return 0;
 }
