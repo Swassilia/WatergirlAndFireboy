@@ -242,13 +242,18 @@ void SDLSimple::sdlBoucle(){
 				case SDL_SCANCODE_D:
 					deplace = jeu.ActionClavier('d');
 					break;
-				// case SDL_SCANCODE_RIGHT:
-				// 	deplace = jeu.ActionClavier('d');
-				// 	break;
-                // case SDL_SCANCODE_ESCAPE:
-                // case SDL_SCANCODE_Q:
-                //     ouvert = true;
-                //     break;
+				case SDL_SCANCODE_UP:
+					deplace = jeu.ActionClavier('o');
+					break;
+                case SDL_SCANCODE_LEFT:
+					deplace = jeu.ActionClavier('k');
+					break;
+        		case SDL_SCANCODE_RIGHT:
+					deplace = jeu.ActionClavier('m');
+					break;
+                case SDL_SCANCODE_ESCAPE:
+                    ouvert = true;
+                    break;
 				default: break;
 				}
 				
