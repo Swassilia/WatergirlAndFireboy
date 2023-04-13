@@ -1,4 +1,4 @@
-EXEC_NAME = bin/test bin/text bin/sdl
+EXEC_NAME = bin/test bin/text bin/sdl 
 OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o obj/Animation.o
 
 CC = g++
@@ -55,6 +55,12 @@ obj/Vect2.o: src/core/Vect2.cpp src/core/Vect2.h
 
 obj/Animation.o: src/core/Animation.cpp src/core/Animation.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Animation.cpp -o obj/Animation.o
+
+menu.o: menu.cpp menu.h
+	$(CC) -c menu.cpp
+
+main.o: main.cpp menu.h
+	$(CC) -c main.cpp
 
 
 clean:
