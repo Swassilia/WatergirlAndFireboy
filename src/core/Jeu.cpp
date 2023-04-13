@@ -32,8 +32,7 @@ const Objet Jeu::getObjet()const{
 
 /******************************************************************************************/
 bool Jeu::ActionClavier(const char touche){  
-        eau.Gravite(pla);
-        feu.Gravite(pla); 
+
         switch(touche) {
             case 'q' :
                 eau.DeplacerG(pla);

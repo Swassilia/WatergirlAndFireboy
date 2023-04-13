@@ -227,9 +227,10 @@ void SDLSimple::sdlBoucle(){
 
         nt = SDL_GetTicks();
         jeu.ActionAuto(jeu.getPlateau());
+        jeu.Gravite(true);
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
-            jeu.Gravite(true);
+            
             
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee

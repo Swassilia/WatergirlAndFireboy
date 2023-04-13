@@ -53,14 +53,10 @@ using namespace std;
  		#else
  		usleep(100000);
         #endif // WIN32
- 		//jeu.ActionAuto(jeu.getPlateau());
  		 c = win.getCh();
 		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);
-		// if (jeu.collisionRivE(jeu.getPersonnageEau(),pla.getObjet(0)))
-		// {
-		// 	cout<<"z"<<endl;
-		// }
+		jeu.Gravite(true);
 		 if (c=='a')
 		 {
 			cout<<endl;
