@@ -6,11 +6,9 @@ const int MENU_MAX = 4;
 void menuAff()
 {
 	printf("\nMenu\n");
-	printf("Jeu mode texte\n");
-	printf("Jeu mode SDL\n");
-	/*printf("3 : Choix1\n");
-	printf("4 : Choix1\n");*/
-	//printf("0 : Exit\n");
+	printf("1: Jeu mode texte\n");
+	printf("2: Jeu mode SDL\n");
+	printf("0: Exit\n");
 	printf("Votre choix?\n");
 	fflush(stdout);
 }
