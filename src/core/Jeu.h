@@ -53,72 +53,15 @@ public:
     /**
      * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
     * en paramètres convient
-     * On va tester la collision entre 
-     * Personnage et Bonus:
-     *  Personnage type eau avec Bonus type DiamondE
-     *  Personnage type feu avec Bonus type DiamondF
-     * Personnage et Obstacle:
-     *  Personnage type eau avec Obstacle type Lava
-     *  Personnage type feu avec Obstacle type Riviere
-     *Ainsi tester toutes ces collision sur le plateau
-     * @param per Personnage
-     * @param obj Ob
-     * @return true 
-     * @return false 
-     */
-    bool collisionRivE(const Personnage& per,const Objet & obj);
-        /**
-     * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
-    * en paramètres convient
-     * On va tester la collision entre 
-     * Personnage et Bonus:
-     *  Personnage type eau avec Bonus type DiamondE
-     *  Personnage type feu avec Bonus type DiamondF
-     * Personnage et Obstacle:
-     *  Personnage type eau avec Obstacle type Lava
-     *  Personnage type feu avec Obstacle type Riviere
-     *Ainsi tester toutes ces collision sur le plateau
-     * @param per Personnage
-     * @param obj Ob
-     * @return true 
-     * @return false 
-     */
-    bool collisionRivF(const Personnage& per,const Objet & obj);
-        /**
-     * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
-    * en paramètres convient
-     * On va tester la collision entre 
-     * Personnage et Bonus:
-     *  Personnage type eau avec Bonus type DiamondE
-     *  Personnage type feu avec Bonus type DiamondF
-     * Personnage et Obstacle:
-     *  Personnage type eau avec Obstacle type Lava
-     *  Personnage type feu avec Obstacle type Riviere
-     *Ainsi tester toutes ces collision sur le plateau
-     * @param per Personnage
-     * @param obj Ob
-     * @return true 
-     * @return false 
-     */
-    bool collisionDiamE(const Personnage& per,const Objet & obj);
-        /**
-     * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
-    * en paramètres convient
-     * On va tester la collision entre 
-     * Personnage et Bonus:
-     *  Personnage type eau avec Bonus type DiamondE
-     *  Personnage type feu avec Bonus type DiamondF
-     * Personnage et Obstacle:
-     *  Personnage type eau avec Obstacle type Lava
-     *  Personnage type feu avec Obstacle type Riviere
-     *Ainsi tester toutes ces collision sur le plateau
-     * @param per Personnage
-     * @param obj Ob
-     * @return true 
-     * @return false 
-     */
-    bool collisionDiamF(const Personnage& per,const Objet & obj);
-
+    *
+    * On va tester la collision entre 
+    * Personnage et un Objet
+    * @param per Personnage
+    * @param obj Ob
+    * @return true 
+    * @return false 
+    */
+    bool collision(const Personnage& per,const Objet & obj);
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
@@ -136,18 +79,19 @@ public:
 
     /**
      * @brief un booléen qui retourne vrai si la partie n'a pas été réussie
-     * 
+     * @ on test les types puis les collisions associées
      * @return true 
      * @return false 
      */
-    bool perte(const Personnage& per, const Objet& obj);
+    bool perte(const Objet & obj);
 
     /**
      * @brief Teste le focntionnement de l'ensemble des fonction de la classe
      * 
      */
     void testRegressionJeu();
-    
+
+    void Gravite(bool vr);
     private:
     Plateau pla;
     Personnage feu;

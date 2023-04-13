@@ -67,11 +67,14 @@ using namespace std;
 		 	cout<< "Vous avez bien quitté"<<endl;
 			ok=false;
 		 }
-		 if (jeu.perte(jeu.getPersonnageEau(),pla.getObjet(0))||jeu.perte(jeu.getPersonnageFeu(),pla.getObjet(0)))
-		 {
+		for (int i=0; i<30; i++)
+		{
+			if (jeu.perte(pla.getObjet(i)))
+		 	{
 			cout<<endl;
 		 	cout<< "Vous avez bien quitté"<<endl;
 			ok=false;
-		 }
+			 }
+		}
  	} while (ok);
  }

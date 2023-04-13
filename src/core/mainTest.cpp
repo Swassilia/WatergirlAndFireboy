@@ -14,6 +14,7 @@ int main(){
     // cout<<b.getType()<<" "<<ob.getType()<<" "<<p.getPos().x<<endl;
     // jeu.testRegression_Jeu();
     // pla.testRegression_Pla();
+    jeu.ActionAuto(pla);
     cout<<"test jeu"<<endl;
 
     return 0;

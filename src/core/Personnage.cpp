@@ -59,9 +59,9 @@ void Personnage::DeplacerH (const  Plateau &pla)
 
 void  Personnage::Gravite(const  Plateau &pla)
 {
-    if (pla.EstPosValide(pos.x,pos.y+1 ))
+    if (pla.EstPosValide(pos.x,pos.y+1))
     {
-
+        sleep(0.1);
          pos.y+=1; // la coordonné (0,0) est en haut a gauche y doit donc augmenter pour descendre
     }
    

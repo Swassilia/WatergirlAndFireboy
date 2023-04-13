@@ -188,7 +188,7 @@ SDLSimple::~SDLSimple(){
  void SDLSimple::sdlAff(){
          //cout<<"init";
          //Remplir l'écran de blanc
-         SDL_SetRenderDrawColor(renderer, 230,240,255,255);
+         SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
          //cout<<"init";
          int x,y;
@@ -198,14 +198,15 @@ SDLSimple::~SDLSimple(){
          const Objet &diamondEau = jeu.getObjet();
          const Objet &diamondFeu = jeu.getObjet();
          
+         
          //cout<<"init";
          for (x=0;x<pla.getDimx();++x)
             for (y=0;y<pla.getDimy();++y)
                 if (pla.getPlateau(x,y)=='#') im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='_') im_bloc.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)==' ') im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)=='r') im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    // else if(pla.getPlateau(x,y)=='r') im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    // else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='E') im_porte_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='F') im_porte_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -214,8 +215,9 @@ SDLSimple::~SDLSimple(){
 
         im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
         im_perso_feu.draw(renderer,feu.getPos().x*TAILLE_SPRITE,feu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_diamond_eau.draw(renderer,diamondEau.getPos().x*TAILLE_SPRITE,diamondEau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_diamond_feu.draw(renderer,diamondFeu.getPos().x*TAILLE_SPRITE,diamondFeu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_diamond_eau.draw(renderer,4,diamondEau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_diamond_feu.draw(renderer,7,2,TAILLE_SPRITE,TAILLE_SPRITE);
+        
 }
 
 void SDLSimple::sdlBoucle(){
@@ -226,12 +228,15 @@ void SDLSimple::sdlBoucle(){
     while (!ouvert) {
 
         nt = SDL_GetTicks();
-        
+        jeu.ActionAuto(jeu.getPlateau());
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
+            jeu.Gravite(true);
+            
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 bool deplace = false;
+                
 				switch (event.key.keysym.scancode) {
 				case SDL_SCANCODE_A:
 					deplace = jeu.ActionClavier('q');    // car Y inverse
