@@ -141,7 +141,7 @@ Objet Plateau:: getObjet (const int x){
 bool Plateau::EstPosValide(const int x, const int y)const{
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
-    return (plateau[x][y]!='#');
+    return (plateau[x][y]!='#' && plateau[x][y]!='_');
 }
 
 // void Plateau::mangeBonus(const int x, const int y){
