@@ -67,9 +67,15 @@ using namespace std;
 		 	cout<< "Vous avez bien quitté"<<endl;
 			ok=false;
 		 }
-		for (int i=0; i<30; i++)
+		for (int i=1; i<=30; i++)
 		{
-			if (jeu.perte(pla.getObjet(i)))
+			if (jeu.succes(pla.getObjet(i-1),pla.getObjet(i%30)))
+			{
+				cout<<endl;
+				cout<<"bravo"<<endl;
+				ok=false;
+			}
+			if (jeu.perte(pla.getObjet(i-1)))
 		 	{
 			cout<<endl;
 		 	cout<< "Vous avez bien quitté"<<endl;

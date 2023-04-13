@@ -62,6 +62,9 @@ public:
     * @return false 
     */
     bool collision(const Personnage& per,const Objet & obj);
+    bool collisionPorteE(const Personnage& per,const Objet & obj);
+    bool collisionPorteF(const Personnage& per,const Objet & obj);
+    
     /**
      * @brief Ajoute +1 au Score si la collision entre Personnage et bonus retourne Vrai
      * 
@@ -75,7 +78,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool succes(const Personnage& per, const Objet& obj);
+    bool succes( const Objet& obj, const Objet& ob);
 
     /**
      * @brief un booléen qui retourne vrai si la partie n'a pas été réussie

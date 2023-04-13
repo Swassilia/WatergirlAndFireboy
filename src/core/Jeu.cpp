@@ -87,13 +87,26 @@ bool Jeu::collision(const Personnage& per,const Objet & obj){
 
     return false;
 }
+bool Jeu::collisionPorteE(const Personnage& per,const Objet & obj){
 
-bool Jeu::succes(){
-    if(obj.getType()==PorteE){
-        if(collision(feu,obj)){ 
-            return true;
-        }
+    if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y&&
+    obj.getType()==PorteE)
+        return true;
+
     return false;
+}
+bool Jeu::collisionPorteF(const Personnage& per,const Objet & obj){
+
+    if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y&&
+    obj.getType()==PorteF)
+        return true;
+
+    return false;
+}
+
+bool Jeu:: succes(const Objet & obj,const Objet & ob){
+    return collisionPorteF(feu,ob)&&collisionPorteE(eau,obj);
+
 }
 
 bool Jeu::perte(const Objet & obj){
