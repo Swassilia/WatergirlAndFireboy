@@ -19,8 +19,6 @@ class Objet {
 
     Type getType() const;
 
-    //void bougeAuto(const Plateau & pla);
-
     int dir;
 
     private:

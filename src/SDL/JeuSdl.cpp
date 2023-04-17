@@ -79,12 +79,12 @@ void Image::draw (SDL_Renderer * renderer, int x, int y, int w, int h) {
 
     if (has_Changed) {
         ok = SDL_UpdateTexture(texture,nullptr,surface->pixels,surface->pitch);
-        //assert(ok == 0);
+        assert(ok == 0);
         has_Changed = false;
     }
 
     ok = SDL_RenderCopy(renderer,texture,nullptr,&r);
-    //assert(ok == 0);
+    assert(ok == 0);
 }
 
 SDL_Texture * Image::getTexture() const {return texture;}
@@ -146,7 +146,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         im_fond.loadFromFile("data/fond.jpg",renderer);
         im_diamond_eau.loadFromFile("data/diamondEau.png",renderer);
         im_diamond_feu.loadFromFile("data/diamondFeu.png",renderer);
-        im_bloc.loadFromFile("data/bloc.png",renderer);
+        im_bloc.loadFromFile("data/bloc.jpg",renderer);
         im_perso_eau.loadFromFile("data/Eau.png",renderer);
         im_perso_feu.loadFromFile("data/Feu.png",renderer);
         im_porte_eau.loadFromFile("data/porteEau.png",renderer);
@@ -154,6 +154,9 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
 
         
         lava1.loadFromFile("data/lava-1.png",renderer);
+        lava2.loadFromFile("data/lava-2.png",renderer);
+        lava3.loadFromFile("data/lava-3.png",renderer);
+
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
     //cout<<"image";
@@ -174,6 +177,9 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         font_im.setSurface(TTF_RenderText_Solid(font,"Fire Boy and Water Girl",font_color));
         font_im.loadFromCurrentSurface(renderer);
         //cout<<"font";
+
+
+        //anim = new Animation(renderer)
 }
 
 SDLSimple::~SDLSimple(){
@@ -195,8 +201,12 @@ SDLSimple::~SDLSimple(){
          const Plateau &pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
-         const Objet &diamondEau = jeu.getObjet();
-         const Objet &diamondFeu = jeu.getObjet();
+         //const Objet &diamondEau = jeu.getObjet();
+         //const Objet &diamondFeu = jeu.getObjet();
+         const Objet &bloc = jeu.getBloc();
+         const Objet &diamEau = jeu.getDiam();
+         const Objet &diamFeu = jeu.getDiam();
+         //bool ok=true;
          //cout<<"init";
          for (x=0;x<pla.getDimx();++x)
             for (y=0;y<pla.getDimy();++y)
@@ -209,13 +219,23 @@ SDLSimple::~SDLSimple(){
                     else if(pla.getPlateau(x,y)=='F') im_porte_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='f') lava1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)=='v') vert1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-
+                    else if(pla.getPlateau(x,y)=='v') vert1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);   
+                    
+                                        
+        //Affichage des personnages
         im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
         im_perso_feu.draw(renderer,feu.getPos().x*TAILLE_SPRITE,feu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_diamond_eau.draw(renderer,4,diamondEau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_diamond_feu.draw(renderer,7,2,TAILLE_SPRITE,TAILLE_SPRITE);
         
+        //Affichage des Blocs
+        im_bloc.draw(renderer,1*TAILLE_SPRITE,10*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_bloc.draw(renderer,2*TAILLE_SPRITE,10*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+
+        im_bloc.draw(renderer,22*TAILLE_SPRITE,11*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_bloc.draw(renderer,23*TAILLE_SPRITE,11*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+
+
+
+    
 }
 
 void SDLSimple::sdlBoucle(){
@@ -226,34 +246,38 @@ void SDLSimple::sdlBoucle(){
     while (!ouvert) {
 
         nt = SDL_GetTicks();
-        jeu.ActionAuto(jeu.getPlateau());
-        jeu.Gravite(true);
+        if (nt-t>500) {
+            jeu.ActionAuto();
+            t = nt;
+        }
+
+        
+
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
             
-            
+            jeu.Gravite(true);    
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
-                bool deplace = false;
                 
 				switch (event.key.keysym.scancode) {
 				case SDL_SCANCODE_A:
-					deplace = jeu.ActionClavier('q');    // car Y inverse
+					jeu.ActionClavier('q');    // car Y inverse
 					break;
 				case SDL_SCANCODE_W:
-					deplace = jeu.ActionClavier('z');     // car Y inverse
+				    jeu.ActionClavier('z');     // car Y inverse
 					break;
 				case SDL_SCANCODE_D:
-					deplace = jeu.ActionClavier('d');
+					jeu.ActionClavier('d');
 					break;
 				case SDL_SCANCODE_UP:
-					deplace = jeu.ActionClavier('o');
+					jeu.ActionClavier('o');
 					break;
                 case SDL_SCANCODE_LEFT:
-					deplace = jeu.ActionClavier('k');
+					jeu.ActionClavier('k');
 					break;
         		case SDL_SCANCODE_RIGHT:
-					deplace = jeu.ActionClavier('m');
+					jeu.ActionClavier('m');
 					break;
                 case SDL_SCANCODE_ESCAPE:
                     ouvert = true;
@@ -262,6 +286,7 @@ void SDLSimple::sdlBoucle(){
 				}
 				
 			}
+
 		}
 
 		// on affiche le jeu sur le buffer caché

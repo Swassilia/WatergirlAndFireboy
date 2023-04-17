@@ -5,54 +5,54 @@
 using namespace std;
 
 //construction du labyrinthe via un tableau de char
+ const char plateau1[23][32] = {
+ "###############################",
+ "###############ff##############",
+ "#                       #######",
+ "       ####                  ##",
+ "########ee####    ####     ####",
+ "#   ####      ######        ###",
+ "#     ##  ###          ##     #",
+ "#            ##vv##    #####  #",
+ "#                   ####      #",
+ "############                  #",
+ "#######ee#                    #",
+ "#####          #######  #######",
+ "#              ######         #",
+ "#              ######     #####",
+ "#  ##############ee##   ###ff##",
+ "#    ##########               #",
+ "#       ##            ##      #",
+ "##                            #",
+ "#####          ######    ######",
+ "# E        ###########      F #",
+ "#          ############       #",
+ "###############################",
+ };
 // const char plateau1[23][32] = {
 // "###############################",
 // "###############ff##############",
-// "#                       #######",
+// "#                 F     #######",
 // "       ####                  ##",
 // "########ee####    ####     ####",
-// "#   ####      ######        ###",
+// "#   ####  E   ######        ###",
 // "#     ##  ###          ##     #",
 // "#            ##vv##    #####  #",
 // "#                   ####      #",
 // "############                  #",
 // "#######ee#                    #",
-// "#####          #######__#######",
-// "#__            ######         #",
+// "#####          #######  #######",
+// "#              ######         #",
 // "#              ######     #####",
 // "#  ##############ee##   ###ff##",
 // "#    ##########               #",
 // "#       ##            ##      #",
 // "##                            #",
 // "#####          ######    ######",
-// "# E        ###########      F #",
+// "#          ###########        #",
 // "#          ############       #",
 // "###############################",
 // };
-const char plateau1[23][32] = {
-"###############################",
-"###############ff##############",
-"#                 F     #######",
-"       ####                  ##",
-"########ee####    ####     ####",
-"#   ####  E   ######        ###",
-"#     ##  ###          ##     #",
-"#            ##vv##    #####  #",
-"#                   ####      #",
-"############                  #",
-"#######ee#                    #",
-"#####          #######__#######",
-"#__            ######         #",
-"#              ######     #####",
-"#  ##############ee##   ###ff##",
-"#    ##########               #",
-"#       ##            ##      #",
-"##                            #",
-"#####          ######    ######",
-"#          ###########        #",
-"#          ############       #",
-"###############################",
-};
 
 //Constructeur de la classe qui initialise les dimensions avec des entiers définis
 //Initialise le tableau plateau avec les NomCase correspondants aux caractères du plateau1
@@ -70,12 +70,6 @@ Plateau::Plateau()
 			{                               
 				case '#': 
                 plateau[x][y] = WALL;
-                break;
-
-				case '_': 
-                plateau[x][y] = BLOC;
-                tabObj[i]=Objet(Bloc,x,y);
-                i++;
                 break; 
 
 				case ' ': 
@@ -177,7 +171,30 @@ bool Plateau::EstPosValide(const int x, const int y)const{
 //     plateau1[x][y]=BONUSFEU;
 
 // }
+void Plateau::placerBonus(){
+    int x = rand()%dimx;
+    int y = rand()%dimy;
 
-void Plateau::testRegression_Pla(){
-    Plateau pla;
+    for (int i=0;i<4;i++){
+        tabObj[i] = Objet(DiamantEau,x,y);
+        tabObj[i] = Objet(DiamantFeu,x,y);
+    }
 }
+
+void Plateau::boueAuto(Objet &ob){
+    int dx [4] = { -1, 0, -1, 0};
+    int dy [4] = { 0, -1, 0, -1};
+    int xtmp,ytmp;
+    int x = ob.getPos().x;
+    int y = ob.getPos().y;
+
+    xtmp = x + dx[ob.dir];
+    ytmp = y + dy[ob.dir];
+    if (EstPosValide(xtmp,ytmp)) {
+        x = xtmp;
+        y = ytmp;
+    }
+    else ob.dir = rand()%4;
+
+}
+

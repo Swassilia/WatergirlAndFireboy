@@ -32,7 +32,8 @@ public:
 
     const Personnage getPersonnageFeu()const;
 
-    const Objet getObjet()const;
+    const Objet getBloc()const;
+    const Objet getDiam()const;
 
     /************************************************************************/
     
@@ -48,7 +49,7 @@ public:
      * @brief permet les actions automatiques des obstacles de type Bloc
      * 
      */
-    void ActionAuto(const Plateau &pla);
+    void ActionAuto();
 
     /**
      * @brief un booléen qui retourne vrai si le calcule de collision entre les objets définie
@@ -93,14 +94,21 @@ public:
      * 
      */
     void testRegressionJeu();
-
+    /**
+     * @brief 
+     * 
+     * @param vr 
+     */
     void Gravite(bool vr);
+
     private:
     Plateau pla;
     Personnage feu;
     Personnage eau;
 
-    Objet ob;
+    Objet bloc;
+
+    Objet diam;
     
 };
 

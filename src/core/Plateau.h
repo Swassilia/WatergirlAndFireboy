@@ -29,7 +29,7 @@ public:
     ~Plateau();
 
     //void placerObstacle();
-    //void placerBonus();
+    void placerBonus();
 
     /**
      * @brief Accesseur : récupère la dimension en x du plateau
@@ -72,11 +72,12 @@ public:
     //void mangeBonus(const int x, const int y); 
 
     /**
-     * @brief Teste le focntionnement de l'ensemble des fonction de la classe
+     * @brief permet de bouger les objets dans le plateau
      * 
+     * @param ob appel de l'objet à bouger
      */
-    void testRegression_Pla();
-  
+    void boueAuto(Objet &ob);
+    
   private:
 
     int dimx, dimy;
