@@ -29,7 +29,7 @@ public:
     ~Plateau();
 
     //void placerObstacle();
-    void placerBonus();
+   // void placerBonus();
 
     /**
      * @brief Accesseur : récupère la dimension en x du plateau

@@ -61,7 +61,18 @@ Plateau::Plateau()
 
     dimx=32;
     dimy=23;
-    int i=0;
+    for (int i=0;i<2;i++){
+        int x = rand()%dimx;
+        int y = rand()%dimy;
+        tabObj[i] = Objet(DiamantEau,x,y);
+    }
+    for (int i=2;i<4;i++){
+        int x = rand()%dimx;
+        int y = rand()%dimy;
+        tabObj[i] = Objet(DiamantFeu,x,y);
+    }
+
+    int i=4;
     for(int y=0; y<dimy; ++y)
     {
         for(int x=0; x<dimx; ++x)
@@ -76,7 +87,7 @@ Plateau::Plateau()
                 plateau[x][y] = SPACE; 
                 break;
 
-                case 'r': 
+                /*case 'r': 
                 plateau[x][y] = BONUSFEU;
                 tabObj[i]=Objet(DiamantFeu,x,y);
                 i++;
@@ -87,7 +98,7 @@ Plateau::Plateau()
                 tabObj[i]=Objet(DiamantEau,x,y);
                 i++;
                 break; 
-
+*/
                 case 'E': 
                 plateau[x][y] = PORTEEAU;
                 tabObj[i]=Objet(PorteE,x,y);  
@@ -171,7 +182,7 @@ bool Plateau::EstPosValide(const int x, const int y)const{
 //     plateau1[x][y]=BONUSFEU;
 
 // }
-void Plateau::placerBonus(){
+/*void Plateau::placerBonus(){
     int x = rand()%dimx;
     int y = rand()%dimy;
 
@@ -179,7 +190,7 @@ void Plateau::placerBonus(){
         tabObj[i] = Objet(DiamantEau,x,y);
         tabObj[i] = Objet(DiamantFeu,x,y);
     }
-}
+}*/
 
 void Plateau::boueAuto(Objet &ob){
     int dx [4] = { -1, 0, -1, 0};
