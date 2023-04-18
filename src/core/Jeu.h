@@ -8,7 +8,6 @@ class Jeu
 {
 
 public:
-    unsigned int score;
     /**
      * @brief Constructeur de la classe Jeu
      * 
@@ -72,7 +71,7 @@ public:
      * @param bon Bonus (DiamondF et DiamondE)
      * @param per Personnage (feu et eau)
      */
-
+    void ajouteScore(Plateau & pla);
     /**
      * @brief un booléen qui retourne vrai si la partie a été réussie
      * 
@@ -102,12 +101,11 @@ public:
     void Gravite(bool vr);
 
     private:
+    unsigned int score;
     Plateau pla;
     Personnage feu;
     Personnage eau;
-
     Objet bloc;
-
     Objet diam;
     
 };

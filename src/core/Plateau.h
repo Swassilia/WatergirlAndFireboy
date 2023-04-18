@@ -77,6 +77,8 @@ public:
      * @param ob appel de l'objet à bouger
      */
     void boueAuto(Objet &ob);
+
+  void setPlateau(const Vect2& v, const NomCase &n);
     
   private:
 

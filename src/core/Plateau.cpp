@@ -161,6 +161,10 @@ NomCase Plateau::getPlateau (const int x, const int y) const{
     return plateau[x][y];
 }
 
+void Plateau::setPlateau(const Vect2 &v, const NomCase& n)
+{
+    plateau[v.x][v.y]=n;
+}
 Objet Plateau:: getObjet (const int x){
     assert(x>=0);
     assert(x<30);
