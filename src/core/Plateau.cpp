@@ -1,3 +1,4 @@
+
 #include <cassert>
 #include <iostream>
 #include "Plateau.h"
@@ -16,14 +17,14 @@ using namespace std;
  "##     b      ##vv##    #####  #",
  "##                   ####      #",
  "#############                  #",
- "########ee#                    #",
- "######          #######  #######",
+ "########ee# r                  #",
+ "###### b        #######  #######",
  "##              ######         #",
  "#              ######     ######",
  "#  ##############ee##   ###ff###",
  "#    ##########               ##",
  "#       ##            ##      ##",
- "##                            ##",
+ "##      b              r      ##",
  "#####          ######    #######",
  "# E        ###########      F ##",
  "#                             ##",
@@ -177,6 +178,14 @@ bool Plateau::EstPosValide(const int x, const int y)const{
     assert(x<dimx && y<dimy);
     return (plateau[x][y]!='#' && plateau[x][y]!='_');
 }
+
+bool Plateau::EstPosValidePerso(int x,int y)
+{
+    assert(x>=0 && y>=0);
+    assert(x<dimx && y<dimy);
+    return (plateau[x][y+1]=='#' || plateau[x][y+1]=='_');
+}
+
 
 // void Plateau::mangeBonus(const int x, const int y){
 //     assert(x>=0);
