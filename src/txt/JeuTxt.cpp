@@ -16,7 +16,6 @@ using namespace std;
  	const Plateau& pla = jeu.getPlateau();
  	const Personnage& feu = jeu.getPersonnageFeu();
     const Personnage& eau = jeu.getPersonnageEau();
-	const Objet& bloc  = jeu.getBloc();
 
 	win.draw();
      // Affichage des murs et des pastilles
@@ -29,13 +28,6 @@ using namespace std;
 
  	// Affichage du water girl
  	win.print(eau.getPos().x,eau.getPos().y,'e');
-
-	//Affichage des blocs
-	win.print(1, 10,'_');
-	win.print(2, 10,'_');
-
-	win.print(22, 11,'_');
-	win.print(23, 11,'_');
 
  	win.draw();
 	
