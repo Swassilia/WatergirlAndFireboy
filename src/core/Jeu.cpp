@@ -38,6 +38,7 @@ const Objet Jeu::getDiam()const{
 bool Jeu::ActionClavier(const char touche){  
 
         switch(touche) {
+
             case 'q' :
                 eau.DeplacerG(pla);
                 break;
@@ -117,7 +118,6 @@ void Jeu:: testRegressionJeu(){
     Jeu jeu;
     const Personnage& Fille = jeu.getPersonnageEau();
     const Personnage& Garcon = jeu.getPersonnageFeu();
-    
     const Plateau& terrain = jeu.getPlateau();
 
 }

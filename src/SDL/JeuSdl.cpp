@@ -74,8 +74,8 @@ void Image::draw (SDL_Renderer * renderer, int x, int y, int w, int h) {
     SDL_Rect r;
     r.x = x;
     r.y = y;
-    r.w = (w<0)?surface->w:w;
-    r.h = (h<0)?surface->h:h;
+    r.w = (w<=0 )?surface->w:w;
+    r.h = (h<=0)?surface->h:h;
 
     if (has_Changed) {
         ok = SDL_UpdateTexture(texture,nullptr,surface->pixels,surface->pitch);
@@ -90,15 +90,6 @@ void Image::draw (SDL_Renderer * renderer, int x, int y, int w, int h) {
 SDL_Texture * Image::getTexture() const {return texture;}
 
 void Image::setSurface(SDL_Surface * surf) {surface = surf;}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -130,7 +121,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
 	 dimx = dimx * TAILLE_SPRITE;
 	 dimy = dimy * TAILLE_SPRITE;
     
-
     // Creation de la fenetre
     window = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == NULL) {
@@ -208,19 +198,22 @@ SDLSimple::~SDLSimple(){
          const Objet &diamFeu = jeu.getDiam();
          //bool ok=true;
          //cout<<"init";
-         for (x=0;x<pla.getDimx();++x)
+         for (x=0;x<pla.getDimx();++x){ 
             for (y=0;y<pla.getDimy();++y)
+                { im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                 if (pla.getPlateau(x,y)=='#') im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='_') im_bloc.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)==' ') im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    // else if(pla.getPlateau(x,y)=='r') im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    // else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)=='r') im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    
+                    else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='E') im_porte_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='F') im_porte_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='f') lava1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='v') vert1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);   
-                    
+                }
+         }
                                         
         //Affichage des personnages
         im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -257,6 +250,10 @@ void SDLSimple::sdlBoucle(){
 		while (SDL_PollEvent(&event)) {
             
             jeu.Gravite(true);    
+            // for(unsigned int i; i<30; i++)
+            // {
+            //     ouvert=jeu.perte(jeu.getPlateau().getObjet(i));
+            // }
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
