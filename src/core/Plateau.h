@@ -65,6 +65,9 @@ public:
     */
     bool EstPosValide(const int x, const int y)const;
 
+    bool EstPosValidePerso(int x, int y);
+
+
 
     /**
      * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y
