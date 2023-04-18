@@ -65,9 +65,6 @@ public:
     */
     bool EstPosValide(const int x, const int y)const;
 
-    bool EstPosValidePerso(int x, int y);
-
-
 
     /**
      * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y
@@ -79,7 +76,7 @@ public:
      * 
      * @param ob appel de l'objet à bouger
      */
-    void boueAuto(Objet &ob);
+    void bougeAuto();
 
   void setPlateau(const Vect2& v, const NomCase &n);
     

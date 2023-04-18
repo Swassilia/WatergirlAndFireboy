@@ -16,8 +16,8 @@ float temps () {
 // ============= CLASS IMAGE =============== //
 
 Image::Image () {
-    surface = NULL;
-    texture = NULL;
+    surface = nullptr;
+    texture = nullptr;
     has_Changed = false;
 }
 
@@ -122,7 +122,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
 	 dimy = dimy * TAILLE_SPRITE;
     
     // Creation de la fenetre
-    window = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx/1.03, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == NULL) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -174,7 +174,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
 
 SDLSimple::~SDLSimple(){
     //if (withSound) Mix_Quit();
-    //TTF_CloseFont(font);
+    TTF_CloseFont(font);
     TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
@@ -191,16 +191,12 @@ SDLSimple::~SDLSimple(){
          const Plateau &pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
-         //const Objet &diamondEau = jeu.getObjet();
-         //const Objet &diamondFeu = jeu.getObjet();
-         const Objet &bloc = jeu.getBloc();
-         const Objet &diamEau = jeu.getDiam();
-         const Objet &diamFeu = jeu.getDiam();
-         //bool ok=true;
-         //cout<<"init";
+
+
          for (x=0;x<pla.getDimx();++x){ 
             for (y=0;y<pla.getDimy();++y)
-            {im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+            {   
+                im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                 if (pla.getPlateau(x,y)=='#') im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='_') im_bloc.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)==' ') im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -211,19 +207,13 @@ SDLSimple::~SDLSimple(){
                     else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='f') lava1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='v') vert1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);   
-                }    
+            }    
                                         
         //Affichage des personnages
         im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
         im_perso_feu.draw(renderer,feu.getPos().x*TAILLE_SPRITE,feu.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
         
-        //Affichage des Blocs
-        im_bloc.draw(renderer,1*TAILLE_SPRITE,10*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_bloc.draw(renderer,2*TAILLE_SPRITE,10*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-
-        im_bloc.draw(renderer,22*TAILLE_SPRITE,11*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_bloc.draw(renderer,23*TAILLE_SPRITE,11*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-}
+    }
 }
 
 void SDLSimple::sdlBoucle(){
@@ -235,7 +225,7 @@ void SDLSimple::sdlBoucle(){
 
         nt = SDL_GetTicks();
         if (nt-t>500) {
-            jeu.ActionAuto();
+            //jeu.ActionAuto();
             t = nt;
         }
 

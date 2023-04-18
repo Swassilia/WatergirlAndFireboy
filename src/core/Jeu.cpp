@@ -1,4 +1,3 @@
-#include <cassert>
 #include <cstddef>
 #include <iostream>
 #include <chrono>
@@ -13,8 +12,6 @@ Jeu::Jeu(){
     eau = Personnage(Eau, 2,17);
     pla = Plateau();
     score = 0;
-    bloc = Objet(Bloc,1, 1);
-    diam = Objet(DiamantEau,1,1);
 }
 
 const Plateau Jeu::getPlateau()const{
@@ -61,15 +58,16 @@ bool Jeu::ActionClavier(const char touche){
     
     return false;
 }
+
 void Jeu:: Gravite(bool vr)
 {
     eau.Gravite(pla);
     feu.Gravite(pla);
 }
- void Jeu::ActionAuto(){
-    pla.boueAuto(bloc);
- }
 
+void Jeu::ActionAuto(){
+    pla.bougeAuto();
+}
 
 bool Jeu::collision(const Personnage& per,const Objet & obj){
 
