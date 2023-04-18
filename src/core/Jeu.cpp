@@ -38,6 +38,7 @@ const Objet Jeu::getDiam()const{
 bool Jeu::ActionClavier(const char touche){  
 
         switch(touche) {
+
             case 'q' :
                 eau.DeplacerG(pla);
                 break;
