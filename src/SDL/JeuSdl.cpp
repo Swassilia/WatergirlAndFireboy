@@ -1,9 +1,10 @@
 #include <cassert>
 #include <time.h>
+#include <iostream>
 #include "JeuSdl.h"
 #include <stdlib.h>
 
-#include <iostream>
+
 using namespace std;
 
 
@@ -229,6 +230,7 @@ SDLSimple::~SDLSimple(){
 void SDLSimple::sdlBoucle(){
     SDL_Event event;
     bool ouvert=false;
+    Plateau pla=jeu.getPlateau();
     Uint32 t = SDL_GetTicks(), nt;
 
     while (!ouvert) {
@@ -244,10 +246,14 @@ void SDLSimple::sdlBoucle(){
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
             jeu.Gravite(true);    
-            // for(unsigned int i; i<30; i++)
-            // {
-            //     ouvert=jeu.perte(jeu.getPlateau().getObjet(i));
-            // }
+            for(int i=0; i<30; i++)
+            {
+               if (jeu.perte(pla.getObjet(i)))
+               {
+                   ouvert=true;
+               };
+                // jeu.ajouteScore(jeu.getPlateau());
+            }
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 

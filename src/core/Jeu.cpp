@@ -112,18 +112,21 @@ bool Jeu::perte(const Objet & obj){
     }else
     return false;
 }
-void Jeu:: ajouteScore(Plateau & pla)
-{
-    if (collision(feu, diam)) 
-    {
-        score++;
-        pla.setPlateau(diam.getPos(), SPACE);
-    }
+// void Jeu:: ajouteScore(const Plateau & pla)
+// {
+//     if (collision(feu, diam)) 
+//     {
+//         score++;
+//         pla.setPlateau(diam.getPos(), SPACE);
+//     }
     
-    if (collision(eau, diam )) score++;
+//     if (collision(eau, diam )) 
+//     {
+//         score++;
+//         pla.setPlateau(diam.getPos(), SPACE);
+//     }
 
-}
-
+// }
 void Jeu:: testRegressionJeu(){
     Jeu jeu;
     const Personnage& Fille = jeu.getPersonnageEau();
