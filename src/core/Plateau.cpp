@@ -1,3 +1,4 @@
+
 #include <cassert>
 #include <iostream>
 #include "Plateau.h"
@@ -17,8 +18,8 @@ using namespace std;
  "##                   ####      #",
  "#############                  #",
  "########ee#                    #",
- "######          #######  #######",
- "##              ######         #",
+ "######          ######__ #######",
+ "#__             ######         #",
  "#              ######     ######",
  "#  ##############ee##   ###ff###",
  "#    ##########               ##",
@@ -30,49 +31,15 @@ using namespace std;
  "################################",
  "################################",
  };
-// const char plateau1[23][32] = {
-// "###############################",
-// "###############ff##############",
-// "#                 F     #######",
-// "       ####                  ##",
-// "########ee####    ####     ####",
-// "#   ####  E   ######        ###",
-// "#     ##  ###          ##     #",
-// "#            ##vv##    #####  #",
-// "#                   ####      #",
-// "############                  #",
-// "#######ee#                    #",
-// "#####          #######  #######",
-// "#              ######         #",
-// "#              ######     #####",
-// "#  ##############ee##   ###ff##",
-// "#    ##########               #",
-// "#       ##            ##      #",
-// "##                            #",
-// "#####          ######    ######",
-// "#          ###########        #",
-// "#          ############       #",
-// "###############################",
-// };
 
 //Constructeur de la classe qui initialise les dimensions avec des entiers définis
 //Initialise le tableau plateau avec les NomCase correspondants aux caractères du plateau1
 Plateau::Plateau()
 {
 
-    dimx=32;
+    dimx=33;
     dimy=23;
-  /* for (int i=0;i<2;i++){
-        int x = rand()%dimx;
-        int y = rand()%dimy;
-        tabObj[i] = Objet(DiamantEau,x,y);
-    }
-    for (int i=2;i<4;i++){
-        int x = rand()%dimx;
-        int y = rand()%dimy;
-        tabObj[i] = Objet(DiamantFeu,x,y);
-    }
-*/
+  
     int i=0;
     for(int y=0; y<dimy; ++y)
     {
@@ -86,6 +53,12 @@ Plateau::Plateau()
 
 				case ' ': 
                 plateau[x][y] = SPACE; 
+                break;
+
+                case '_': 
+                plateau[x][y] = BLOC;
+                tabObj[i]=Objet(Bloc,x,y);
+                i++;
                 break;
 
                 case 'r': 
@@ -173,44 +146,26 @@ Objet Plateau:: getObjet (const int x){
 }
 
 bool Plateau::EstPosValide(const int x, const int y)const{
-    assert(x>=0 && y>=0);
-    assert(x<dimx && y<dimy);
-    return (plateau[x][y]!='#' && plateau[x][y]!='_');
+
+    return ((x>=0) && (x<dimx) &&(y>=0) && (y<dimy) && plateau[x][y]!='#' && plateau[x][y]!='_');
 }
 
-// void Plateau::mangeBonus(const int x, const int y){
-//     assert(x>=0);
-// 	assert(y>=0);
-// 	assert(x<dimx);
-// 	assert(y<dimy);
-// 	plateau1[x][y]=BONUSEAU;
-//     plateau1[x][y]=BONUSFEU;
 
-// }
-/*void Plateau::placerBonus(){
-    int x = rand()%dimx;
-    int y = rand()%dimy;
-
-    for (int i=0;i<4;i++){
-        tabObj[i] = Objet(DiamantEau,x,y);
-        tabObj[i] = Objet(DiamantFeu,x,y);
-    }
-}*/
-
-void Plateau::boueAuto(Objet &ob){
+void Plateau::bougeAuto(){
     int dx [4] = { -1, 0, -1, 0};
     int dy [4] = { 0, -1, 0, -1};
     int xtmp,ytmp;
-    int x = ob.getPos().x;
-    int y = ob.getPos().y;
+    for(int i = 0;i<30;i++){
+        int x = tabObj[i].getPos().x;
+        int y = tabObj[i].getPos().y;
 
-    xtmp = x + dx[ob.dir];
-    ytmp = y + dy[ob.dir];
-    if (EstPosValide(xtmp,ytmp)) {
-        x = xtmp;
-        y = ytmp;
+        int dir = tabObj[i].dir;
+        xtmp = x + dx[dir];
+        ytmp = y + dy[dir];
+        if(EstPosValide(xtmp,ytmp)){
+            x = xtmp;
+            y = ytmp;
+        }else tabObj[i].dir = rand()%4;
     }
-    else ob.dir = rand()%4;
-
 }
 

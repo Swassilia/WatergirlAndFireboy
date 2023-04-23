@@ -5,7 +5,6 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include "../core/Jeu.h"
-#include "../core/Animation.h"
 
 
 
@@ -60,7 +59,6 @@ private :
     Mix_Chunk * sound;
     bool withSound;
 
-    Animation *anim;
     
     //Animation
 

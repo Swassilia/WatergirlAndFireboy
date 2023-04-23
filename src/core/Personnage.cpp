@@ -57,7 +57,7 @@ void Personnage:: DeplacerD ( const Plateau &pla)
 
 void Personnage::DeplacerH (const  Plateau &pla)
 {
-    if (pla.EstPosValide(pos.x,pos.y-1)) pos.y-=3;
+    if (pla.EstPosValide(pos.x,pos.y-1)) pos.y-=2;
 }
 
 void  Personnage::Gravite(const  Plateau &pla)
