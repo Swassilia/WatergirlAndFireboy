@@ -26,7 +26,10 @@ Objet::~Objet(){
     posO= make_Vect2(0,0);
 
 }
-
+Vect2 Objet::setPos(const unsigned int x, const unsigned int y){
+    posO.x = x;
+    posO.y = y;
+}
 Vect2 Objet::getPos()const  {
 
     return posO;
