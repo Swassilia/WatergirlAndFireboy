@@ -70,6 +70,7 @@ using namespace std;
 			// 	cout<<"bravo"<<endl;
 			// 	ok=false;
 			// }
+			// jeu.ajouteScore(pla);
 			if (jeu.perte(pla.getObjet(i-1)))
 		 	{
 			cout<<endl;

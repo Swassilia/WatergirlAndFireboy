@@ -16,8 +16,9 @@ class Objet {
     ~Objet();
 
     Vect2 getPos()const;
-    Vect2 setPos(const unsigned int x, const unsigned int y);
+    void setPos(const unsigned int x, const unsigned int y);
     Type getType() const;
+    void setType(const Type & t );
 
     int dir;
 

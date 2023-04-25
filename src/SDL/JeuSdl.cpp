@@ -147,7 +147,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         lava1.loadFromFile("data/lava-1.png",renderer);
         lava2.loadFromFile("data/lava-2.png",renderer);
         lava3.loadFromFile("data/lava-3.png",renderer);
-
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
     //cout<<"image";
@@ -208,7 +207,8 @@ SDLSimple::~SDLSimple(){
                     else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='f') lava1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='v') vert1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);   
-            }    
+            }
+               
                                         
         //Affichage des personnages
         im_perso_eau.draw(renderer,eau.getPos().x*TAILLE_SPRITE,eau.getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -227,7 +227,7 @@ void SDLSimple::sdlBoucle(){
 
         nt = SDL_GetTicks();
         if (nt-t>500) {
-            jeu.ActionAuto();
+            // jeu.ActionAuto();
             t = nt;
         }
 
@@ -242,8 +242,9 @@ void SDLSimple::sdlBoucle(){
                {
                    ouvert=true;
                };
-                jeu.ajouteScore(pla);
+                
             }
+            jeu.ajouteScore(pla);
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 

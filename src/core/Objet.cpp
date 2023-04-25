@@ -26,7 +26,7 @@ Objet::~Objet(){
     posO= make_Vect2(0,0);
 
 }
-Vect2 Objet::setPos(const unsigned int x, const unsigned int y){
+void Objet::setPos(const unsigned int x, const unsigned int y){
     posO.x = x;
     posO.y = y;
 }
@@ -40,16 +40,7 @@ Type Objet::getType()const  {
     return typeO;
 }
 
-//  void Objet::bougeAuto(const Plateau & pla){
-//      int dx [4] = { 0, 1, 0, 1};
-//      int dy [4] = { 0, -1, 0, -1};
-//      int xtmp,ytmp;
-  
-//      xtmp = posO.x - dx[dir];
-//      ytmp = posO.y - dy[dir];
-//      if (pla.EstPosValide(xtmp,ytmp)) {
-//          cout<<"ici"<<endl;
-//          posO.x = +xtmp;
-//          posO.y = +ytmp;
-//      }else dir = rand()%4;
-//  }
+void Objet:: setType(const Type & t )
+{
+    typeO=t;
+}
