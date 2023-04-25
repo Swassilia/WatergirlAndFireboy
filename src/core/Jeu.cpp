@@ -123,6 +123,7 @@ void Jeu:: ajouteScore(Plateau pla)
         cout<<score<<endl;
         pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
         cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y)<<endl;
+
     }
     
     if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
