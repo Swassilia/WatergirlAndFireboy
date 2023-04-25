@@ -27,9 +27,7 @@ const Personnage Jeu::getPersonnageFeu()const{
 const Objet Jeu::getBloc()const{
     return bloc;
 }
-const Objet Jeu::getDiam()const{
-    return diam;
-}
+
 // gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/
@@ -114,19 +112,23 @@ bool Jeu::perte(const Objet & obj){
     }else
     return false;
 }
-void Jeu:: ajouteScore()
+//augmente la variable score une fois que les personnages ont touché
+//un de leur bonus
+void Jeu:: ajouteScore(Plateau pla)
 {
-    if (collision(feu, pla.)) 
+    for (int i=0; i<30; i++)
+   { if (pla.getObjet(i).getType()==DiamantFeu&&collision(feu, pla.getObjet(i))) 
     {
         score++;
         cout<<"a";
-        pla.setPlateau(diam.getPos(), SPACE);
+        pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
     }
     
-    if (collision(eau, diam )) 
+    if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
     {
         score++;
-        pla.setPlateau(diam.getPos(), SPACE);
+        pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
+    }
     }
 
 }
