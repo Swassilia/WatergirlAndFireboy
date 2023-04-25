@@ -1,6 +1,9 @@
 
 #include <cassert>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "Plateau.h"
 #include "Objet.h"
 using namespace std;
@@ -41,6 +44,7 @@ Plateau::Plateau()
     dimy=23;
   
     int i=0;
+    int j=0;
     for(int y=0; y<dimy; ++y)
     {
         for(int x=0; x<dimx; ++x)
@@ -57,8 +61,8 @@ Plateau::Plateau()
 
                 case '_': 
                 plateau[x][y] = BLOC;
-                tabObj[i]=Objet(Bloc,x,y);
-                i++;
+                tabBloc[j]=Objet(Bloc,x,y);
+                j++;
                 break;
 
                 case 'r': 
@@ -114,6 +118,10 @@ Plateau::~Plateau(){
     {
         tabObj[i]= Objet(Defaut,0,0);
     }
+    for(int i=0; i<4; i++)
+    {
+        tabBloc[i]= Objet(Defaut,0,0);
+    }
     for(int i=0; i<50; i++)
     {
         for(int j=0; j<50; j++)
@@ -151,27 +159,45 @@ bool Plateau::EstPosValide(const int x, const int y)const{
 
 void Plateau::bougeAuto(){
  
-    int blocCounter = 4;
-
     // Parcours du tableau pour trouver l'objet de type Bloc et le déplacer en dessous si la case est vide
-    for(int i = 0; i < 30; i++){
-        if(tabObj[i].getType() == Bloc){
-            int x = tabObj[i].getPos().x;
-            int y = tabObj[i].getPos().y;
-            cout<<x<<endl;
-            // Si la case en dessous est vide, déplacer le bloc
-            if(x - 1 <= dimy){
-                setPlateau(make_Vect2(x,y-1),BLOC);
+        for(int i = 0; i < 2; i++){
+        
+            int x = tabBloc[i].getPos().x;
+            int y = tabBloc[i].getPos().y;
+            vitesse  = 1;
+
+            printf("X : %d   Y : %d ", x, y);
+            if(y - 1 >= 7 ){
+                setPlateau(make_Vect2(x,y-vitesse),BLOC);
                 plateau[x][y] = SPACE;
-                tabObj[i].setPos(x, y-1);
+                tabBloc[i].setPos(x, y-vitesse);
                 assert(x<dimx);
                 assert(y<dimy);
-                cout<<x<<" "<<y<<endl;
-            }
-            //break;
-            
+            }else 
+            setPlateau(make_Vect2(x,y+3),BLOC);
+            plateau[x][y] = SPACE;
+        
+        for(int i = 2; i < 4; i++){
+        
+            int x = tabBloc[i].getPos().x;
+            int y = tabBloc[i].getPos().y;
+            vitesse  = 1;
+
+            printf("X : %d   Y : %d ", x, y);
+            if(y - 1 >= 8 ){
+                setPlateau(make_Vect2(x,y-vitesse),BLOC);
+                plateau[x][y] = SPACE;
+                tabBloc[i].setPos(x, y-vitesse);
+                assert(x<dimx);
+                assert(y<dimy);
+            }else 
+            setPlateau(make_Vect2(x,y+3),BLOC);
+            plateau[x][y] = SPACE;
         }
     }
+   
+    
 }
+
 //&& plateau1[x + 1][y] == SPACE
 
