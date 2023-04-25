@@ -71,7 +71,7 @@ public:
      * @param bon Bonus (DiamondF et DiamondE)
      * @param per Personnage (feu et eau)
      */
-    void ajouteScore(const Plateau & pla);
+    void ajouteScore(Plateau & pla);
     /**
      * @brief un booléen qui retourne vrai si la partie a été réussie
      * 

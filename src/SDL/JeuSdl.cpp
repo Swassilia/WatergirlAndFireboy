@@ -242,7 +242,7 @@ void SDLSimple::sdlBoucle(){
                {
                    ouvert=true;
                };
-                // jeu.ajouteScore(jeu.getPlateau());
+               // jeu.ajouteScore(pla);
             }
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee

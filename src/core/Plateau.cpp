@@ -150,6 +150,10 @@ bool Plateau::EstPosValide(const int x, const int y)const{
     return ((x>=0) && (x<dimx) &&(y>=0) && (y<dimy) && plateau[x][y]!='#' && plateau[x][y]!='_');
 }
 
+void Plateau:: setPlateau(const Vect2& v, const NomCase &n)
+{
+    plateau[v.x][v.y]=n;
+}
 
 void Plateau::bougeAuto(){
     int dx [4] = { -1, 0, -1, 0};

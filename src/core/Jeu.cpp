@@ -32,6 +32,7 @@ const Objet Jeu::getDiam()const{
 // gravite dans perso qui est ensuite appelé dans action clavier
 
 /******************************************************************************************/
+// detecte quelle touche a été pressé
 bool Jeu::ActionClavier(const char touche){  
 
         switch(touche) {
@@ -58,17 +59,17 @@ bool Jeu::ActionClavier(const char touche){
     
     return false;
 }
-
+// applique la gravité sur les personnages
 void Jeu:: Gravite(bool vr)
 {
     eau.Gravite(pla);
     feu.Gravite(pla);
 }
-
+// Fait bouger les bloque automatiquement 
 void Jeu::ActionAuto(){
     pla.bougeAuto();
 }
-
+//fonction qui calcule si deux elements sont sur la meme case
 bool Jeu::collision(const Personnage& per,const Objet & obj){
 
     if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y)
@@ -76,28 +77,29 @@ bool Jeu::collision(const Personnage& per,const Objet & obj){
 
     return false;
 }
-bool Jeu::collisionPorteE(const Personnage& per,const Objet & obj){
+// // test
+// bool Jeu::collisionPorteE(const Personnage& per,const Objet & obj){
 
-    if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y&&
-    obj.getType()==PorteE)
-        return true;
+//     if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y&&
+//     obj.getType()==PorteE)
+//         return true;
 
-    return false;
-}
-bool Jeu::collisionPorteF(const Personnage& per,const Objet & obj){
+//     return false;
+// }
+// bool Jeu::collisionPorteF(const Personnage& per,const Objet & obj){
 
-    if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y&&
-    obj.getType()==PorteF)
-        return true;
+//     if(per.getPos().x==obj.getPos().x &&per.getPos().y==obj.getPos().y&&
+//     obj.getType()==PorteF)
+//         return true;
 
-    return false;
-}
+//     return false;
+// }
+// revoie vrai si les deux persos sont sur leurs portes respectives et ainsi gagne la partie
+// bool Jeu:: succes(const Objet & obj,const Objet & ob){
+//     return collisionPorteF(feu,ob)&&collisionPorteE(eau,obj);
 
-bool Jeu:: succes(const Objet & obj,const Objet & ob){
-    return collisionPorteF(feu,ob)&&collisionPorteE(eau,obj);
-
-}
-
+// }
+//revoie vrai si les personnages touches un éléments qu'il ne devrait pas et donc perdent 
 bool Jeu::perte(const Objet & obj){
     if(obj.getType()== Lava){
         return collision(eau,obj);
@@ -110,11 +112,12 @@ bool Jeu::perte(const Objet & obj){
     }else
     return false;
 }
-// void Jeu:: ajouteScore(const Plateau & pla)
+// void Jeu:: ajouteScore(Plateau & pla)
 // {
-//     if (collision(feu, diam)) 
+//     if (collision(feu, pla)) 
 //     {
 //         score++;
+//         cout<<"a";
 //         pla.setPlateau(diam.getPos(), SPACE);
 //     }
     
