@@ -128,17 +128,16 @@ int Plateau::getDimx()const{
 int Plateau::getDimy()const{
     return dimy;
 }
-
+void Plateau:: setPlateau(const Vect2& v, const NomCase &n)
+{
+    plateau[v.x][v.y]=n;
+}
 NomCase Plateau::getPlateau (const int x, const int y) const{
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
     return plateau[x][y];
 }
 
-// void Plateau::setPlateau(const Vect2 &v, const NomCase& n)
-// {
-//     plateau[v.x][v.y]=n;
-// }
 Objet Plateau:: getObjet (const int x){
     assert(x>=0);
     assert(x<30);
@@ -148,10 +147,6 @@ Objet Plateau:: getObjet (const int x){
 bool Plateau::EstPosValide(const int x, const int y)const{
 
     return ((x>=0) && (x<dimx) &&(y>=0) && (y<dimy) && plateau[x][y]!='#' && plateau[x][y]!='_');
-}
-void Plateau:: setPlateau(const Vect2& v, const NomCase &n)
-{
-    plateau[v.x][v.y]=n;
 }
 
 void Plateau::bougeAuto(){
@@ -163,18 +158,20 @@ void Plateau::bougeAuto(){
         if(tabObj[i].getType() == Bloc){
             int x = tabObj[i].getPos().x;
             int y = tabObj[i].getPos().y;
-            //cout<<"monter"<<endl;
+            cout<<x<<endl;
             // Si la case en dessous est vide, déplacer le bloc
-            if(x - 1 < dimy && plateau[x - 1][y] == SPACE){
-                setPlateau(make_Vect2(x-1,y),BLOC);
+            if(x - 1 <= dimy){
+                setPlateau(make_Vect2(x,y-1),BLOC);
                 plateau[x][y] = SPACE;
-                tabObj[i].setPos(x - 1, y);
-                cout<<x<<y<<endl;
+                tabObj[i].setPos(x, y-1);
+                assert(x<dimx);
+                assert(y<dimy);
+                cout<<x<<" "<<y<<endl;
             }
             //break;
             
         }
     }
 }
-
+//&& plateau1[x + 1][y] == SPACE
 
