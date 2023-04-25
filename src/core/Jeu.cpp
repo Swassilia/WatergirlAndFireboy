@@ -66,8 +66,9 @@ void Jeu:: Gravite(bool vr)
 }
 // Fait bouger les bloque automatiquement 
 void Jeu::ActionAuto(){
+    
     pla.bougeAuto();
-    //std::this_thread::sleep_for(std::chrono::milliseconds(500)); 
+    std::this_thread::sleep_for(std::chrono::milliseconds(500)); 
 }
 //fonction qui calcule si deux elements sont sur la meme case
 bool Jeu::collision(const Personnage& per,const Objet & obj){

@@ -195,8 +195,6 @@ void Plateau::bougeAuto(){
             plateau[x][y] = SPACE;
         }
     }
-   
-    
 }
 
 //&& plateau1[x + 1][y] == SPACE

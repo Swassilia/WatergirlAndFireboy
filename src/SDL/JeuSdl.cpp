@@ -93,7 +93,11 @@ SDL_Texture * Image::getTexture() const {return texture;}
 void Image::setSurface(SDL_Surface * surf) {surface = surf;}
 
 
-
+Uint32 chrono_callback (Uint32 interval, void*param){
+    int *chrono = (int *)param;
+    (*chrono)--;
+    return interval;
+}
 // ============= CLASS Jeu =============== //
 
 SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
@@ -115,6 +119,8 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         SDL_Quit();
         exit(1);
     }
+
+    //chrono_couleur= {0,0,0};
     //cout<<"init";
 	int dimx, dimy;
 	 dimx = jeu.getPlateau().getDimx();
@@ -227,7 +233,7 @@ void SDLSimple::sdlBoucle(){
 
         nt = SDL_GetTicks();
         if (nt-t>500) {
-            // jeu.ActionAuto();
+            jeu.ActionAuto();
             t = nt;
         }
 

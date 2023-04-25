@@ -31,7 +31,7 @@ private:
 };
 
 
-
+Uint32 chrono_callback(Uint32 interval, void *param);
 /**
     La classe gerant le jeu avec un affichage SDL
 */
@@ -59,6 +59,8 @@ private :
     Mix_Chunk * sound;
     bool withSound;
 
+    Image im_chrono;
+    unsigned char chrono_couleur;
     
     //Animation
 
