@@ -227,7 +227,7 @@ void SDLSimple::sdlBoucle(){
 
         nt = SDL_GetTicks();
         if (nt-t>500) {
-            //jeu.ActionAuto();
+            jeu.ActionAuto();
             t = nt;
         }
 
