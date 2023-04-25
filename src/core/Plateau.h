@@ -65,12 +65,6 @@ public:
     */
     bool EstPosValide(const int x, const int y)const;
 
-
-    /**
-     * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y
-    */
-    //void mangeBonus(const int x, const int y); 
-
     /**
      * @brief permet de bouger les objets dans le plateau
      * 
@@ -90,6 +84,8 @@ public:
     int dimx, dimy;
     NomCase plateau[50][50];    //plateau contenant tous les éléments 
     Objet tabObj [30];
+    Objet tabBloc [4];
+    int vitesse;
 
 };
 #endif
