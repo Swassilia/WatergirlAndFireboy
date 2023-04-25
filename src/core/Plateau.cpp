@@ -6,32 +6,56 @@
 using namespace std;
 
 //construction du labyrinthe via un tableau de char
- const char plateau1[23][33] = {
- "################################",
- "################ff##############",
- "##        r              #######",
- "##      ####                  ##",
- "#########ee####    ####     ####",
- "##   ####      ######        ###",
- "##     ##  ###          ##     #",
- "##     b      ##vv##    #####  #",
- "##                   ####      #",
- "#############                  #",
- "########ee#                    #",
- "######          ######__ #######",
- "#__             ######         #",
- "#              ######     ######",
- "#  ##############ee##   ###ff###",
- "#    ##########               ##",
- "#       ##            ##      ##",
- "##                            ##",
- "#####          ######    #######",
- "# E        ###########      F ##",
- "#                             ##",
- "################################",
- "################################",
- };
-
+  const char plateau1[23][33] = {
+  "################################",
+  "################ff##############",
+  "##        r              #######",
+  "##      ####                  ##",
+  "#########ee####    ####     ####",
+  "##   ####      ######        ###",
+  "##     ##  ###          ##     #",
+  "##     b      ##vv##    #####  #",
+  "##                   ####      #",
+  "#############                  #",
+  "########ee#                    #",
+  "######          ######__ #######",
+  "#__             ######         #",
+  "#              ######     ######",
+  "#  ##############ee##   ###ff###",
+  "#    ##########               ##",
+  "#       ##            ##      ##",
+  "##                            ##",
+  "#####          ######    #######",
+  "# E        ###########      F ##",
+  "#                             ##",
+  "################################",
+  "################################",
+  };
+// const char plateau1[23][33] = {
+//   "################################",
+//   "################ff##############",
+//   "##        r              #######",
+//   "##      ####                  ##",
+//   "#########ee####    ####     ####",
+//   "##   ####      ######        ###",
+//   "##     ##  ###          ##     #",
+//   "##     b      ##vv##    #####  #",
+//   "##                   ####      #",
+//   "#############                  #",
+//   "########ee#                    #",
+//   "######          ###### __#######",
+//   "#               ######         #",
+//   "#              ######     ######",
+//   "#  ##############ee##   ###ff###",
+//   "#    ##########               ##",
+//   "#       ##            ##      ##",
+//   "##                            ##",
+//   "#####          ######    #######",
+//   "# E        ###########      F ##",
+//   "#                             ##",
+//   "################################",
+//   "################################",
+//   };
 //Constructeur de la classe qui initialise les dimensions avec des entiers définis
 //Initialise le tableau plateau avec les NomCase correspondants aux caractères du plateau1
 Plateau::Plateau()
@@ -150,22 +174,27 @@ bool Plateau::EstPosValide(const int x, const int y)const{
     return ((x>=0) && (x<dimx) &&(y>=0) && (y<dimy) && plateau[x][y]!='#' && plateau[x][y]!='_');
 }
 
-
 void Plateau::bougeAuto(){
-    int dx [4] = { -1, 0, -1, 0};
-    int dy [4] = { 0, -1, 0, -1};
-    int xtmp,ytmp;
-    for(int i = 0;i<30;i++){
-        int x = tabObj[i].getPos().x;
-        int y = tabObj[i].getPos().y;
+ 
+    int blocCounter = 4;
 
-        int dir = tabObj[i].dir;
-        xtmp = x + dx[dir];
-        ytmp = y + dy[dir];
-        if(EstPosValide(xtmp,ytmp)){
-            x = xtmp;
-            y = ytmp;
-        }else tabObj[i].dir = rand()%4;
+    // Parcours du tableau pour trouver l'objet de type Bloc et le déplacer en dessous si la case est vide
+    for(int i = 0; i < 30; i++){
+        if(tabObj[i].getType() == Bloc){
+            int x = tabObj[i].getPos().x;
+            int y = tabObj[i].getPos().y;
+            //cout<<"monter"<<endl;
+            // Si la case en dessous est vide, déplacer le bloc
+            if(x - 1 < dimy && plateau[x - 1][y] == SPACE){
+                setPlateau(make_Vect2(x-1,y),BLOC);
+                plateau[x][y] = SPACE;
+                tabObj[i].setPos(x - 1, y);
+                cout<<x<<y<<endl;
+            }
+            //break;
+            
+        }
     }
 }
+
 

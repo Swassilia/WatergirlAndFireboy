@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <math.h>
+#include <thread>
 #include "Jeu.h"
 
 using namespace std;
@@ -67,6 +68,7 @@ void Jeu:: Gravite(bool vr)
 
 void Jeu::ActionAuto(){
     pla.bougeAuto();
+    //std::this_thread::sleep_for(std::chrono::milliseconds(500)); 
 }
 
 bool Jeu::collision(const Personnage& per,const Objet & obj){
@@ -110,7 +112,7 @@ bool Jeu::perte(const Objet & obj){
     }else
     return false;
 }
-void Jeu:: ajouteScore(Plateau & pla)
+void Jeu:: ajouteScore()
 {
     if (collision(feu, diam)) 
     {
@@ -127,5 +129,7 @@ void Jeu:: testRegressionJeu(){
     const Personnage& Fille = jeu.getPersonnageEau();
     const Personnage& Garcon = jeu.getPersonnageFeu();
     const Plateau& terrain = jeu.getPlateau();
+
+    jeu.ActionAuto();   
 
 }
