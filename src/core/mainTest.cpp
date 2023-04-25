@@ -7,11 +7,8 @@ using namespace std;
 
 
 int main(){
-    Personnage p;
-    Plateau pla;
     Jeu jeu;
-    //pla.boueAuto();
-    jeu.ActionAuto();
+    jeu.testRegressionJeu();
     cout<<"test jeu"<<endl;
 
     return 0;

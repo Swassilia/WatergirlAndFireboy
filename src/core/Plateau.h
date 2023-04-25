@@ -77,8 +77,13 @@ public:
      * @param ob appel de l'objet à bouger
      */
     void bougeAuto();
-
-  void setPlateau(const Vect2& v, const NomCase &n);
+    /**
+     * @brief Set the Plateau object
+     * 
+     * @param v 
+     * @param n 
+     */
+    void setPlateau(const Vect2& v, const NomCase &n);
     
   private:
 

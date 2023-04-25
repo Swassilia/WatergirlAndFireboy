@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <math.h>
+#include <thread>
 #include "Jeu.h"
 
 using namespace std;
@@ -68,6 +69,7 @@ void Jeu:: Gravite(bool vr)
 // Fait bouger les bloque automatiquement 
 void Jeu::ActionAuto(){
     pla.bougeAuto();
+    //std::this_thread::sleep_for(std::chrono::milliseconds(500)); 
 }
 //fonction qui calcule si deux elements sont sur la meme case
 bool Jeu::collision(const Personnage& per,const Objet & obj){
@@ -112,7 +114,7 @@ bool Jeu::perte(const Objet & obj){
     }else
     return false;
 }
-void Jeu:: ajouteScore(Plateau & pla)
+void Jeu:: ajouteScore()
 {
     if (collision(feu, pla.)) 
     {
@@ -133,5 +135,7 @@ void Jeu:: testRegressionJeu(){
     const Personnage& Fille = jeu.getPersonnageEau();
     const Personnage& Garcon = jeu.getPersonnageFeu();
     const Plateau& terrain = jeu.getPlateau();
+
+    jeu.ActionAuto();   
 
 }

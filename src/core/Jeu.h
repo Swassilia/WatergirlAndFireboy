@@ -2,6 +2,7 @@
 #define _JEU
 #include "Personnage.h"
 #include "Plateau.h"
+#include "Objet.h"
 #include "Vect2.h"
 
 class Jeu
@@ -71,7 +72,7 @@ public:
      * @param bon Bonus (DiamondF et DiamondE)
      * @param per Personnage (feu et eau)
      */
-    void ajouteScore(Plateau & pla);
+    void ajouteScore();
     /**
      * @brief un booléen qui retourne vrai si la partie a été réussie
      * 
