@@ -120,8 +120,10 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         exit(1);
     }
 
+    chrono_couleur = { 255, 255, 0, 128 }; 
     //chrono_couleur= {0,0,0};
     //cout<<"init";
+
 	int dimx, dimy;
 	 dimx = jeu.getPlateau().getDimx();
 	 dimy = jeu.getPlateau().getDimy();
@@ -151,8 +153,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
 
         
         lava1.loadFromFile("data/lava-1.png",renderer);
-        lava2.loadFromFile("data/lava-2.png",renderer);
-        lava3.loadFromFile("data/lava-3.png",renderer);
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
     //cout<<"image";
@@ -192,7 +192,7 @@ SDLSimple::~SDLSimple(){
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
-         //cout<<"init";
+         
          int x,y;
          const Plateau &pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
@@ -228,19 +228,28 @@ void SDLSimple::sdlBoucle(){
     bool ouvert=false;
     Plateau pla=jeu.getPlateau();
     Uint32 t = SDL_GetTicks(), nt;
+    int chrono = 50;
+    time = SDL_AddTimer(1000,chrono_callback,&chrono);
 
     while (!ouvert) {
 
+        if(jeu.tmp_partie <10)
+            chrono_couleur = {255,0,0};
+        string tmp_partie_str = to_string(jeu.tmp_partie);
+        im_chrono.setSurface(TTF_RenderText_Solid(font,tmp_partie_str.c_str(),chrono_couleur));
+        im_chrono.loadFromCurrentSurface(renderer);
+        im_chrono.draw(renderer,jeu.getPlateau().getDimx()/2,10,120,60);
+        
         nt = SDL_GetTicks();
         if (nt-t>500) {
             jeu.ActionAuto();
             t = nt;
         }
-
         
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
+            
             jeu.Gravite(true);    
             for(int i=0; i<30; i++)
             {
@@ -289,5 +298,6 @@ void SDLSimple::sdlBoucle(){
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
 	}
+    SDL_RemoveTimer(time);
     
 }

@@ -68,7 +68,6 @@ void Jeu:: Gravite(bool vr)
 void Jeu::ActionAuto(){
     
     pla.bougeAuto();
-    std::this_thread::sleep_for(std::chrono::milliseconds(500)); 
 }
 //fonction qui calcule si deux elements sont sur la meme case
 bool Jeu::collision(const Personnage& per,const Objet & obj){
@@ -117,24 +116,26 @@ bool Jeu::perte(const Objet & obj){
 //un de leur bonus
 void Jeu:: ajouteScore(Plateau pla)
 {
+
     for (int i=0; i<30; i++)
-   { if (pla.getObjet(i).getType()==DiamantFeu&&collision(feu, pla.getObjet(i))) 
+   { 
+    if (pla.getObjet(i).getType()==DiamantFeu &&collision(feu, pla.getObjet(i))) 
     {
         score++;
         cout<<score<<endl;
-        pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
-        cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y)<<endl;
-
+        int x = pla.getObjet(i).getPos().x;
+        int y = pla.getObjet(i).getPos().y;
+        pla.plateau[y][x] = SPACE;
     }
-    
     if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
     {
         score++;
-        pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
-        cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
+        //pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
+        //cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
     }
-    }
+    
 
+    }
 }
 void Jeu:: testRegressionJeu(){
     Jeu jeu;

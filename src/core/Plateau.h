@@ -78,11 +78,11 @@ public:
      * @param n 
      */
     void setPlateau(const Vect2& v, const NomCase &n);
-    
+    NomCase plateau[50][50];    //plateau contenant tous les éléments 
+
   private:
 
     int dimx, dimy;
-    NomCase plateau[50][50];    //plateau contenant tous les éléments 
     Objet tabObj [30];
     Objet tabBloc [4];
     int vitesse;

@@ -166,14 +166,14 @@ void Plateau::bougeAuto(){
             int y = tabBloc[i].getPos().y;
             vitesse  = 1;
 
-            printf("X : %d   Y : %d ", x, y);
+            //printf("X : %d   Y : %d ", x, y);
             if(y - 1 >= 7 ){
                 setPlateau(make_Vect2(x,y-vitesse),BLOC);
                 plateau[x][y] = SPACE;
                 tabBloc[i].setPos(x, y-vitesse);
                 assert(x<dimx);
                 assert(y<dimy);
-            }else 
+            }else
             setPlateau(make_Vect2(x,y+3),BLOC);
             plateau[x][y] = SPACE;
         
@@ -183,7 +183,7 @@ void Plateau::bougeAuto(){
             int y = tabBloc[i].getPos().y;
             vitesse  = 1;
 
-            printf("X : %d   Y : %d ", x, y);
+            //printf("X : %d   Y : %d ", x, y);
             if(y - 1 >= 8 ){
                 setPlateau(make_Vect2(x,y-vitesse),BLOC);
                 plateau[x][y] = SPACE;

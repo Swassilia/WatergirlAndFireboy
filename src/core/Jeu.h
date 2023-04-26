@@ -100,6 +100,7 @@ public:
      * @param vr 
      */
     void Gravite(bool vr);
+    int tmp_partie;
 
     private:
     unsigned int score;

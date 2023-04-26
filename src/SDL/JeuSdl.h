@@ -59,31 +59,15 @@ private :
     Mix_Chunk * sound;
     bool withSound;
 
+    SDL_TimerID time;
     Image im_chrono;
-    unsigned char chrono_couleur;
+    SDL_Color chrono_couleur;
     
-    //Animation
-
-    Image im_perso_eau1;
-    Image im_perso_eau2;
-    Image im_perso_eau3;
-
-    Image im_perso_feu1;
-    Image im_perso_feu2;
-    Image im_perso_feu3;
-
+   
     Image riviere1;
-    Image riviere2;
-    Image riviere3;
-
     Image lava1;
-    Image lava2;
-    Image lava3;
-
     Image vert1;
-    Image vert2;
-    Image vert3;
-
+   
     //Intacte
     Image im_perso_eau;
     Image im_perso_feu;
