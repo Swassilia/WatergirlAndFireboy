@@ -24,6 +24,7 @@ Le jeu peut se jouer à deux.Un des joueurs représente l’eau (WaterGirl) et l
 Le personnage feu ne doit pas toucher les obstacles de type eau et de type acide, cependant il peut passer à travers une rivière de lave et récuperer les diamants rouges.
 Le personnage eau, lui, ne doit pas toucher les obstacles de type feu et de type acide, cependant il peut passer à traver une rivière d'eau et récuperer les diamants bleus.
 
+
 ## Organisation de l'archive
 
 #### La Librairie
@@ -63,6 +64,7 @@ programmes principaux qui seront utiliser pour afficher le jeu: *sdl*, *text*, *
 - **txt** contient les fichiers nécessaire à l'affiche en mode texte du jeu.
 
 ## Compiler et Exécuter le programme
+### compilation
 
 Pour compiler, le fichier Makefile crée les exécutables de la forme "./bin/fonction" correspondants aux 4 fonctions main que l'on va appeler pour afficher notre jeu, 13 fichiers objets de la forme "obj/fonction.o" qui vont permettre de créer ces exécutables (dans l'orde):
 
@@ -90,3 +92,17 @@ Pour compiler, le fichier Makefile crée les exécutables de la forme "./bin/fon
     - obj/Objet.o: (du même type que obj/Jeu.o)
     - obj/Vect2.o: (du même type que obj/Jeu.o)
     - obj/Menu.o: (du même type que obj/Jeu.o)
+
+### exécution
+
+Pour exécuter le programme, on tape dans l'ordre les commandes suivantes (on se situe dans le répertoire WaterGirl_FireBoy__12100663_12018499_12103289
+):
+
+***make*** pour compiler.
+
+***bin/txt*** pour afficher le jeu en mode texte, dans ce cas, notre plateau de jeu apparait sous forme de chaîne de caractère sur le terminal. 
+
+***bin/sdl*** qui exécute le mainSdl pour construire le jeu en appelant la boucle de jeu sdl. Dans ce cas, notre plateau de jeu apparait sous forme d'image dans une fenêtre 2D.
+
+***bin/jeu*** permet d'afficher un menu (mode texte)pour choisir le mode de jeu au début. L'utilisateur pressera la touche 1 si il veut le mode texte, 2 si il veut le mode SDL et 0 si il veut quitter.
+
