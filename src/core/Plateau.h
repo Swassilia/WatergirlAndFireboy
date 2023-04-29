@@ -61,7 +61,7 @@ public:
     */
     Objet getObjet (const int x);
 
-    void setObjet(const int i,const Type &t, const Vect2 v);
+    void suppObjet(const int x);
 
     /**
      * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y

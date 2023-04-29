@@ -152,8 +152,14 @@ Objet Plateau:: getObjet (const int x){
     return tabObj[x];
 }
 
-void Plateau:: setObjet(const int i,const Type &t, const Vect2 v){
-    tabObj[i]=Objet(t,v.x,v.y);
+void Plateau:: suppObjet(const int x){
+    int i;
+    for ( i=x; i<29; i++)
+    {
+    tabObj[i]=Objet(tabObj[i+1].getType(),tabObj[i+1].getPos().x,tabObj[i+1].getPos().y);
+        
+    }
+    tabObj[i]=Objet(Defaut,tabObj[i].getPos().x,tabObj[i].getPos().y);
 }
 
 bool Plateau::EstPosValide(const int x, const int y)const{

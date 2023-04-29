@@ -45,22 +45,22 @@ bool Jeu::ActionClavier(const char touche){
         switch(touche) {
 
             case 'q' :
-                eau.DeplacerG(pla);
-                break;
-            case 'd' :
-                eau.DeplacerD(pla);
-                break;
-            case 'z' :
-                eau.DeplacerH(pla);
-                break;
-            case 'k' :
                 feu.DeplacerG(pla);
                 break;
-            case 'm' :
+            case 'd' :
                 feu.DeplacerD(pla);
                 break;
-             case 'o' :
+            case 'z' :
                 feu.DeplacerH(pla);
+                break;
+            case 'k' :
+                eau.DeplacerG(pla);
+                break;
+            case 'm' :
+                eau.DeplacerD(pla);
+                break;
+             case 'o' :
+                eau.DeplacerH(pla);
                 break;
         }  
     
@@ -130,7 +130,7 @@ void Jeu:: ajouteScore(Plateau pla)
             // int x = pla.getObjet(i).getPos().x;
             // int y = pla.getObjet(i).getPos().y;
             pla.setPlateau(pla.getObjet(i).getPos(),SPACE);
-            //pla.setObjet(i,Defaut,x,y);
+            pla.suppObjet(i);
          }
         if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
         {
@@ -138,8 +138,8 @@ void Jeu:: ajouteScore(Plateau pla)
             cout<<score<<endl;
             // int x = pla.getObjet(i).getPos().x;
             // int y = pla.getObjet(i).getPos().y;
-            //pla.setObjet(i,Defaut,x,y);
-            pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
+            pla.setPlateau(pla.getObjet(i).getPos(),SPACE);
+            pla.suppObjet(i);
             cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
          }
         
