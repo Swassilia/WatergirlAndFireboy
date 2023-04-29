@@ -9,6 +9,8 @@ p2100663 Wassila Said Karim
 p2018499 Acil Kasraoui
 
 p2103289 Esra Colmek
+
+Identifiant du projet: 28425
 ## Présentation du projet 
 
 Création d'un jeu d’arcade destiné à un public de plus de 10 ans. Il est inspiré du fameux jeu FireBoy And WaterGirl de Oslo Albet. Avec un délais de 9 semaines, nous avons essayé de finaliser au plus le code de notre jeu pour un rendu similaire au jeu d'origine et des fonctionnalitées suffisantes pour permettre une bonne partie de jeu.
