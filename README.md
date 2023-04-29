@@ -1,92 +1,108 @@
-# Jeu de labyrinth
+# WaterGirl & FireBoy
 
 
 
-## Getting started
+## Etudiants
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+p2100663 Wassila Said Karim
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+p2018499 Acil Kasraoui
 
-## Add your files
+p2103289 Esra Colmek
+## Présentation du projet 
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Création d'un jeu d’arcade destiné à un public de plus de 10 ans. Il est inspiré du fameux jeu FireBoy And WaterGirl de Oslo Albet. Avec un délais de 9 semaines, nous avons essayé de finaliser au plus le code de notre jeu pour un rendu similaire au jeu d'origine et des fonctionnalitées suffisantes pour permettre une bonne partie de jeu.
 
-```
-cd existing_repo
-git remote add origin https://forge.univ-lyon1.fr/swag/jeu-de-labyrinth.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
 
-- [ ] [Set up project integrations](https://forge.univ-lyon1.fr/swag/jeu-de-labyrinth/-/settings/integrations)
+#### Les règles du jeu
 
-## Collaborate with your team
+Le jeu peut se jouer à deux.Un des joueurs représente l’eau (WaterGirl) et le deuxième le feu (FireBoy).Ces deux éléments vont devoirs traverser le labyrinthe pour arriver à la fin où ils devront se placer sur les portes attribuées pour chacun des personnages. Des obstacles seront disposés dans le parcours, ils devront les franchir sans mourir tout en essayant de gagner le plus de points possibles grâce aux diamants récupérables.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+#### Quelques détails sur les éléments du parcours
 
-## Test and Deploy
+Le personnage feu ne doit pas toucher les obstacles de type eau et de type acide, cependant il peut passer à travers une rivière de lave et récuperer les diamants rouges.
+Le personnage eau, lui, ne doit pas toucher les obstacles de type feu et de type acide, cependant il peut passer à traver une rivière d'eau et récuperer les diamants bleus.
 
-Use the built-in continuous integration in GitLab.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Organisation de l'archive
 
-***
+#### La Librairie
+L'utilisation de la librairie SDL (Simple DirectMedia Layer) nous permet ici d'afficher une représentation 2D de notre jeu dans une fenêtre de taille définie. De plus, elle nous donne accès au clavier pour qu'on puisse gérer les mouvements et utiliser les fonctionnalités de notre jeu.
 
-# Editing this README
+## Les répertoires
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+L'archive WaterGirl_FireBoy__12100663_12018499_12103289.tar.gz contient contient un **Makefile**, un **Readme** et 5 répertoires:
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+**bin** contient les exécutables des
+programmes principaux qui seront utiliser pour afficher le jeu: *sdl*, *text*, *jeu* et *test*.
 
-## Name
-Choose a self-explaining name for your project.
+**data** contient les images sous format PNG à utiliser par le programme. 
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+**doc** contient le fichier de configuration du doxygen *jeulabyrinthe.doxy*, le diagramme de Gantt, le diagramme des classes (format PNG), et la présentation orale du projet (format pdf).
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+**obj** contient les fichiers objets crées par le Makefile: 
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+    -Jeu.o 
+    -JeuSdl.o 
+    -Jeu.txt 
+    -MainMenu.o 
+    -mainSdl.o 
+    -mainTest.o 
+    -mainTxt.o 
+    -Menu.o 
+    -Objet.o 
+    -Personnage.o
+    -Plateau.o 
+    -Vect2.o 
+    -WinTxt.o *
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+**src** contient les fichiers sources du programme. Ce répertoire est lui même constitué de plusieurs sous-répertoires:
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- **core** contient le noyau du programme, c'est à dire les fichiers .h et .cpp des classes essentielles du programme.
+- **SDL** contient les fichiers nécessaires à l'affichage SDL du jeu, c'est dans ces fichiers que l'on appelle la libraire SDL et que l'on charge les images nécessaires au rendu voulu.
+- **txt** contient les fichiers nécessaire à l'affiche en mode texte du jeu.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Compiler et Exécuter le programme
+### compilation
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Pour compiler, le fichier Makefile crée les exécutables de la forme "./bin/fonction" correspondants aux 4 fonctions main que l'on va appeler pour afficher notre jeu, 13 fichiers objets de la forme "obj/fonction.o" qui vont permettre de créer ces exécutables (dans l'orde):
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+    - bin/jeu: obj/MainMenu.o obj/Menu.o 
+        g++ -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
+    - bin/text: (du même type que bin/jeu)
+    - bin/sdl: (du même type que bin/jeu)
+    - bin/test: (du même type que bin/jeu)
+    
+    - obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/Objet.o
+        g++ -Wall -ggdb -I./extern/include -c src/core/mainTest.cpp -o obj/mainTest.o
+    - obj/mainTxt.o: (du même type que obj/mainTest.o)
+    - obj/mainSdl.o: (du même type que obj/mainTest.o)
+    - obj/mainMenu.o: (du même type que obj/mainTest.o)
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+    - obj/JeuTxt.o: src/txt/JeuTxt.h src/txt/JeuTxt.cpp src/core/Jeu.h 
+        g++ -Wall -ggdb -I./extern/include -c src/txt/JeuTxt.cpp -o obj/JeuTxt.o
+    - obj/WinTxt.o: (du même type que obj/JeuTxt.o)
+    - obj/JeuSdl.o: (du même type que obj/JeuTxt.o)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+    - obj/Jeu.o:  src/core/Jeu.h src/core/Jeu.cpp src/core/Vect2.h src/core/Type.h  src/core/Personnage.h src/core/Plateau.h
+        g++ -Wall -ggdb -I./extern/include -c src/core/Jeu.cpp  -o obj/Jeu.o
+    - obj/Personnage.o: (du même type que obj/Jeu.o)
+    - obj/Plateau.o: (du même type que obj/Jeu.o)
+    - obj/Objet.o: (du même type que obj/Jeu.o)
+    - obj/Vect2.o: (du même type que obj/Jeu.o)
+    - obj/Menu.o: (du même type que obj/Jeu.o)
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+### exécution
 
-## License
-For open source projects, say how it is licensed.
+Pour exécuter le programme, on tape dans l'ordre les commandes suivantes (on se situe dans le répertoire WaterGirl_FireBoy__12100663_12018499_12103289
+):
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+***make*** pour compiler.
+
+***bin/txt*** pour afficher le jeu en mode texte, dans ce cas, notre plateau de jeu apparait sous forme de chaîne de caractère sur le terminal. 
+
+***bin/sdl*** qui exécute le mainSdl pour construire le jeu en appelant la boucle de jeu sdl. Dans ce cas, notre plateau de jeu apparait sous forme d'image dans une fenêtre 2D.
+
+***bin/jeu*** permet d'afficher un menu (mode texte)pour choisir le mode de jeu au début. L'utilisateur pressera la touche 1 si il veut le mode texte, 2 si il veut le mode SDL et 0 si il veut quitter.
+
