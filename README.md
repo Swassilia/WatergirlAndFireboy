@@ -67,7 +67,26 @@ programmes principaux qui seront utiliser pour afficher le jeu: *sdl*, *text*, *
 Pour compiler, le fichier Makefile crée les exécutables de la forme "./bin/fonction" correspondants aux 4 fonctions main que l'on va appeler pour afficher notre jeu, 13 fichiers objets de la forme "obj/fonction.o" qui vont permettre de créer ces exécutables (dans l'orde):
 
     - bin/jeu: obj/MainMenu.o obj/Menu.o 
-     g++ -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
+        g++ -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
+    - bin/text: (du même type que bin/jeu)
+    - bin/sdl: (du même type que bin/jeu)
+    - bin/test: (du même type que bin/jeu)
+    
+    - obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/Objet.o
+        g++ -Wall -ggdb -I./extern/include -c src/core/mainTest.cpp -o obj/mainTest.o
+    - obj/mainTxt.o: (du même type que obj/mainTest.o)
+    - obj/mainSdl.o: (du même type que obj/mainTest.o)
+    - obj/mainMenu.o: (du même type que obj/mainTest.o)
 
-     - 
+    - obj/JeuTxt.o: src/txt/JeuTxt.h src/txt/JeuTxt.cpp src/core/Jeu.h 
+        g++ -Wall -ggdb -I./extern/include -c src/txt/JeuTxt.cpp -o obj/JeuTxt.o
+    - obj/WinTxt.o: (du même type que obj/JeuTxt.o)
+    - obj/JeuSdl.o: (du même type que obj/JeuTxt.o)
 
+    - obj/Jeu.o:  src/core/Jeu.h src/core/Jeu.cpp src/core/Vect2.h src/core/Type.h  src/core/Personnage.h src/core/Plateau.h
+        g++ -Wall -ggdb -I./extern/include -c src/core/Jeu.cpp  -o obj/Jeu.o
+    - obj/Personnage.o: (du même type que obj/Jeu.o)
+    - obj/Plateau.o: (du même type que obj/Jeu.o)
+    - obj/Objet.o: (du même type que obj/Jeu.o)
+    - obj/Vect2.o: (du même type que obj/Jeu.o)
+    - obj/Menu.o: (du même type que obj/Jeu.o)
