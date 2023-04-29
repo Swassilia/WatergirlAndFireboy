@@ -1,4 +1,4 @@
-# Jeu de labyrinth
+# WaterGirl & FireBoy
 
 
 
@@ -61,4 +61,13 @@ programmes principaux qui seront utiliser pour afficher le jeu: *sdl*, *text*, *
 - **core** contient le noyau du programme, c'est à dire les fichiers .h et .cpp des classes essentielles du programme.
 - **SDL** contient les fichiers nécessaires à l'affichage SDL du jeu, c'est dans ces fichiers que l'on appelle la libraire SDL et que l'on charge les images nécessaires au rendu voulu.
 - **txt** contient les fichiers nécessaire à l'affiche en mode texte du jeu.
+
+## Compiler et Exécuter le programme
+
+Pour compiler, le fichier Makefile crée les exécutables de la forme "./bin/fonction" correspondants aux 4 fonctions main que l'on va appeler pour afficher notre jeu, 13 fichiers objets de la forme "obj/fonction.o" qui vont permettre de créer ces exécutables (dans l'orde):
+
+    - bin/jeu: obj/MainMenu.o obj/Menu.o 
+     g++ -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
+
+     - 
 
