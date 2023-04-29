@@ -30,6 +30,7 @@ void Objet::setPos(const unsigned int x, const unsigned int y){
     posO.x = x;
     posO.y = y;
 }
+
 Vect2 Objet::getPos()const  {
 
     return posO;

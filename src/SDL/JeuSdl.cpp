@@ -250,16 +250,32 @@ void SDLSimple::sdlBoucle(){
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
             
-            jeu.Gravite(true);    
+            jeu.Gravite(true); 
+            jeu.ajouteScore(pla);  
             for(int i=0; i<30; i++)
             {
                if (jeu.perte(pla.getObjet(i)))
                {
                    ouvert=true;
-               };
+               }
+            //    if(pla.getObjet(i).getType() == DiamantEau && jeu.collision(jeu.getPersonnageEau(), pla.getObjet(i)))
+            //    {
+            //     jeu.ajouteScore();
+            //     im_fond.draw(renderer,pla.getObjet(i).getPos().x*TAILLE_SPRITE,pla.getObjet(i).getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+            //     // pla.setObjet(i,Defaut,pla.getObjet(i).getPos());
+            //     break;
+            //    }
+            //    if(pla.getObjet(i).getType() == DiamantFeu && jeu.collision(jeu.getPersonnageFeu(), pla.getObjet(i)))
+            //    {
+            //     jeu.ajouteScore();
+            //     im_fond.draw(renderer,pla.getObjet(i).getPos().x*TAILLE_SPRITE,pla.getObjet(i).getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+            //     // pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
+            //     // pla.setObjet(i,Defaut,pla.getObjet(i).getPos());
+            //     break;
+            //    }
                 
             }
-            jeu.ajouteScore(pla);
+            // jeu.ajouteScore(pla);
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
@@ -289,9 +305,9 @@ void SDLSimple::sdlBoucle(){
 				}
 				
 			}
+            
 
 		}
-
 		// on affiche le jeu sur le buffer caché
 		sdlAff();
 

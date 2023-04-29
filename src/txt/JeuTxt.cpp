@@ -72,7 +72,7 @@ using namespace std;
 			// }
 			// jeu.ajouteScore(pla);
 			if (jeu.perte(pla.getObjet(i-1)))
-		 	{
+			{
 			cout<<endl;
 		 	cout<< "Vous avez bien quitté"<<endl;
 			ok=false;

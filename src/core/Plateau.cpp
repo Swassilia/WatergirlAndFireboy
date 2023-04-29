@@ -15,7 +15,7 @@ using namespace std;
   "##        r              #######",
   "##      ####                  ##",
   "#########ee####    ####     ####",
-  "##   ####      ######        ###",
+  "##   ####      ######       r###",
   "##     ##  ###          ##     #",
   "##     b      ##vv##    #####  #",
   "##                   ####      #",
@@ -136,7 +136,7 @@ int Plateau::getDimx()const{
 int Plateau::getDimy()const{
     return dimy;
 }
-void Plateau:: setPlateau(const Vect2& v, const NomCase &n)
+void Plateau:: setPlateau(const Vect2 v, const NomCase &n)
 {
     plateau[v.x][v.y]=n;
 }
@@ -150,6 +150,10 @@ Objet Plateau:: getObjet (const int x){
     assert(x>=0);
     assert(x<30);
     return tabObj[x];
+}
+
+void Plateau:: setObjet(const int i,const Type &t, const Vect2 v){
+    tabObj[i]=Objet(t,v.x,v.y);
 }
 
 bool Plateau::EstPosValide(const int x, const int y)const{

@@ -31,6 +31,7 @@ public:
     //void placerObstacle();
    // void placerBonus();
 
+    void setPlateau(const Vect2 v, const NomCase &n);
     /**
      * @brief Accesseur : récupère la dimension en x du plateau
      * 
@@ -60,6 +61,8 @@ public:
     */
     Objet getObjet (const int x);
 
+    void setObjet(const int i,const Type &t, const Vect2 v);
+
     /**
      * @brief  verifier si une position est valide (libre) dans le plateau aux coordonees x et y
     */
@@ -77,7 +80,7 @@ public:
      * @param v 
      * @param n 
      */
-    void setPlateau(const Vect2& v, const NomCase &n);
+    
     NomCase plateau[50][50];    //plateau contenant tous les éléments 
 
   private:
