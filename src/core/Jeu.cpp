@@ -45,22 +45,22 @@ bool Jeu::ActionClavier(const char touche){
         switch(touche) {
 
             case 'q' :
-                feu.DeplacerG(pla);
-                break;
-            case 'd' :
-                feu.DeplacerD(pla);
-                break;
-            case 'z' :
-                feu.DeplacerH(pla);
-                break;
-            case 'k' :
                 eau.DeplacerG(pla);
                 break;
-            case 'm' :
+            case 'd' :
                 eau.DeplacerD(pla);
                 break;
-             case 'o' :
+            case 'z' :
                 eau.DeplacerH(pla);
+                break;
+            case 'k' :
+                feu.DeplacerG(pla);
+                break;
+            case 'm' :
+                feu.DeplacerD(pla);
+                break;
+             case 'o' :
+                feu.DeplacerH(pla);
                 break;
         }  
     
@@ -130,7 +130,7 @@ void Jeu:: ajouteScore(Plateau &pla)
             // int x = pla.getObjet(i).getPos().x;
             // int y = pla.getObjet(i).getPos().y;
             pla.setObjet(i,Defaut);
-            pla.setPlateau(pla.getObjet(i).getPos());
+            pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
             cout<<pla.getObjet(i).getType()<<" "<<Defaut;
          }
         if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
@@ -140,7 +140,8 @@ void Jeu:: ajouteScore(Plateau &pla)
             int x = pla.getObjet(i).getPos().x;
             int y = pla.getObjet(i).getPos().y;
             pla.setObjet(i,Defaut);
-            pla.setPlateau(pla.getObjet(i).getPos());
+            pla.setPlateau(pla.getObjet(i).getPos(),SPACE);
+            cout<<x<<" "<<y<<endl;
             cout<<" le type de  est "<<pla.getObjet(i).getType()<<" "<<i<<" le type de space est "<<Defaut<<endl;
             cout<<" le type de  est "<<pla.getPlateau(x,y)<<" "<< i <<" le type de space est "<<SPACE<<endl;
             //cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
