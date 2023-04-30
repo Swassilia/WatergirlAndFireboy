@@ -223,6 +223,34 @@ SDLSimple::~SDLSimple(){
     }
 }
 
+void SDLSimple::afficherGameOver() {
+
+    Plateau pla=jeu.getPlateau();
+    
+    //Attendre 2 secondes avant d'afficher la fin de partie
+    SDL_Delay(1000);
+
+    //changer la couleur de la fenêtre
+    SDL_SetRenderDrawColor(renderer, 143,130,65,5);
+    SDL_RenderClear(renderer);
+
+    //charger l'image "game Over"
+    SDL_Surface* surface = IMG_Load("data/gameO.png");
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+
+    // Afficher l'image
+    SDL_Rect rect = {160,140, pla.getDimx()*20, pla.getDimy()*20};
+    SDL_RenderCopy(renderer, texture, NULL, &rect);
+    SDL_DestroyTexture(texture);
+    SDL_RenderPresent(renderer);
+
+    SDL_Delay(4000); // Attendre 4 secondes avant de quitter le jeu
+    SDL_Quit();
+    exit(0);
+
+}
+
 void SDLSimple::sdlBoucle(){
     SDL_Event event;
     bool ouvert=false;
@@ -256,6 +284,7 @@ void SDLSimple::sdlBoucle(){
                if (jeu.perte(pla.getObjet(i)))
                {
                    ouvert=true;
+                   afficherGameOver();
                }
             //    if(pla.getObjet(i).getType() == DiamantEau && jeu.collision(jeu.getPersonnageEau(), pla.getObjet(i)))
             //    {

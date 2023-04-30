@@ -44,7 +44,7 @@ public :
     ~SDLSimple ();
     void sdlBoucle ();
     void sdlAff (Plateau pla);
-
+    void afficherGameOver();
 private :
 
 	Jeu jeu;
