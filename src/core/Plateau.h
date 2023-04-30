@@ -31,7 +31,7 @@ public:
     //void placerObstacle();
    // void placerBonus();
 
-    void setPlateau(const Vect2 &v);
+    void setPlateau(const Vect2 &v,const NomCase &n);
     /**
      * @brief Accesseur : récupère la dimension en x du plateau
      * 
@@ -83,9 +83,9 @@ public:
      */
     
       
-
-  private:
     NomCase plateau[50][50];  //plateau contenant tous les éléments 
+  private:
+    
     int dimx, dimy;
     Objet tabObj [30];
     Objet tabBloc [4];
