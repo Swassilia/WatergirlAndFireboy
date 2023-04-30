@@ -45,22 +45,22 @@ bool Jeu::ActionClavier(const char touche){
         switch(touche) {
 
             case 'q' :
-                feu.DeplacerG(pla);
-                break;
-            case 'd' :
-                feu.DeplacerD(pla);
-                break;
-            case 'z' :
-                feu.DeplacerH(pla);
-                break;
-            case 'k' :
                 eau.DeplacerG(pla);
                 break;
-            case 'm' :
+            case 'd' :
                 eau.DeplacerD(pla);
                 break;
-             case 'o' :
+            case 'z' :
                 eau.DeplacerH(pla);
+                break;
+            case 'k' :
+                feu.DeplacerG(pla);
+                break;
+            case 'm' :
+                feu.DeplacerD(pla);
+                break;
+             case 'o' :
+                feu.DeplacerH(pla);
                 break;
         }  
     

@@ -286,23 +286,9 @@ void SDLSimple::sdlBoucle(){
                    ouvert=true;
                    afficherGameOver();
                }
-            //    if(pla.getObjet(i).getType() == DiamantEau && jeu.collision(jeu.getPersonnageEau(), pla.getObjet(i)))
-            //    {
-            //     jeu.ajouteScore();
-            //     im_fond.draw(renderer,pla.getObjet(i).getPos().x*TAILLE_SPRITE,pla.getObjet(i).getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-            //     // pla.setObjet(i,Defaut,pla.getObjet(i).getPos());
-            //     break;
-            //    }
+
                 jeu.ajouteScore(pla);
-            //    if(pla.getObjet(i).getType() == DiamantFeu && jeu.collision(jeu.getPersonnageFeu(), pla.getObjet(i)))
-            //    {
-               
-            //     im_fond.draw(renderer,pla.getObjet(i).getPos().x*TAILLE_SPRITE,pla.getObjet(i).getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-            //     // pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
-            //    }
-                
-            }
-            // jeu.ajouteScore(pla);
+
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
