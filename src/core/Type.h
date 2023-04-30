@@ -1,6 +1,14 @@
+/**
+@brief Module gérant les types "Type" du jeu
+@file Type.h
+@date 2023/03/14
+*/
 #ifndef _Type
 #define _Type
 
+/**
+ * @brief type énuméré Type, qui représente les Types des éléments du plateau de jeu
+*/
 enum Type {
 
 /*0*/   Feu,

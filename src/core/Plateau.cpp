@@ -8,7 +8,6 @@
 #include "Objet.h"
 using namespace std;
 
-//construction du labyrinthe via un tableau de char
 //   const char plateau1[23][33] = {
 //   "################################",
 //   "################ff##############",
@@ -35,6 +34,7 @@ using namespace std;
 //   "################################",
 //   };
 
+//construction du labyrinthe via un tableau de char
  const char plateau1[23][33] = {
   "################################",
   "################ff##############",
@@ -60,6 +60,7 @@ using namespace std;
   "################################",
   "################################",
   };
+
 //Constructeur de la classe qui initialise les dimensions avec des entiers définis
 //Initialise le tableau plateau avec les NomCase correspondants aux caractères du plateau1
 Plateau::Plateau()
@@ -122,19 +123,15 @@ Plateau::Plateau()
 			}
 		}
     }            
-    // plateau[4][3] = BONUSFEU;
-    // tabObj[i]=Objet(DiamantFeu,4,3);
-    // i++;
+
     plateau[6][15] = BONUSEAU;
     tabObj[i]=Objet(DiamantEau,6,15);
     i++;
 
-    // plateau[6][15] = BONUSEAU;
-    // tabObj[i]=Objet(DiamantEau,6,15);
-    // i++;
     
 }
 
+//Destructeur du plateau
 Plateau::~Plateau(){
     dimx=0;
     dimy=0;
@@ -153,38 +150,50 @@ Plateau::~Plateau(){
     }
 }
 
+//Accesseur : récupère la dimension en x du plateau
 int Plateau::getDimx()const{
     return dimx;
 }
 
+//Accesseur : récupère la dimension en y du plateau
 int Plateau::getDimy()const{
     return dimy;
 }
+
+//Mutateur : redéfinit un objet dans le tableau d'objet
 void Plateau:: setObjet(int i, const Type &t)
 {
     tabObj[i]=Objet(t,5,15);
 }
+
+//Mutateur : redéfinit une case du plateau
 void Plateau:: setPlateau(const Vect2 &v,const NomCase &n)
 {
     plateau[v.x][v.y]=n;
 }
+
+//Accesseur : recupere la case du plateau dans les coordonnees x et y
+//pour savoir ce qu'il y a dedans
 NomCase Plateau::getPlateau (const int x, const int y) const{
     assert(x>=0 && y>=0);
     assert(x<dimx && y<dimy);
     return plateau[x][y];
 }
 
+//Accesseur : recupere l'objet dans le tableau d'objet
 Objet Plateau:: getObjet (const int x){
     assert(x>=0);
     assert(x<30);
     return tabObj[x];
 }
 
+//verifier si une position est valide (libre) dans le plateau aux coordonees x et y
 bool Plateau::EstPosValide(const int x, const int y)const{
 
     return ((x>=0) && (x<dimx) &&(y>=0) && (y<dimy) && plateau[x][y]!='#' && plateau[x][y]!='_');
 }
 
+//permet de bouger les blocs dans le plateau
 void Plateau::bougeAuto(){
  
     // Parcours du tableau pour trouver l'objet de type Bloc et le déplacer en dessous si la case est vide
