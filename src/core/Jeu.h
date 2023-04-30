@@ -24,32 +24,25 @@ public:
     Jeu();
 
     /**
-     * @brief Recupère le Plateau
+     * @brief Accesseur de la classe, Recupère le Plateau
      * 
      * @return Plateau sans modifier ses données membres
      */
     const Plateau getPlateau()const;
 
     /**
-     * @brief Recupère un personnage de type eau
+     * @brief Accesseur de la classe qui Recupère le personnage de type eau
      *  
      * @return Personnage sans modifier ses données membres
      */
     const Personnage getPersonnageEau()const;
 
     /**
-     * @brief Recupère un personnage de type feu
-     *  
+     * @brief Accesseur de la classe qui Recupère le personnage de type feu
+     * 
      * @return Personnage sans modifier ses données membres
      */
     const Personnage getPersonnageFeu()const;
-
-    // /**
-    //  * @brief Recupère un bloc se trouvant sur le plateau 
-    //  *  
-    //  * @return Objet (type bloc) sans modifier ses données membres
-    //  */
-    // const Objet getBloc()const;
 
     /************************************************************************/
     
@@ -62,9 +55,10 @@ public:
     bool ActionClavier(const char touche);
 
     /**
-     * @brief 
+     * @brief fonction en plus qui gère la présence de gravité ou pas,
+     * @brief on peut choisir d'enlever la gravité pour un niveau
      * 
-     * @param vr 
+     * @param vr booléen
      */ 
     void Gravite(bool vr);
 
@@ -75,9 +69,11 @@ public:
     void ActionAuto();
 
     /**
-     * @brief vérifier les collisions entre les objets et les personnages
+    * @brief vérifier les collisions entre les objets et les personnages
+    * 
     * @param per Personnage
     * @param obj Ob
+    * 
     * @return true si le personnage et l'objet sont sur la même case
     * @return false si non
     */
@@ -93,7 +89,8 @@ public:
 
     /**
      * @brief tester si la partie est perdue en vérifiant la collision entre un personnage et un élément de type contraire
-     * @return true si c'est perdu
+     *
+     *  @return true si c'est perdu
      * @return false si non
      */
     bool perte(const Objet & obj);
@@ -111,15 +108,32 @@ public:
      */
     void testRegressionJeu();
     
-    int tmp_partie; //temps de du jeu
+    /**
+     * @brief donnée membre concernant le temps de jeu
+     */
+    int tmp_partie;
 
     private:
 
-    unsigned int score; //score du jeu
-    Plateau pla;        //plateau du jeu
-    Personnage feu;     //personnage feu du jeu
-    Personnage eau;     //personnage eau du jeu
-    //Objet bloc;
+    /**
+     * @brief score du jeu
+     */
+    unsigned int score;
+
+    /**
+     * @brief le plateau de jeu
+     */
+    Plateau pla;        
+
+    /**
+     * @brief le personnage feu du jeu
+     */
+    Personnage feu;     
+
+    /**
+     * @brief le personnage eau du jeu
+     */
+    Personnage eau;   
     
 };
 

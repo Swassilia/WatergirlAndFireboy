@@ -16,27 +16,23 @@ Jeu::Jeu(){
     score = 0;
 }
 
-//Récupère la donnée membre pla qui est le Plateau du jeu
+//Accesseur qui récupère la donnée membre pla, le Plateau du jeu
 const Plateau Jeu::getPlateau()const{
     return pla;
 }
 
-//Récupère la donnée membre eau qui est le Personnage de type eau
+//Accesseur qui Récupère la donnée membre eau, le Personnage de type eau
 const Personnage Jeu::getPersonnageEau()const{
     return eau;
 }
 
-//Récupère la donnée membre feu qui est le Personnage de type feu
+//Accesseur qui Récupère la donnée membre feu, le Personnage de type feu
 const Personnage Jeu::getPersonnageFeu()const{
     return feu;
 }
 
-// //Récupère la donnée membre Plateau
-// const Objet Jeu::getBloc()const{
-//     return bloc;
-// }
-
 /******************************************************************************************/
+
 //Détecte la touche préssée par le joueur
 //q,d,z déplacent le personnage eau
 //k,m,o déplacent le personnage feu
@@ -67,14 +63,14 @@ bool Jeu::ActionClavier(const char touche){
     return false;
 }
 
-//Applique la gravité sur les personnages
+//décide d'appliquer ou non la gravité sur les déplacements des personnages
 void Jeu:: Gravite(bool vr)
 {
     eau.Gravite(pla);
     feu.Gravite(pla);
 }
 
-//Fait bouger les blocs automatiquement 
+//Fait bouger les blocs du jeu automatiquement 
 void Jeu::ActionAuto(){
     
     pla.bougeAuto();
@@ -108,16 +104,7 @@ bool Jeu::perte(const Objet & obj){
      return false;
 }
 
-//augmente la variable score une fois que les personnages ont touché un de leur bonus
-//idée ESRA 
-    // void Jeu:: ajouteScore()
-    // {
-
-    //         score++;
-    //         cout<<score<<endl;
-
-    //      }
-
+//augmente la donnée membre score à chaque collision entre un personnage et un bonus
 void Jeu:: ajouteScore(Plateau &pla)
     {
 
@@ -146,11 +133,11 @@ void Jeu:: ajouteScore(Plateau &pla)
             cout<<" le type de  est "<<pla.getPlateau(x,y)<<" "<< i <<" le type de space est "<<SPACE<<endl;
             //cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
          }
-        
 
         }
     }
 
+//test de régression pour le jeu
 void Jeu:: testRegressionJeu(){
     Jeu jeu;
     const Personnage& Fille = jeu.getPersonnageEau();
