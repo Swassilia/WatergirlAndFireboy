@@ -118,7 +118,7 @@ bool Jeu::perte(const Objet & obj){
 
     //      }
 
-void Jeu:: ajouteScore(Plateau pla)
+void Jeu:: ajouteScore(Plateau &pla)
     {
 
         for (int i=0; i<30; i++)
@@ -129,18 +129,21 @@ void Jeu:: ajouteScore(Plateau pla)
             cout<<score<<endl;
             // int x = pla.getObjet(i).getPos().x;
             // int y = pla.getObjet(i).getPos().y;
-            pla.setPlateau(pla.getObjet(i).getPos(),SPACE);
-            pla.suppObjet(i);
+            pla.setObjet(i,Defaut);
+            pla.setPlateau(pla.getObjet(i).getPos());
+            cout<<pla.getObjet(i).getType()<<" "<<Defaut;
          }
         if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
         {
             score++;
-            cout<<score<<endl;
-            // int x = pla.getObjet(i).getPos().x;
-            // int y = pla.getObjet(i).getPos().y;
-            pla.setPlateau(pla.getObjet(i).getPos(),SPACE);
-            pla.suppObjet(i);
-            cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
+            cout<<"le score est "<<score<<" "<<endl;
+            int x = pla.getObjet(i).getPos().x;
+            int y = pla.getObjet(i).getPos().y;
+            pla.setObjet(i,Defaut);
+            pla.setPlateau(pla.getObjet(i).getPos());
+            cout<<" le type de  est "<<pla.getObjet(i).getType()<<" "<<i<<" le type de space est "<<Defaut<<endl;
+            cout<<" le type de  est "<<pla.getPlateau(x,y)<<" "<< i <<" le type de space est "<<SPACE<<endl;
+            //cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
          }
         
 

@@ -103,7 +103,7 @@ public:
      * 
      * @param pla Plateau (feu et eau)
      */
-    void ajouteScore(Plateau pla);
+   void ajouteScore(Plateau &pla);
 
     /**
      * @brief Teste le focntionnement de l'ensemble des fonction de la classe

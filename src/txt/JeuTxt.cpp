@@ -18,7 +18,7 @@ using namespace std;
     const Personnage& eau = jeu.getPersonnageEau();
 
 	win.draw();
-     // Affichage des murs et des pastilles
+     // Affichage des murs
  	for(int x=0;x<pla.getDimx();++x)
  		for(int y=0;y<pla.getDimy();++y)
  			win.print( x, y, pla.getPlateau(x,y));
@@ -70,7 +70,7 @@ using namespace std;
 			// 	cout<<"bravo"<<endl;
 			// 	ok=false;
 			// }
-			// jeu.ajouteScore(pla);
+			jeu.ajouteScore(pla);
 			if (jeu.perte(pla.getObjet(i-1)))
 			{
 			cout<<endl;

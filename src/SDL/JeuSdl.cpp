@@ -264,7 +264,7 @@ void SDLSimple::sdlBoucle(){
             //     // pla.setObjet(i,Defaut,pla.getObjet(i).getPos());
             //     break;
             //    }
-                pla=jeu.ajouteScore(pla);
+                jeu.ajouteScore(pla);
             //    if(pla.getObjet(i).getType() == DiamantFeu && jeu.collision(jeu.getPersonnageFeu(), pla.getObjet(i)))
             //    {
                
@@ -307,7 +307,7 @@ void SDLSimple::sdlBoucle(){
 
 		}
 		// on affiche le jeu sur le buffer caché
-		sdlAff(jeu.ajouteScore(pla));
+		sdlAff(pla);
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
