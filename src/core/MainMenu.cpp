@@ -3,8 +3,7 @@
 #include <cstdlib>
 #include "Menu.h"
 
-//compléter ces procédure avec a fonction qu'on veut executer, genre sdl ou txt ?
-
+//fonction qui appellera l'éxécutable text pour afficher le jeu en mode texte
 void affModeTxt()
 {
 	printf("Jeu mode texte\n");
@@ -12,6 +11,7 @@ void affModeTxt()
     system("bin/text");
 }
 
+//fonction qui appellera l'éxécutable sdl pour afficher le jeu en mode sdl
 void affModeSDL()
 {
 	printf("Jeu mode SDL\n");
@@ -20,7 +20,7 @@ void affModeSDL()
 
 }
 
-
+//fonction main pour afficher le mode choisi par rapport au choix de l'utilisateur
 int main()
 {
 	ChoixMenu cm;

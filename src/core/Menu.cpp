@@ -3,6 +3,7 @@
 
 const int MENU_MAX = 4;
 
+//affichage des choix du menu
 void menuAff()
 {
 	printf("\nMenu\n");
@@ -13,7 +14,7 @@ void menuAff()
 	fflush(stdout);
 }
 
-
+//Pour demander à l'utilisateur de choisir une option de menu et renvoie cette option en tant qu'élément du type ChoixMenu
 ChoixMenu menuQuestion()
 {
 	ChoixMenu cm;
