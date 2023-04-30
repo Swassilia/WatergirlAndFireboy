@@ -11,6 +11,7 @@
 using namespace std;
 
 
+//affiche l'état du jeu dans une fenêtre
  void txtAff(WinTXT & win, const Jeu & jeu) { 
 	win.draw();
  	const Plateau& pla = jeu.getPlateau();
@@ -35,7 +36,7 @@ using namespace std;
 
 
 
-
+//gère la boucle de jeu en mode texte
  void MontxtBoucle (Jeu & jeu) {
  	// Creation d'une nouvelle fenetre en mode texte
  	// => fenetre de dimension et position (WIDTH,HEIGHT,STARTX,STARTY)
@@ -64,12 +65,6 @@ using namespace std;
 		 }
 		for (int i=1; i<=30; i++)
 		{
-			// if (jeu.succes(pla.getObjet(i-1),pla.getObjet(i%30)))
-			// {
-			// 	cout<<endl;
-			// 	cout<<"bravo"<<endl;
-			// 	ok=false;
-			// }
 			jeu.ajouteScore(pla);
 			if (jeu.perte(pla.getObjet(i-1)))
 			{

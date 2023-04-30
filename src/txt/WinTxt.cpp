@@ -17,7 +17,8 @@
 #include <unistd.h>
 #endif
 
-void termMove(int x, int y) // deplace le curseur du terminal
+// deplace le curseur du terminal
+void termMove(int x, int y)
 {
 #ifdef _WIN32
     // Deplace le curseur en haut a gauche du terminal
@@ -32,6 +33,7 @@ void termMove(int x, int y) // deplace le curseur du terminal
 
 }
 
+//efface le contenu de la console
 void termClear()  // efface le terminal
 {
 #ifdef _WIN32
@@ -41,7 +43,8 @@ void termClear()  // efface le terminal
 #endif
 }
 
-void termInit()      // configure la saisie : ne pas afficher les caracteres tapes
+// configure la saisie : ne pas afficher les caracteres tapes
+void termInit()
 {
 #ifdef _WIN32
     HANDLE console = GetStdHandle(STD_INPUT_HANDLE);
@@ -74,6 +77,7 @@ void termInit()      // configure la saisie : ne pas afficher les caracteres tap
 #endif
 }
 
+//constructeur qui initialise une fenêtre texte
 WinTXT::WinTXT (int dx, int dy) {
     dimx = dx;
     dimy = dy;
@@ -82,12 +86,14 @@ WinTXT::WinTXT (int dx, int dy) {
     termInit();
 }
 
+//remplit la fenêtre avec le caractère spécifié, qui par défaut est un espace
 void WinTXT::clear (char c) {
     for(int i=0;i<dimx;++i)
         for(int j=0;j<dimy;++j)
             print(i,j,c);
 }
 
+//place un caractère à une position dans la fenêtre
 void WinTXT::print (int x, int y, char c) {
     if (x<0) return;
     if (y<0) return;
@@ -96,11 +102,13 @@ void WinTXT::print (int x, int y, char c) {
     win[y*dimx+x] = c;
 }
 
+//place la chaîne de caractères à une position dans la fenêtre
 void WinTXT::print (int x, int y, char* c) {
     int i=0;
     while (c[i]!='\0') {print(x+i,y,c[i]);++i;}
 }
 
+//affiche la fenêtre à partir d'une position 
 void WinTXT::draw (int x, int y) {
     termMove(0,0);
     for(int j=0;j<dimy;++j) {
@@ -124,6 +132,7 @@ int kbhit() {
 }
 #endif
 
+//attend que l'utilisateur appuie sur une touche
 void WinTXT::pause() {
 #ifdef _WIN32
     system("pause");
@@ -133,6 +142,7 @@ void WinTXT::pause() {
 #endif
 }
 
+//lit et renvoie un caractère entré par l'utilisateur depuis la console
 char WinTXT::getCh() { // lire un caractere si une touche a ete pressee
     char touche=0;
 #ifdef _WIN32
