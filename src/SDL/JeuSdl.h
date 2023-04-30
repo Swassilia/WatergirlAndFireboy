@@ -43,7 +43,7 @@ public :
     SDLSimple ();
     ~SDLSimple ();
     void sdlBoucle ();
-    void sdlAff ();
+    void sdlAff (Plateau pla);
 
 private :
 

@@ -187,14 +187,14 @@ SDLSimple::~SDLSimple(){
     SDL_Quit();
 }
 
- void SDLSimple::sdlAff(){
+ void SDLSimple::sdlAff(Plateau pla){
          //cout<<"init";
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
          
          int x,y;
-         const Plateau &pla=jeu.getPlateau();
+        //  pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
 
@@ -204,10 +204,10 @@ SDLSimple::~SDLSimple(){
             {   
                 im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                 if (pla.getPlateau(x,y)=='#') im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)=='_') im_bloc.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)==' ') im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)=='r') im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-                    else if(pla.getPlateau(x,y)=='b') im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)==BLOC) im_bloc.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)==SPACE) im_fond.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)==BONUSFEU) im_diamond_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+                    else if(pla.getPlateau(x,y)==BONUSEAU) im_diamond_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='E') im_porte_eau.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='F') im_porte_feu.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
                     else if(pla.getPlateau(x,y)=='e') riviere1.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -249,9 +249,8 @@ void SDLSimple::sdlBoucle(){
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
-            
             jeu.Gravite(true); 
-            jeu.ajouteScore(pla);  
+            //jeu.ajouteScore(pla);  
             for(int i=0; i<30; i++)
             {
                if (jeu.perte(pla.getObjet(i)))
@@ -265,13 +264,12 @@ void SDLSimple::sdlBoucle(){
             //     // pla.setObjet(i,Defaut,pla.getObjet(i).getPos());
             //     break;
             //    }
+                pla=jeu.ajouteScore(pla);
             //    if(pla.getObjet(i).getType() == DiamantFeu && jeu.collision(jeu.getPersonnageFeu(), pla.getObjet(i)))
             //    {
-            //     jeu.ajouteScore();
+               
             //     im_fond.draw(renderer,pla.getObjet(i).getPos().x*TAILLE_SPRITE,pla.getObjet(i).getPos().y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
             //     // pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
-            //     // pla.setObjet(i,Defaut,pla.getObjet(i).getPos());
-            //     break;
             //    }
                 
             }
@@ -309,11 +307,11 @@ void SDLSimple::sdlBoucle(){
 
 		}
 		// on affiche le jeu sur le buffer caché
-		sdlAff();
+		sdlAff(jeu.ajouteScore(pla));
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
 	}
-    SDL_RemoveTimer(time);
+    // SDL_RemoveTimer(time);
     
 }
