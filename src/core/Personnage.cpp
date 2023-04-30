@@ -14,7 +14,7 @@ Personnage::Personnage(){
     nom = nullptr;
 }
 
-//constructeur du personnage pour lui attribuer un type et une position (passés en paramètre)
+//constructeur par copie du personnage pour lui attribuer un type et une position (passés en paramètre)
 //assert pour vérifier que les coordonnées voulues sont bien dans les dimensions du plateau et que le type est soit eau soit feu
 Personnage::Personnage(const Type & t, int x, int y)
 {
@@ -33,12 +33,12 @@ Personnage::~Personnage()
     nom= nullptr;   
 }
 
-//récupérer la position du personnage
+//Accesseur qui récupére la position du personnage
 Vect2 Personnage::getPos()const{
     return pos;
 }
 
-//modifier la position du personnage
+//Mutateur qui modifie la position du personnage
 void Personnage::setPos(const unsigned int x, const unsigned int y){
     pos.x = x;
     pos.y = y;
@@ -52,7 +52,7 @@ void Personnage::entrernom()
     cout<<endl;
 }
 
-//récupérer le type du personnage
+//Accesseur qui récupére le type du personnage
 Type Personnage::getType()const {
     return type_p;
 }

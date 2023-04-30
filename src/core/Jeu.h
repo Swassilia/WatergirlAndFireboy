@@ -103,7 +103,7 @@ public:
    void ajouteScore(Plateau &pla);
 
     /**
-     * @brief Teste le focntionnement de l'ensemble des fonction de la classe
+     * @brief Teste le fonctionnement de l'ensemble des fonctions de la classe
      * 
      */
     void testRegressionJeu();

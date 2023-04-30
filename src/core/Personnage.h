@@ -24,25 +24,30 @@ public:
      */
     Personnage();
 
-    /** @brief constructueur qui definit le type (obligatoire) et la position
+    /** @brief constructueur par copie qui definit le type et la position
+     * 
      * @param t type du personnage
      * @param x la position en x 
      * @param y la position en y 
     */
     Personnage(const Type & t, int x, int y);
     
-    // /** @brief destructeur du personnage*/
+     /** 
+      * @brief destructeur du personnage
+      */
      ~Personnage();
        
     /**
-     * @brief recupere les coordonnées du personnage
+     * @brief Accesseur de la classe qui recupere les coordonnées du personnage
+     * 
      * @return un Vect2 donc un x et y
      * 
     */
     Vect2 getPos()const;
 
     /**
-     * @brief modifie les coordonnées du personnage
+     * @brief Mutateur de la classe qui modifie les coordonnées du personnage
+     * 
      * @param x unsigned int
      * @param y unsigned int
     */
@@ -55,54 +60,76 @@ public:
     void entrernom();
 
     /**
-     * @brief recupère le type d'un personnage
+     * @brief Accesseur de la classe qui recupère le type d'un personnage
      * 
-     * @return Type (soit feu ou eau)
+     * @return Type (soit feu soit eau)
      */
     Type getType()const;
 
     /**
      * @brief se deplacer à droite
+     * 
      * @def augmente la valeur en position x
+     * 
      * @param pla Plateau
     */
     void  DeplacerD (const  Plateau &pla);
 
     /**
      * @brief se deplacer à gauche
+     * 
      * @def diminue la valeur en position x
+     * 
      * @param pla Plateau
     */
     void  DeplacerG ( const  Plateau &pla);
 
     /**
      * @brief se deplacer ("tomber") en bas (gravité)
+     * 
      * @def augmente la valeur en position y
+     * 
      * @param pla Plateau
      */
     void  Gravite( const  Plateau &pla);
 
     /**
      * @brief se deplacer en haut 
+     * 
      * @def diminue la valeur en position y
+     * 
      * @param pla Plateau
     */
     void  DeplacerH ( const  Plateau &pla);
     
+    /**
+     * @brief Teste le fonctionnement de l'ensemble des fonctions de la classe
+     * 
+     */
     void testRegression_Per();
     
 private:
 
-    Vect2 pos;  //position du personne de type Vect2 (vecteur)
+    /**
+     * @brief donnée membre concernant la position des personnages
+     */
+    Vect2 pos;
 
-    char * nom; //pointeur sur un tableau de char pour y entrer le nom du personnage
+    /**
+     * @brief donnée membre pointeur sur un tableau de char pour y entrer le nom du personnage
+     */
+    char * nom;
 
-    Type type_p; //type du personnage (ici, soit feu ou eau)
+    /**
+     * @brief donnée membre concernant le type des personnages
+     */
+    Type type_p;
 
-    Plateau pla;    //plateau sur lequel se trouve les personnages
+    /**
+     * @brief donnée membre concernant plateau sur lequel se trouve les personnages
+     */
+    Plateau pla;
 
 };
-
-
 
  #endif
