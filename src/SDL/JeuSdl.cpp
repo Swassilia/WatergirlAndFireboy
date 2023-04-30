@@ -16,12 +16,14 @@ float temps () {
 
 // ============= CLASS IMAGE =============== //
 
+//Constructeur par défaut de la classe Image
 Image::Image () {
     surface = nullptr;
     texture = nullptr;
     has_Changed = false;
 }
 
+//Destructeur qui libère la mémoire allouée pour la classe Image
 Image::~Image()
 {
     SDL_FreeSurface(surface);
@@ -32,6 +34,7 @@ Image::~Image()
     has_Changed = false;
 }
 
+//fonction qui charge une image à partir d'un fichier et crée une texture SDL
 void Image::loadFromFile (const char* filename, SDL_Renderer * renderer) {
     surface = IMG_Load(filename);
     if (surface == nullptr) {
@@ -61,6 +64,7 @@ void Image::loadFromFile (const char* filename, SDL_Renderer * renderer) {
     }
 }
 
+//fonction qui crée une texture SDL
 void Image::loadFromCurrentSurface (SDL_Renderer * renderer) {
     texture = SDL_CreateTextureFromSurface(renderer,surface);
     if (texture == nullptr) {
@@ -70,6 +74,7 @@ void Image::loadFromCurrentSurface (SDL_Renderer * renderer) {
     }
 }
 
+//dessine la texture SDL de l'image sur le rendu SDL_Renderer
 void Image::draw (SDL_Renderer * renderer, int x, int y, int w, int h) {
     int ok;
     SDL_Rect r;
@@ -88,18 +93,26 @@ void Image::draw (SDL_Renderer * renderer, int x, int y, int w, int h) {
     assert(ok == 0);
 }
 
+//accesseur qui retourne un pointeur vers la texture SDL de l'image
 SDL_Texture * Image::getTexture() const {return texture;}
 
+//mutateur qui définit la surface SDL de l'image
 void Image::setSurface(SDL_Surface * surf) {surface = surf;}
 
 
+//=========================================//
+//mettre à jour un compteur de temps (chrono)
 Uint32 chrono_callback (Uint32 interval, void*param){
     int *chrono = (int *)param;
     (*chrono)--;
     return interval;
 }
+//=========================================//
+
+
 // ============= CLASS Jeu =============== //
 
+//Constructeur par défaut de la classe SDLSimple qui initialise les membres de la classe et crée la fenêtre et le rendu SDL
 SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -178,6 +191,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         //anim = new Animation(renderer)
 }
 
+//Destructeur qui libère la mémoire allouée pour la fenêtre
 SDLSimple::~SDLSimple(){
     //if (withSound) Mix_Quit();
     TTF_CloseFont(font);
@@ -187,7 +201,8 @@ SDLSimple::~SDLSimple(){
     SDL_Quit();
 }
 
- void SDLSimple::sdlAff(Plateau pla){
+//dessine le plateau de jeu sur le rendu SDL en utilisant les images
+void SDLSimple::sdlAff(Plateau pla){
          //cout<<"init";
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
@@ -223,6 +238,7 @@ SDLSimple::~SDLSimple(){
     }
 }
 
+//affiche l'écran de fin de jeu lorsque le joueur a perdu
 void SDLSimple::afficherGameOver() {
 
     Plateau pla=jeu.getPlateau();
@@ -251,6 +267,7 @@ void SDLSimple::afficherGameOver() {
 
 }
 
+//contient la boucle principale du jeu SDL, gère les entrées utilisateur, les mises à jour de jeu et le rendu du jeu
 void SDLSimple::sdlBoucle(){
     SDL_Event event;
     bool ouvert=false;
@@ -329,4 +346,5 @@ void SDLSimple::sdlBoucle(){
 	}
     // SDL_RemoveTimer(time);
     
+}
 }
