@@ -127,7 +127,7 @@ public :
      * 
      * @param pla plateau du jeu
      */
-    void sdlAff ();
+    void sdlAff (const Plateau &pla);
 
     /**
      * @brief affiche l'écran de fin de jeu lorsque le joueur a perdu

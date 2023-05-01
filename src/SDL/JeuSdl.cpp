@@ -208,14 +208,13 @@ SDLSimple::~SDLSimple(){
 }
 
 //dessine le plateau de jeu sur le rendu SDL en utilisant les images
-void SDLSimple::sdlAff(){
-         //cout<<"init";
+void SDLSimple::sdlAff(const Plateau &pla){
+         
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
          
          int x,y;
-         const Plateau &pla = pla.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
 
@@ -247,7 +246,7 @@ void SDLSimple::sdlAff(){
 //affiche l'écran de fin de jeu lorsque le joueur a perdu
 void SDLSimple::afficherGameOver() {
 
-    Plateau pla=jeu.getPlateau();
+    const Plateau & pla=jeu.getPlateau();
     
     //Attendre 2 secondes avant d'afficher la fin de partie
     SDL_Delay(1000);
@@ -301,7 +300,7 @@ void SDLSimple::sdlBoucle(){
     while (!ouvert) {
         
        // afficherMenu(renderer,font);
-        sdlAff();
+        sdlAff(pla);
         if(jeu.tmp_partie <10)
             chrono_couleur = {255,0,0};
         string tmp_partie_str = to_string(jeu.tmp_partie);
