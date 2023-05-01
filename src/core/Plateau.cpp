@@ -41,7 +41,7 @@ using namespace std;
   "##                       #######",
   "##      ####                  ##",
   "#########ee####    ####     ####",
-  "##   ####      ######       r###",
+  "##   ####      ######        ###",
   "##     ##  ###          ##     #",
   "##            ##vv##    #####  #",
   "##                   ####      #",
@@ -163,7 +163,7 @@ int Plateau::getDimy()const{
 //Mutateur : redéfinit un objet dans le tableau d'objet
 void Plateau:: setObjet(int i, const Type &t)
 {
-    tabObj[i]=Objet(t,5,15);
+    tabObj[i]=Objet(t,tabObj[i].getPos().x,tabObj[i].getPos().y);
 }
 
 //Mutateur : redéfinit une case du plateau
