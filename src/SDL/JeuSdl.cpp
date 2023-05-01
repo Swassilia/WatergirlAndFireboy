@@ -208,14 +208,13 @@ SDLSimple::~SDLSimple(){
 }
 
 //dessine le plateau de jeu sur le rendu SDL en utilisant les images
-void SDLSimple::sdlAff(){
+void SDLSimple::sdlAff(Plateau pla){
          //cout<<"init";
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
          
          int x,y;
-         const Plateau  pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
 
@@ -299,8 +298,8 @@ void SDLSimple::sdlBoucle(){
     time = SDL_AddTimer(1000,chrono_callback,&chrono);
 
     while (!ouvert) {
-        afficherMenu(renderer,font);
-        
+       // afficherMenu(renderer,font);
+        sdlAff(pla);
         if(jeu.tmp_partie <10)
             chrono_couleur = {255,0,0};
         string tmp_partie_str = to_string(jeu.tmp_partie);
@@ -317,7 +316,7 @@ void SDLSimple::sdlBoucle(){
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
-            
+            jeu.ajouteScore(pla);
             jeu.Gravite(true);    
             for(int i=0; i<30; i++)
             {
@@ -328,7 +327,7 @@ void SDLSimple::sdlBoucle(){
                };
                 
             }
-            //jeu.ajouteScore(pla);
+            
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
@@ -362,8 +361,8 @@ void SDLSimple::sdlBoucle(){
 		}
 
 		// on affiche le jeu sur le buffer caché
-		afficherMenu(renderer,font);
-        //sdlAff();
+		//afficherMenu(renderer,font);
+        
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);

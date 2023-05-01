@@ -114,9 +114,10 @@ void Jeu:: ajouteScore(Plateau &pla)
         {
             score++;
             cout<<score<<endl;
-            // int x = pla.getObjet(i).getPos().x;
-            // int y = pla.getObjet(i).getPos().y;
+            int x = pla.getObjet(i).getPos().x;
+            int y = pla.getObjet(i).getPos().y;
             pla.setObjet(i,Defaut);
+            cout<<x<<" "<<y<<endl;
             pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
             cout<<pla.getObjet(i).getType()<<" "<<Defaut;
          }
