@@ -383,5 +383,6 @@ void SDLSimple::sdlBoucle(){
         SDL_RenderPresent(renderer);
 	}
     SDL_RemoveTimer(time);
+    arreterMusique();
     
 }
