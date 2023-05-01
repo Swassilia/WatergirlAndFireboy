@@ -92,17 +92,17 @@ Plateau::Plateau()
                 j++;
                 break; 
 
-                // case 'E': 
-                // plateau[x][y] = PORTEEAU;
-                // tabObj[i]=Objet(PorteE,x,y);  
-                // i++;
-                // break;
+                case 'E': 
+                plateau[x][y] = PORTEEAU;
+                tabObj[i]=Objet(PorteE,x,y);  
+                i++;
+                break;
 
-                // case 'F': 
-                // plateau[x][y] = PORTEFEU;
-                // tabObj[i]=Objet(PorteF,x,y);
-                // i++;
-                // break;
+                case 'F': 
+                plateau[x][y] = PORTEFEU;
+                tabObj[i]=Objet(PorteF,x,y);
+                i++;
+                break;
 
                 case 'e': 
                 plateau[x][y] = RIVIEREeau;
