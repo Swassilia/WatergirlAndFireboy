@@ -208,13 +208,14 @@ SDLSimple::~SDLSimple(){
 }
 
 //dessine le plateau de jeu sur le rendu SDL en utilisant les images
-void SDLSimple::sdlAff(Plateau pla){
+void SDLSimple::sdlAff(){
          //cout<<"init";
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
          
          int x,y;
+         const Plateau &pla = pla.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
 
@@ -298,8 +299,9 @@ void SDLSimple::sdlBoucle(){
     time = SDL_AddTimer(1000,chrono_callback,&chrono);
 
     while (!ouvert) {
+        
        // afficherMenu(renderer,font);
-        sdlAff(pla);
+        sdlAff();
         if(jeu.tmp_partie <10)
             chrono_couleur = {255,0,0};
         string tmp_partie_str = to_string(jeu.tmp_partie);
@@ -360,8 +362,7 @@ void SDLSimple::sdlBoucle(){
 
 		}
 
-		// on affiche le jeu sur le buffer caché
-		//afficherMenu(renderer,font);
+
         
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)

@@ -1,5 +1,5 @@
-EXEC_NAME = bin/jeu bin/text bin/sdl bin/test
-OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o obj/MainMenu.o obj/Menu.o
+EXEC_NAME = bin/jeu bin/text bin/sdl bin/test bin.jeusdl
+OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o obj/MainMenu.o obj/Menu.o obj/mainMenuSdl.o obj/MenuSdl.o
 
 CC = g++
 CFLAGS = -Wall -ggdb
@@ -11,6 +11,9 @@ all: $(EXEC_NAME)
 bin/jeu: obj/MainMenu.o obj/Menu.o 
 	$(CC) -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
 
+bin/jeusdl: obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o
+	$(CC) -g obj/mainMenuSdl.o obj/MenuSdl.o -o bin/jeusdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+
 bin/text: obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o 
 	$(CC) -g  obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o -o bin/text 
 	
@@ -19,6 +22,7 @@ bin/sdl: obj/mainSdl.o obj/JeuSdl.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/P
 
 bin/test: obj/mainTest.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
 	$(CC) -g obj/mainTest.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o -o bin/test 
+
 
 obj/mainTest.o: src/core/mainTest.cpp obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/Objet.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/mainTest.cpp -o obj/mainTest.o
@@ -32,6 +36,9 @@ obj/mainSdl.o: src/SDL/mainSdl.cpp obj/JeuSdl.o obj/Jeu.o obj/Vect2.o obj/Person
 obj/MainMenu.o: src/core/MainMenu.cpp src/core/Menu.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/MainMenu.cpp -o obj/MainMenu.o
 
+obj/mainMenuSdl.o: src/sdl/mainMenuSdl.cpp src/sdl/MenuSdl.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c src/sdl/mainMenuSdl.cpp -o obj/mainMenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+
 
 
 obj/JeuTxt.o: src/txt/JeuTxt.h src/txt/JeuTxt.cpp src/core/Jeu.h 
@@ -43,7 +50,10 @@ obj/WinTxt.o: src/txt/WinTxt.h src/txt/WinTxt.cpp
 obj/JeuSdl.o: src/SDL/JeuSdl.h src/SDL/JeuSdl.cpp src/core/Jeu.h obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/JeuSdl.cpp -o obj/JeuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
-	
+obj/MenuSdl.o: src/sdl/MenuSdl.h src/sdl/MenuSdl.cpp src/core/Menu.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/MenuSdl.cpp -o obj/MenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+
+
 
 obj/Jeu.o:  src/core/Jeu.h src/core/Jeu.cpp src/core/Vect2.h src/core/Type.h  src/core/Personnage.h src/core/Plateau.h
 	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Jeu.cpp  -o obj/Jeu.o
@@ -59,9 +69,6 @@ obj/Objet.o: src/core/Objet.cpp src/core/Plateau.h src/core/Vect2.h src/core/Typ
 
 obj/Vect2.o: src/core/Vect2.cpp src/core/Vect2.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Vect2.cpp -o obj/Vect2.o
-
-# obj/Animation.o: src/core/Animation.cpp src/core/Animation.h
-# 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Animation.cpp -o obj/Animation.o
 
 obj/Menu.o: src/core/Menu.cpp src/core/Menu.h
 	$(CC) -c src/core/Menu.cpp -o obj/Menu.o

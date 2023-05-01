@@ -1,6 +1,6 @@
 /**
 @brief Module qui définit une classe pour gérer un jeu avec SDL
-@file JeuSdl.h
+@file MenuSdl.h
 @date 2023/03/14
 */
 #ifndef _SDLJEU_H
@@ -8,8 +8,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include "../core/Jeu.h"
+#include "../core/Menu.h"
 
 /**
  * @brief classe gerant l'affichage en image du jeu
@@ -88,63 +87,51 @@ private:
 
 };
 
-
 //=========================================//
-/**
- * @brief mettre à jour un compteur de temps (chrono)
-*/
-Uint32 chrono_callback(Uint32 interval, void *param);
-//=========================================//
-
+//=============Boucle Affichage============//
 
 /**
- * @brief classe gerant le jeu avec un affichage SDL
-*/
-class SDLSimple {
-
-
-public :
+ * @brief classe gerant l'affichage du menu principale
+ * 
+ */
+class SDLMenu{
+    public:
 
     /**
-     * @brief Constructeur par défaut de la classe SDLSimple qui 
-     * @brief initialise les membres de la classe et crée la fenêtre et le rendu SDL
+     * @brief Constructeur par défaut de la classe SDLMenu qui
+     * initialise les membres de la classe et crée la fenêtre et le rendu SDL
+     * 
      */
-    SDLSimple ();
-
+    SDLMenu();
     /**
      * @brief Destructeur qui libère la mémoire allouée pour la fenêtre
      */
-    ~SDLSimple ();
+    ~SDLMenu ();
 
     /**
-     * @brief contient la boucle principale du jeu SDL
-     * @def gère les entrées utilisateur, les mises à jour de jeu et le rendu du jeu
-     */
-    void sdlBoucle ();
-
-    /**
-     * @brief dessine le plateau de jeu sur le rendu SDL en utilisant les images
+     * @brief verifie si un bouton a été cliqué dessus ou pas
      * 
-     * @param pla plateau du jeu
+     * @param x 
+     * @param y 
+     * @param rect 
+     * @return true 
+     * @return false 
      */
-    void sdlAff ();
+    bool estClique(int x,int y,SDL_Rect rect);
 
     /**
-     * @brief affiche l'écran de fin de jeu lorsque le joueur a perdu
-    */
-    void afficherGameOver();
-
-private :
-
-    /**
-     * @brief Instance de la classe Jeu
+     * @brief affiche le menu principale du jeu avant le debut du jeu
+     * 
      */
-	Jeu jeu;
-    
+    void afficherMenu(SDL_Renderer* renderer);
+
+
+    private :
+
     /**
      * @brief fenêtre SDL dans laquelle le jeu est affiché
      */
-    SDL_Window * window;
+    SDL_Window * fenetre;
     /**
      * @brief objet qui permet de dessiner dans une fenêtre
      */
@@ -164,67 +151,12 @@ private :
 
 
     /**
-     * @brief  objet qui contient un fichier audio
+     *  images représentant le menu
+     * 
      */
-    Mix_Chunk * sound;
-    /**
-     * @brief  booléen qui indique si le son est activé ou non
-     */
-    bool withSound;
+    Image titre;
+    Image boutonSDL;
+    Image boutonTXT;
+    Image boutonQuit;
 
-
-    /**
-     * @brief  identifiant de timer SDL utilisé pour gérer le chronomètre du jeu
-     */
-    SDL_TimerID time;
-    /**
-     * @brief  mage qui contient le texte affichant le temps écoulé depuis le début du jeu
-     */
-    Image im_chrono;
-    /**
-     * @brief  la couleur du texte du chronomètre
-     */
-    SDL_Color chrono_couleur;
-    
-   
-   /**
-    * @brief images qui représentent les différentes zones du jeu
-   */
-    Image riviere1;
-    Image lava1;
-    Image vert1;
-   
-    /**
-     * @brief images représentant les personnages du jeu
-    */
-    Image im_perso_eau;
-    Image im_perso_feu;
-
-    /**
-     * @brief images représentant les diamants
-    */
-    Image im_diamond_eau;
-    Image im_diamond_feu;
-
-    /**
-     * @brief images représentant les différents éléments du décor
-    */
-    Image im_mur;
-    Image im_fond;
-    Image im_bloc;
-
-    /**
-     *  images représentant les portes
-    */
-    Image im_porte_eau;
-    Image im_porte_feu;
-
-
-    /**
-     * @brief booléens qui indiquent si une souris ou un clavier est utilisé pour contrôler le jeu
-    */
-    bool souris;
-    bool touche;
 };
-
-#endif
