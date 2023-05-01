@@ -150,6 +150,10 @@ class SDLMenu{
     private :
 
     /**
+     * @brief Instance de la classe Jeu
+     */
+	Jeu jeu;
+    /**
      * @brief fenêtre SDL dans laquelle le jeu est affiché
      */
     SDL_Window * fenetre;

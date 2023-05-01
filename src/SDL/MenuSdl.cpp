@@ -126,9 +126,14 @@ SDLMenu::SDLMenu(): fenetre(nullptr),renderer(nullptr){
         exit(1);
     }
 
-   
+    int dimx, dimy;
+	 dimx = jeu.getPlateau().getDimx();
+	 dimy = jeu.getPlateau().getDimy();
+	 dimx = dimx * TAILLE_SPRITE;
+	 dimy = dimy * TAILLE_SPRITE;
+    
     // Creation de la fenetre
-    fenetre = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 33, 23, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    fenetre = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx/1.03, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (fenetre == NULL) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
