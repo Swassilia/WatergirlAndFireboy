@@ -189,7 +189,7 @@ void SDLMenu::afficherMenu(SDL_Renderer* renderer)
 {    
     SDL_SetRenderDrawColor(renderer, 143,130,65, 255);
     SDL_RenderClear(renderer);    
-    SDL_Surface* surface = TTF_RenderText_Solid(font, "Menu", {255,255,255});
+    //SDL_Surface* surface = TTF_RenderText_Solid(font, "Menu", {255,255,255});
      // Couleur du texte
     //SDL_Color textColor = {0, 0, 0, 255};    
     
@@ -197,8 +197,8 @@ void SDLMenu::afficherMenu(SDL_Renderer* renderer)
     boutonSDL.draw(renderer,2*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
     boutonTXT.draw(renderer,18*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
     boutonQuit.draw(renderer,10*TAILLE_SPRITE,17*TAILLE_SPRITE,400,100);    
-    SDL_Event event;
-     bool menuActif = true;
+    //SDL_Event event;
+    // bool menuActif = true;
     /*while (menuActif)
     {
         while (SDL_PollEvent(&event))
