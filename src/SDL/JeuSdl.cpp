@@ -159,7 +159,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         im_fond.loadFromFile("data/fond.jpg",renderer);
         im_diamond_eau.loadFromFile("data/diamondEau.png",renderer);
         im_diamond_feu.loadFromFile("data/diamondFeu.png",renderer);
-        im_bloc.loadFromFile("data/bloc.jpg",renderer);
+        im_bloc.loadFromFile("data/bloc.png",renderer);
         im_perso_eau.loadFromFile("data/Eau.png",renderer);
         im_perso_feu.loadFromFile("data/Feu.png",renderer);
         im_porte_eau.loadFromFile("data/porteEau.png",renderer);
