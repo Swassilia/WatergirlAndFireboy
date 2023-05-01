@@ -1,4 +1,4 @@
-EXEC_NAME = bin/jeu bin/text bin/sdl bin/test bin.jeusdl
+EXEC_NAME = bin/jeu bin/text bin/sdl bin/test bin/jeusdl
 OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o obj/MainMenu.o obj/Menu.o obj/mainMenuSdl.o obj/MenuSdl.o
 
 CC = g++
@@ -36,8 +36,8 @@ obj/mainSdl.o: src/SDL/mainSdl.cpp obj/JeuSdl.o obj/Jeu.o obj/Vect2.o obj/Person
 obj/MainMenu.o: src/core/MainMenu.cpp src/core/Menu.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/MainMenu.cpp -o obj/MainMenu.o
 
-obj/mainMenuSdl.o: src/sdl/mainMenuSdl.cpp src/sdl/MenuSdl.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c src/sdl/mainMenuSdl.cpp -o obj/mainMenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+obj/mainMenuSdl.o: src/SDL/mainMenuSdl.cpp obj/MenuSdl.o src/core/Menu.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/mainMenuSdl.cpp -o obj/mainMenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 
 
@@ -50,7 +50,7 @@ obj/WinTxt.o: src/txt/WinTxt.h src/txt/WinTxt.cpp
 obj/JeuSdl.o: src/SDL/JeuSdl.h src/SDL/JeuSdl.cpp src/core/Jeu.h obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/JeuSdl.cpp -o obj/JeuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
-obj/MenuSdl.o: src/sdl/MenuSdl.h src/sdl/MenuSdl.cpp src/core/Menu.h
+obj/MenuSdl.o: src/SDL/MenuSdl.h src/SDL/MenuSdl.cpp src/core/Menu.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/MenuSdl.cpp -o obj/MenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 

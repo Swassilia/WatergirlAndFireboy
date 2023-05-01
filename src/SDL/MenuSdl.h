@@ -3,11 +3,12 @@
 @file MenuSdl.h
 @date 2023/03/14
 */
-#ifndef _SDLJEU_H
-#define _SDLJEU_H
+#ifndef _SDLMENU
+#define _SDLMENU
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
+#include "../core/Jeu.h"
 #include "../core/Menu.h"
 
 /**
@@ -124,7 +125,27 @@ class SDLMenu{
      * 
      */
     void afficherMenu(SDL_Renderer* renderer);
+    /**
+     * @brief Get the Rect object
+     * 
+     * @return SDL_Rect 
+     */
+    SDL_Rect getRect()const;
 
+    /**
+     * @brief Get the Rect Bouton S D L object
+     * 
+     * @param rect 
+     */
+    void getRectBoutonSDL(SDL_Rect& rect) const;     
+    void getRectBoutonTXT(SDL_Rect& rect) const;     
+    void getRectBoutonQuit(SDL_Rect& rect) const;
+
+    /**
+     * @brief contient
+     * @def gère les e
+     */
+    void sdlBoucle ();
 
     private :
 
@@ -159,4 +180,10 @@ class SDLMenu{
     Image boutonTXT;
     Image boutonQuit;
 
+    SDL_Rect rectBoutonSDL; // Rectangle englobant du bouton SDL
+    SDL_Rect rectBoutonTXT; // Rectangle englobant du bouton TXT
+    SDL_Rect rectBoutonQuit; // Rectangle englobant du bouton Quitter
+
 };
+
+#endif

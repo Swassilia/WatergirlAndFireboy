@@ -170,11 +170,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
 
-        titre.loadFromFile("data/titre.png",renderer);
-        boutonSDL.loadFromFile("data/iconeSDL.png",renderer);
-        boutonTXT.loadFromFile("data/iconeTXT.png",renderer);
-        boutonQuit.loadFromFile("data/iconeQuit.png",renderer);
-    //cout<<"image";
     //FONT
         if (TTF_Init() < 0)
         {
@@ -269,23 +264,6 @@ void SDLSimple::afficherGameOver() {
     SDL_Delay(4000); // Attendre 4 secondes avant de quitter le jeu
     SDL_Quit();
     exit(0);
-
-}
-void SDLSimple::afficherMenu(SDL_Renderer* renderer, TTF_Font* font)
-{
-
-    SDL_SetRenderDrawColor(renderer, 143,130,65, 255);
-    SDL_RenderClear(renderer);
-
-    SDL_Surface* surface = TTF_RenderText_Solid(font, "Menu", {255,255,255});
-     // Couleur du texte
-    //SDL_Color textColor = {0, 0, 0, 255};
-
-    titre.draw(renderer,8*TAILLE_SPRITE,2*TAILLE_SPRITE,500,300);
-    boutonSDL.draw(renderer,2*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
-    boutonTXT.draw(renderer,18*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
-    boutonQuit.draw(renderer,10*TAILLE_SPRITE,17*TAILLE_SPRITE,400,100);
-
 
 }
 //contient la boucle principale du jeu SDL, gère les entrées utilisateur, les mises à jour de jeu et le rendu du jeu
