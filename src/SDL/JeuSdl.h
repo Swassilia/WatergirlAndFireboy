@@ -134,6 +134,9 @@ public :
     */
     void afficherGameOver();
 
+    void jouerMusique(const char* filename);
+    void arreterMusique();
+
 private :
 
     /**
@@ -171,6 +174,7 @@ private :
      * @brief  booléen qui indique si le son est activé ou non
      */
     bool withSound;
+    Mix_Music * musique; // Pointeur vers le fichier audio
 
 
     /**

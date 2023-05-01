@@ -6,6 +6,6 @@
  */
 int main(int argc,char** argv){
     SDLMenu menu;
-    menu.afficherMenu();
+    menu.sdlBoucle();
     return 0;
 }

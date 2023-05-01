@@ -106,7 +106,7 @@ void Image::setSurface(SDL_Surface * surf) {surface = surf;}
 //=============Boucle Affichage============//
 
 //Constructeur par défaut de la classe SDLSimple qui initialise les membres de la classe et crée la fenêtre et le rendu SDL
-SDLMenu::SDLMenu(): window(nullptr),renderer(nullptr){
+SDLMenu::SDLMenu(): fenetre(nullptr),renderer(nullptr){
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
@@ -128,7 +128,7 @@ SDLMenu::SDLMenu(): window(nullptr),renderer(nullptr){
 
    
     // Creation de la fenetre
-    fenetre = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx/1.03, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    fenetre = SDL_CreateWindow("Fire Boy and Water Girl", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 33, 23, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (fenetre == NULL) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -173,54 +173,69 @@ SDLMenu::~SDLMenu(){
     SDL_DestroyWindow(fenetre);
     SDL_Quit();
 }
-
 bool SDLMenu::estClique(int x, int y,SDL_Rect rect){
     return (x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h);
 }
+void SDLMenu::getRectBoutonSDL(SDL_Rect& rect) const { rect = rectBoutonSDL; }
+void SDLMenu::getRectBoutonTXT(SDL_Rect& rect) const { rect = rectBoutonTXT; }
+void SDLMenu::getRectBoutonQuit(SDL_Rect& rect) const { rect = rectBoutonQuit; }
 
 void SDLMenu::afficherMenu(SDL_Renderer* renderer)
-{
-
+{    
     SDL_SetRenderDrawColor(renderer, 143,130,65, 255);
-    SDL_RenderClear(renderer);
-
+    SDL_RenderClear(renderer);    
     SDL_Surface* surface = TTF_RenderText_Solid(font, "Menu", {255,255,255});
      // Couleur du texte
-    //SDL_Color textColor = {0, 0, 0, 255};
-
+    //SDL_Color textColor = {0, 0, 0, 255};    
+    
     titre.draw(renderer,8*TAILLE_SPRITE,2*TAILLE_SPRITE,500,300);
     boutonSDL.draw(renderer,2*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
     boutonTXT.draw(renderer,18*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
-    boutonQuit.draw(renderer,10*TAILLE_SPRITE,17*TAILLE_SPRITE,400,100);
-
+    boutonQuit.draw(renderer,10*TAILLE_SPRITE,17*TAILLE_SPRITE,400,100);    
     SDL_Event event;
-    bool menuActif = true;
-    if (SDL_PollEvent(&event))
-    {   
-        switch (event.type)
+     bool menuActif = true;
+    /*while (menuActif)
+    {
+        while (SDL_PollEvent(&event))
         {
-        case SDL_QUIT:
-            menuActif = false;
-            break;
-
-        case SDL_MOUSEBUTTONDOWN:
-            if (isClicked(event.button.x, event.button.y, boutonSDL.getRect()))
+            switch (event.type)
             {
-                system("bin/sdl");
-            }
-            else if (isClicked(event.button.x, event.button.y, boutonTXT.getRect()))
-            {
-                system("bin/text");
-            }
-            else if (isClicked(event.button.x, event.button.y, boutonQuit.getRect()))
-            {
+            case SDL_QUIT:
                 menuActif = false;
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                int x = event.button.x;
+                int y = event.button.y;
+                if (x >= rectBoutonSDL.x && x < rectBoutonSDL.x + rectBoutonSDL.w &&
+                    y >= rectBoutonSDL.y && y < rectBoutonSDL.y + rectBoutonSDL.h)
+                {
+                    system("bin/sdl");
+                }
+                else if (x >= rectBoutonTXT.x && x < rectBoutonTXT.x + rectBoutonTXT.w &&
+                         y >= rectBoutonTXT.y && y < rectBoutonTXT.y + rectBoutonTXT.h)
+                {
+                    system("bin/text");
+                }
+                else if (x >= rectBoutonQuit.x && x < rectBoutonQuit.x + rectBoutonQuit.w &&
+                         y >= rectBoutonQuit.y && y < rectBoutonQuit.y + rectBoutonQuit.h)
+                {
+                    menuActif = false;
+                }
+                break;
             }
-            break;
-
-        default:
-            break;
         }
+
+        SDL_RenderPresent(renderer);
+    }*/
 }
 
+void SDLMenu::sdlBoucle(){
+    bool ouvert=false;
+    while(!ouvert){
+        afficherMenu(renderer);
+    }
 }
+
+
+
