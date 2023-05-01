@@ -72,48 +72,9 @@ void Jeu:: Gravite(bool vr)
 
 //Fait bouger les blocs du jeu automatiquement 
 void Jeu::ActionAuto(Plateau &pla){
-    
-      // Parcours du tableau pour trouver l'objet de type Bloc et le déplacer en dessous si la case est vide
-        for(int i = 0; i < 2; i++){
-        
-            Vect2 pos= pla.getObjet(i).getPos();
-            // vitesse  = 1;
-           // cout<<x<<" "<<y<<endl;
 
-            //printf("X : %d   Y : %d ", x, y);
-            if(pos.y - 1 >= 7 ){
-                pla.setPlateau(make_Vect2(pos.x,pos.y-1),BLOC);
-                pla.setPlateau(pos,SPACE);
-                 pla.getObjet(i).setPos(pos.x, pos.y-1);
-                cout<<pos.x<<" "<<pos.y<<endl;
-                cout<<endl;
-                // assert(x<dimx);
-                // assert(y<dimy);
-            }else
-             pla.setPlateau(make_Vect2(pos.x,pos.y+3),BLOC);
-            // setPlateau(make_Vect2(x,y+3),BLOC);
-                        pla.setPlateau(pos,SPACE);
-        }
-        for(int i = 2; i < 4; i++){
-        
-            Vect2 pos= pla.getObjet(i).getPos();
-            // vitesse  = 1;
-            cout<<pos.x<<" "<<pos.y<<endl;
-            
-            //printf("X : %d   Y : %d ", x, y);
-            if(pos.y - 1 >= 8 ){
-                pla.setPlateau(make_Vect2(pos.x,pos.y-1),BLOC);
-                pla.setPlateau(pos,SPACE);
-                pla.getObjet(i).setPos(pos.x, pos.y-1);
-                //cout<<x<<" "<<y<<endl;
-                cout<<endl;
-                // assert(pos.x<dimx);
-                // assert(pos.y<dimy);
-            }else
-            pla.setPlateau(make_Vect2(pos.x,pos.y+3),BLOC);
-            pla.setPlateau(pos,SPACE);
+        pla.bougeAuto();
 
-        }
 }
 
 //Fonction qui calcule si deux elements sont sur la meme case

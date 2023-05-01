@@ -215,6 +215,9 @@ bool Plateau::EstPosValide(const int x, const int y)const{
 void Plateau::bougeAuto(){
  
     // Parcours du tableau pour trouver l'objet de type Bloc et le déplacer en dessous si la case est vide
+    for (int j = 0; j <4; j++)
+    {
+        
         for(int i = 0; i < 2; i++){
         
             int x = tabBloc[i].getPos().x;
@@ -227,6 +230,7 @@ void Plateau::bougeAuto(){
                 // setPlateau(make_Vect2(x,y-vitesse),BLOC);
                 plateau[x][y-vitesse] = BLOC;
                 plateau[x][y] = SPACE;
+                cout<<plateau[x][y]<<endl;
                 tabBloc[i].setPos(x, y-vitesse);
                 cout<<x<<" "<<y<<endl;
                 cout<<endl;
@@ -259,6 +263,8 @@ void Plateau::bougeAuto(){
             // setPlateau(make_Vect2(x,y+3),BLOC);
             plateau[x][y] = SPACE;
         }
+    }
+    
 }
 
 
