@@ -134,6 +134,14 @@ public :
     */
     void afficherGameOver();
 
+    /**
+     * @brief affiche l'écran de fin de jeu lorsque le joueur a gagné
+    */
+    void afficherGagne();
+
+    /**
+     * @brief joue une musique tout le long de la partie
+    */
     void jouerMusique(const char* filename);
     void arreterMusique();
 
@@ -176,19 +184,6 @@ private :
     bool withSound;
     Mix_Music * musique; // Pointeur vers le fichier audio
 
-
-    /**
-     * @brief  identifiant de timer SDL utilisé pour gérer le chronomètre du jeu
-     */
-    SDL_TimerID time;
-    /**
-     * @brief  mage qui contient le texte affichant le temps écoulé depuis le début du jeu
-     */
-    Image im_chrono;
-    /**
-     * @brief  la couleur du texte du chronomètre
-     */
-    SDL_Color chrono_couleur;
     
    
    /**
