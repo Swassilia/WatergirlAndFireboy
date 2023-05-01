@@ -266,6 +266,40 @@ void SDLSimple::afficherGameOver() {
     exit(0);
 
 }
+
+//jouer de la musique tout le long du jeu
+void SDLSimple:: jouerMusique(const char* filename) {
+    // Initialiser SDL Mixer
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        cout << "Erreur lors de l'initialisation de SDL Mixer: " << Mix_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    // Charger le fichier audio
+    musique = Mix_LoadMUS("data/witch.mp3");
+    if (musique == NULL) {
+        cout << "Erreur lors du chargement du fichier audio: " << Mix_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    // Jouer le fichier audio en boucle
+    if (Mix_PlayMusic(musique, -1) < 0) {
+        cout << "Erreur lors de la lecture du fichier audio: " << Mix_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+}
+
+//arreter la musique quand le jeu est fini
+void SDLSimple:: arreterMusique() {
+    Mix_HaltMusic(); // Arrêter la musique
+    Mix_FreeMusic(musique); // Libérer la mémoire allouée pour le fichier audio
+    musique = NULL;
+    Mix_CloseAudio(); // Fermer SDL Mixer
+}
+
 //contient la boucle principale du jeu SDL, gère les entrées utilisateur, les mises à jour de jeu et le rendu du jeu
 void SDLSimple::sdlBoucle(){
     SDL_Event event;
@@ -274,6 +308,7 @@ void SDLSimple::sdlBoucle(){
     Uint32 t = SDL_GetTicks(), nt;
     int chrono = 50;
     time = SDL_AddTimer(1000,chrono_callback,&chrono);
+    jouerMusique("musique.mp3");
 
     while (!ouvert) {
         
