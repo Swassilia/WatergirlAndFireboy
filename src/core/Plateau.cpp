@@ -226,7 +226,7 @@ void Plateau::bougeAuto(){
 
             //printf("X : %d   Y : %d ", x, y);
             if(y - 1 >= 7 ){
-                // setPlateau(make_Vect2(x,y-vitesse),BLOC);
+                
                 plateau[x][y-vitesse] = BLOC;
                 plateau[x][y] = SPACE;
                 cout<<plateau[x][y]<<endl;
@@ -237,7 +237,6 @@ void Plateau::bougeAuto(){
                 assert(y<dimy);
             }else
             plateau[x][y+3] = BLOC;
-            // setPlateau(make_Vect2(x,y+3),BLOC);
             plateau[x][y] = SPACE;
         }
         for(int i = 2; i < 4; i++){
@@ -250,7 +249,6 @@ void Plateau::bougeAuto(){
             //printf("X : %d   Y : %d ", x, y);
             if(y - 1 >= 8 ){
                 plateau[x][y-vitesse] = BLOC;
-               //setPlateau(make_Vect2(x,y-vitesse),BLOC);
                 plateau[x][y] = SPACE;
                 tabBloc[i].setPos(x, y-vitesse);
                 cout<<x<<" "<<y<<endl;
@@ -259,7 +257,6 @@ void Plateau::bougeAuto(){
                 assert(y<dimy);
             }else 
             plateau[x][y+3] = BLOC;
-            // setPlateau(make_Vect2(x,y+3),BLOC);
             plateau[x][y] = SPACE;
         }
     }
