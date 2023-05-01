@@ -86,8 +86,11 @@ bool Jeu::collision(const Personnage& per,const Objet & obj){
 }
 
 //Renvoie vrai si les deux persos sont sur leurs portes respectives et ainsi gagne la partie
-bool Jeu:: succes(const Objet & obj,const Objet & ob){
-     return collision(feu,ob)&&collision(eau,obj);
+bool Jeu:: succes(Plateau pla){
+    if (collision(feu,pla.getObjet(13))&&collision(eau,pla.getObjet(12)))
+     return true  ;
+    
+    return false;
  }
 
 //Renvoie vrai si les personnages touchent un élément qu'ils ne devraient pas et donc perdent 
@@ -113,26 +116,17 @@ void Jeu:: ajouteScore(Plateau &pla)
         if (pla.getObjet(i).getType()==DiamantFeu &&collision(feu, pla.getObjet(i))) 
         {
             score++;
-            cout<<score<<endl;
-            int x = pla.getObjet(i).getPos().x;
-            int y = pla.getObjet(i).getPos().y;
+            cout<<"le score est "<<score<<" "<<endl;
             pla.setObjet(i,Defaut);
-            cout<<x<<" "<<y<<endl;
             pla.setPlateau(pla.getObjet(i).getPos(), SPACE);
-            cout<<pla.getObjet(i).getType()<<" "<<Defaut;
          }
         if (pla.getObjet(i).getType()==DiamantEau&&collision(eau, pla.getObjet(i) )) 
         {
             score++;
             cout<<"le score est "<<score<<" "<<endl;
-            int x = pla.getObjet(i).getPos().x;
-            int y = pla.getObjet(i).getPos().y;
             pla.setObjet(i,Defaut);
             pla.setPlateau(pla.getObjet(i).getPos(),SPACE);
-            cout<<x<<" "<<y<<endl;
-            cout<<" le type de  est "<<pla.getObjet(i).getType()<<" "<<i<<" le type de space est "<<Defaut<<endl;
-            cout<<" le type de  est "<<pla.getPlateau(x,y)<<" "<< i <<" le type de space est "<<SPACE<<endl;
-            //cout<<pla.getPlateau(pla.getObjet(i).getPos().x, pla.getObjet(i).getPos().y);
+
          }
 
         }

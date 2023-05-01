@@ -79,35 +79,6 @@ void Personnage:: DeplacerD ( const Plateau &pla)
 void Personnage::DeplacerH (const  Plateau &pla)
 {
     if (pla.EstPosValide(pos.x,pos.y-1)) pos.y-=2;
-    // const int hauteurMax = 2;
-    // const int tempsSaut = 6;
-    // static int tempsEcoule = 0;
-    // static bool enSaut = false;
-    // if (enSaut)
-    // {
-    //     if (tempsEcoule < tempsSaut)
-    //     {
-    //         pos.y -= hauteurMax;
-    //         tempsEcoule++;
-    //     }
-    //     else if (tempsEcoule < tempsSaut * 2)
-    //     {
-    //         pos.y += hauteurMax;
-    //         tempsEcoule++;
-    //     }
-    //     else
-    //     {
-    //         enSaut = false;
-    //         tempsEcoule = 0;
-    //     }
-    // }
-    // else
-    // {
-    //     if (pla.EstPosValide(pos.x, pos.y - 1))
-    //     {
-    //         enSaut = true;
-    //     }
-    // }
 }
 
 //pour appliquer une gravité au personnage, on augmente la coordonnée en y pour simuler une chute

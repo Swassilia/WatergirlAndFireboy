@@ -1,4 +1,4 @@
-EXEC_NAME = bin/jeu bin/text bin/sdl bin/test bin.jeusdl
+EXEC_NAME = bin/jeu bin/text bin/sdl bin/test #bin.jeusdl
 OBJ_FILES = obj/mainSdl.o obj/mainTest.o obj/mainTxt.o obj/Personnage.o obj/Vect2.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/WinTxt.o obj/JeuSdl.o obj/Objet.o obj/MainMenu.o obj/Menu.o obj/mainMenuSdl.o obj/MenuSdl.o
 
 CC = g++
@@ -11,8 +11,8 @@ all: $(EXEC_NAME)
 bin/jeu: obj/MainMenu.o obj/Menu.o 
 	$(CC) -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
 
-bin/jeusdl: obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o
-	$(CC) -g obj/mainMenuSdl.o obj/MenuSdl.o -o bin/jeusdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+# bin/jeusdl: obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o
+# 	$(CC) -g obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o -o bin/jeusdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 bin/text: obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o 
 	$(CC) -g  obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o -o bin/text 
@@ -47,7 +47,7 @@ obj/JeuTxt.o: src/txt/JeuTxt.h src/txt/JeuTxt.cpp src/core/Jeu.h
 obj/WinTxt.o: src/txt/WinTxt.h src/txt/WinTxt.cpp  
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/txt/WinTxt.cpp -o obj/WinTxt.o
 
-obj/JeuSdl.o: src/SDL/JeuSdl.h src/SDL/JeuSdl.cpp src/core/Jeu.h obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
+obj/JeuSdl.o: src/SDL/JeuSdl.h src/SDL/JeuSdl.cpp src/core/Jeu.h obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o obj/Menu.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/JeuSdl.cpp -o obj/JeuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 obj/MenuSdl.o: src/sdl/MenuSdl.h src/sdl/MenuSdl.cpp src/core/Menu.h
@@ -64,7 +64,7 @@ obj/Personnage.o: src/core/Personnage.cpp src/core/Personnage.h src/core/Vect2.h
 obj/Plateau.o: src/core/Plateau.cpp src/core/Plateau.h  src/core/NomCase.h src/core/Objet.h 
 	$(CC) $(CFLAGS) $(INCLUDES)  -c src/core/Plateau.cpp  -o obj/Plateau.o 
 
-obj/Objet.o: src/core/Objet.cpp src/core/Plateau.h src/core/Vect2.h src/core/Type.h
+obj/Objet.o: src/core/Objet.cpp src/core/Vect2.h src/core/Type.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/Objet.cpp -o obj/Objet.o
 
 obj/Vect2.o: src/core/Vect2.cpp src/core/Vect2.h

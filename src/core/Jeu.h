@@ -85,7 +85,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool succes(const Objet & obj,const Objet & ob);
+    bool succes(Plateau pla);
 
     /**
      * @brief tester si la partie est perdue en vérifiant la collision entre un personnage et un élément de type contraire

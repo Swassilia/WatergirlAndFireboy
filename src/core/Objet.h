@@ -84,7 +84,7 @@ class Objet {
      * @brief position de l'objet de type Vect2
      * 
      */
-    Vect2 posO; //position de l'objet
+    Vect2 posO; 
 
    
 
