@@ -66,7 +66,7 @@ public:
      * @brief permet le mouvement automatique des obstacles de type Bloc
      * 
      */
-    void ActionAuto();
+    void ActionAuto(Plateau &pla);
 
     /**
     * @brief vérifier les collisions entre les objets et les personnages

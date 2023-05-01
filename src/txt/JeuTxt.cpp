@@ -55,7 +55,7 @@ using namespace std;
  		 c = win.getCh();
 		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);
-		jeu.ActionAuto();
+		jeu.ActionAuto(pla);
 		// jeu.Gravite(true);
 		 if (c=='a')
 		 {
