@@ -88,7 +88,7 @@ bool Jeu::collision(const Personnage& per,const Objet & obj){
 
 //Renvoie vrai si les deux persos sont sur leurs portes respectives et ainsi gagne la partie
 bool Jeu:: succes(Plateau pla){
-    if (collision(feu,pla.getObjet(13))&&collision(eau,pla.getObjet(12)))
+    if (collision(feu,pla.getObjet(1))&&collision(eau,pla.getObjet(0)))
      return true  ;
     
     return false;

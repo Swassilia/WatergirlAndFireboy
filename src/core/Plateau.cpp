@@ -69,7 +69,7 @@ Plateau::Plateau()
     dimx=33;
     dimy=23;
   
-    int i=0;
+    int i=2;
     int j=0;
     for(int y=0; y<dimy; ++y)
     {
@@ -93,13 +93,13 @@ Plateau::Plateau()
 
                 case 'E': 
                 plateau[x][y] = PORTEEAU;
-                tabObj[i]=Objet(PorteE,x,y);  
+                tabObj[0]=Objet(PorteE,x,y);  
                 i++;
                 break;
 
                 case 'F': 
                 plateau[x][y] = PORTEFEU;
-                tabObj[i]=Objet(PorteF,x,y);
+                tabObj[1]=Objet(PorteF,x,y);
                 i++;
                 break;
 
@@ -222,17 +222,14 @@ void Plateau::bougeAuto(){
             int x = tabBloc[i].getPos().x;
             int y = tabBloc[i].getPos().y;
             vitesse  = 1;
-            cout<<x<<" "<<y<<endl;
+
 
             //printf("X : %d   Y : %d ", x, y);
             if(y - 1 >= 7 ){
                 
                 plateau[x][y-vitesse] = BLOC;
                 plateau[x][y] = SPACE;
-                cout<<plateau[x][y]<<endl;
                 tabBloc[i].setPos(x, y-vitesse);
-                cout<<x<<" "<<y<<endl;
-                cout<<endl;
                 assert(x<dimx);
                 assert(y<dimy);
             }else
@@ -244,15 +241,12 @@ void Plateau::bougeAuto(){
             int x = tabBloc[i].getPos().x;
             int y = tabBloc[i].getPos().y;
             vitesse  = 1;
-            cout<<x<<" "<<y<<endl;
             
             //printf("X : %d   Y : %d ", x, y);
             if(y - 1 >= 8 ){
                 plateau[x][y-vitesse] = BLOC;
                 plateau[x][y] = SPACE;
                 tabBloc[i].setPos(x, y-vitesse);
-                cout<<x<<" "<<y<<endl;
-                cout<<endl;
                 assert(x<dimx);
                 assert(y<dimy);
             }else 
