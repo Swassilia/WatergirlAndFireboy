@@ -134,9 +134,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         exit(1);
     }
 
-    chrono_couleur = { 255, 255, 0, 128 }; 
-    //chrono_couleur= {0,0,0};
-    //cout<<"init";
 
 	int dimx, dimy;
 	 dimx = jeu.getPlateau().getDimx();
@@ -333,8 +330,6 @@ void SDLSimple::sdlBoucle(){
     bool ouvert=false;
     Plateau pla=jeu.getPlateau();
     Uint32 t = SDL_GetTicks(), nt;
-    int chrono = 50;
-    time = SDL_AddTimer(1000,chrono_callback,&chrono);
     jouerMusique("musique.mp3");
 
     while (!ouvert) {
@@ -410,7 +405,6 @@ void SDLSimple::sdlBoucle(){
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
 	}
-    SDL_RemoveTimer(time);
     arreterMusique();
     
 }
