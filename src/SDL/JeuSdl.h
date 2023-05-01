@@ -134,6 +134,14 @@ public :
     */
     void afficherGameOver();
 
+    /**
+     * @brief affiche l'écran de fin de jeu lorsque le joueur a gagné
+    */
+    void afficherGagne();
+
+    /**
+     * @brief joue une musique tout le long de la partie
+    */
     void jouerMusique(const char* filename);
     void arreterMusique();
 

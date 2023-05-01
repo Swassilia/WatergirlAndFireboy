@@ -266,6 +266,34 @@ void SDLSimple::afficherGameOver() {
 
 }
 
+void SDLSimple::afficherGagne() {
+
+    const Plateau & pla=jeu.getPlateau();
+    
+    //Attendre 2 secondes avant d'afficher la fin de partie
+    SDL_Delay(1000);
+
+    //changer la couleur de la fenêtre
+    SDL_SetRenderDrawColor(renderer, 255,255,255,5);
+    SDL_RenderClear(renderer);
+
+    //charger l'image "game Over"
+    SDL_Surface* surface = IMG_Load("data/gagné.png");
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+
+    // Afficher l'image
+    SDL_Rect rect = {160,140, pla.getDimx()*20, pla.getDimy()*20};
+    SDL_RenderCopy(renderer, texture, NULL, &rect);
+    SDL_DestroyTexture(texture);
+    SDL_RenderPresent(renderer);
+
+    SDL_Delay(4000); // Attendre 4 secondes avant de quitter le jeu
+    SDL_Quit();
+    exit(0);
+
+}
+
 //jouer de la musique tout le long du jeu
 void SDLSimple:: jouerMusique(const char* filename) {
     // Initialiser SDL Mixer
@@ -331,7 +359,13 @@ void SDLSimple::sdlBoucle(){
 		while (SDL_PollEvent(&event)) {
             jeu.ajouteScore(pla);
             jeu.Gravite(true);
-            if (jeu.succes(pla)) cout<<"gagné";
+            if (jeu.succes(pla)) 
+            {
+                cout<<"gagné";
+                ouvert=true;
+                afficherGagne();
+            }
+
             if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
 				switch (event.key.keysym.scancode) {
