@@ -56,7 +56,7 @@ using namespace std;
 		Plateau pla=jeu.getPlateau();
 		jeu.ActionClavier(c);
 		jeu.ActionAuto(pla);
-		// jeu.Gravite(true);
+		jeu.Gravite(true);
 		 if (c=='a')
 		 {
 			cout<<endl;

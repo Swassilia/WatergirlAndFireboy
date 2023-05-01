@@ -78,8 +78,65 @@ void Personnage:: DeplacerD ( const Plateau &pla)
 //tout en vérifiant si la case du haut est une position valide
 void Personnage::DeplacerH (const  Plateau &pla)
 {
-    if (pla.EstPosValide(pos.x,pos.y-1)) pos.y-=2;
+    if (pla.EstPosValide(pos.x,pos.y-2)) 
+    {
+        if (type_p==Eau)
+        {
+            pos.y-=3;
+        }
+        else
+        {
+            pos.y-=2;
+        } 
+    }
+    else 
+    {
+        if (type_p==Eau)
+        {
+            pos.y-=2;
+        }
+        else
+        {
+            pos.y-=1;
+        }
+    }
 }
+    // if (pla.EstPosValide(pos.x,pos.y-1)) 
+    // {
+    //     if (type_p==Eau)
+    //     pos.y-=2;
+    //     else 
+    //      pos.y-=2;
+    // }
+    // const int hauteurMax = 2;
+    // const int tempsSaut = 6;
+    // static int tempsEcoule = 0;
+    // static bool enSaut = false;
+    // if (enSaut)
+    // {
+    //     if (tempsEcoule < tempsSaut)
+    //     {
+    //         pos.y -= hauteurMax;
+    //         tempsEcoule++;
+    //     }
+    //     else if (tempsEcoule < tempsSaut * 2)
+    //     {
+    //         pos.y += hauteurMax;
+    //         tempsEcoule++;
+    //     }
+    //     else
+    //     {
+    //         enSaut = false;
+    //         tempsEcoule = 0;
+    //     }
+    // }
+    // else
+    // {
+    //     if (pla.EstPosValide(pos.x, pos.y - 1))
+    //     {
+    //         enSaut = true;
+    //     }
+    // }
 
 //pour appliquer une gravité au personnage, on augmente la coordonnée en y pour simuler une chute
 ////tout en vérifiant si la case du bas est une position valide

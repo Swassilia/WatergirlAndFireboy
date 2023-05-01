@@ -135,6 +135,8 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
     }
 
     chrono_couleur = { 255, 255, 0, 128 }; 
+    //chrono_couleur= {0,0,0};
+    //cout<<"init";
 
 	int dimx, dimy;
 	 dimx = jeu.getPlateau().getDimx();
@@ -149,7 +151,7 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         SDL_Quit(); 
         exit(1);
     }
-
+    //cout<<"window";
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
@@ -168,7 +170,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
 
-
     //FONT
         if (TTF_Init() < 0)
         {
@@ -185,7 +186,10 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         font_color.r = 50;font_color.g = 50;font_color.b = 255;
         font_im.setSurface(TTF_RenderText_Solid(font,"Fire Boy and Water Girl",font_color));
         font_im.loadFromCurrentSurface(renderer);
+        //cout<<"font";
 
+
+        //anim = new Animation(renderer)
 }
 
 //Destructeur qui libère la mémoire allouée pour la fenêtre
@@ -261,8 +265,6 @@ void SDLSimple::afficherGameOver() {
     exit(0);
 
 }
-// void SDLSimple::afficherMenu(SDL_Renderer* renderer, TTF_Font* font)
-// {
 
 //jouer de la musique tout le long du jeu
 void SDLSimple:: jouerMusique(const char* filename) {
@@ -328,21 +330,9 @@ void SDLSimple::sdlBoucle(){
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
             jeu.ajouteScore(pla);
-             jeu.Gravite(true);  
-             if (jeu.succes(pla)) cout<<"gagné";
-               
-            for(int i=0; i<30; i++)
-            {
-               if (jeu.perte(pla.getObjet(i)))
-               {
-                   ouvert=true;
-                   afficherGameOver();
-               };
-                
-            }
-            
-			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
-			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
+            jeu.Gravite(true);
+            if (jeu.succes(pla)) cout<<"gagné";
+            if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
 				switch (event.key.keysym.scancode) {
 				case SDL_SCANCODE_A:
@@ -371,6 +361,19 @@ void SDLSimple::sdlBoucle(){
 				
 			}
 
+            for(int i=0; i<30; i++)
+            {
+               if (jeu.perte(pla.getObjet(i)))
+               {
+                   ouvert=true;
+                   afficherGameOver();
+               };
+                
+            }
+            
+			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
+			
+
 		}
 
 
@@ -380,5 +383,6 @@ void SDLSimple::sdlBoucle(){
         SDL_RenderPresent(renderer);
 	}
     SDL_RemoveTimer(time);
+    arreterMusique();
     
 }
