@@ -168,10 +168,6 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
 
-        // titre.loadFromFile("data/titre.png",renderer);
-        // boutonSDL.loadFromFile("data/iconeSDL.png",renderer);
-        // boutonTXT.loadFromFile("data/iconeTXT.png",renderer);
-        // boutonQuit.loadFromFile("data/iconeQuit.png",renderer);
 
     //FONT
         if (TTF_Init() < 0)
