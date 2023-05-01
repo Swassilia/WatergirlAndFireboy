@@ -13,7 +13,7 @@ bin/jeu: obj/MainMenu.o obj/Menu.o
 	$(CC) -g  obj/MainMenu.o obj/Menu.o -o bin/jeu
 
 bin/jeusdl: obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
-	$(CC) -g obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o -o bin/jeusdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
+	$(CC) -g obj/mainMenuSdl.o obj/MenuSdl.o obj/Menu.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o -o bin/jeusdl -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 bin/text: obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o 
 	$(CC) -g  obj/mainTxt.o obj/WinTxt.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Jeu.o obj/JeuTxt.o obj/Objet.o -o bin/text 
@@ -37,7 +37,7 @@ obj/mainSdl.o: src/SDL/mainSdl.cpp obj/JeuSdl.o obj/Jeu.o obj/Vect2.o obj/Person
 obj/MainMenu.o: src/core/MainMenu.cpp src/core/Menu.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/core/MainMenu.cpp -o obj/MainMenu.o
 
-obj/mainMenuSdl.o: src/SDL/mainMenuSdl.cpp obj/MenuSdl.o obj/Menu.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
+obj/mainMenuSdl.o: src/SDL/mainMenuSdl.cpp src/SDL/MenuSdl.h src/core/Jeu.h obj/Menu.o obj/Jeu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/mainMenuSdl.cpp -o obj/mainMenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 
@@ -51,7 +51,7 @@ obj/WinTxt.o: src/txt/WinTxt.h src/txt/WinTxt.cpp
 obj/JeuSdl.o: src/SDL/JeuSdl.h src/SDL/JeuSdl.cpp src/core/Jeu.h obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o obj/Menu.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/JeuSdl.cpp -o obj/JeuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
-obj/MenuSdl.o: src/SDL/MenuSdl.h src/SDL/MenuSdl.cpp src/core/Jeu.h obj/Menu.o obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
+obj/MenuSdl.o: src/SDL/MenuSdl.h src/SDL/MenuSdl.cpp src/core/Jeu.h src/core/Menu.h obj/Vect2.o obj/Personnage.o obj/Plateau.o obj/Objet.o
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/SDL/MenuSdl.cpp -o obj/MenuSdl.o -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -I/usr/include/SDL2
 
 
