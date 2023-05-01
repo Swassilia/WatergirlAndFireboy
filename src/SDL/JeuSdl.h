@@ -10,6 +10,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include "../core/Jeu.h"
+#include "../core/Menu.h"
 
 /**
  * @brief classe gerant l'affichage en image du jeu
@@ -127,13 +128,17 @@ public :
      * 
      * @param pla plateau du jeu
      */
-    void sdlAff (Plateau pla);
+    void sdlAff ();
 
     /**
      * @brief affiche l'écran de fin de jeu lorsque le joueur a perdu
     */
     void afficherGameOver();
-
+    /**
+     * @brief affiche le menu principale du jeu avant le debut du jeu
+     * 
+     */
+    void afficherMenu(SDL_Renderer* renderer, TTF_Font* font);
 private :
 
     /**
@@ -141,7 +146,10 @@ private :
      */
 	Jeu jeu;
 
-
+    ChoixMenu sdl;
+    ChoixMenu txt;
+    ChoixMenu quit;
+    
     /**
      * @brief fenêtre SDL dans laquelle le jeu est affiché
      */
@@ -220,6 +228,14 @@ private :
     Image im_porte_eau;
     Image im_porte_feu;
 
+    /**
+     *  images représentant le menu
+     * 
+     */
+    Image titre;
+    Image boutonSDL;
+    Image boutonTXT;
+    Image boutonQuit;
 
     /**
      * @brief booléens qui indiquent si une souris ou un clavier est utilisé pour contrôler le jeu

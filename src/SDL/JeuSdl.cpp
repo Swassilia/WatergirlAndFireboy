@@ -9,6 +9,7 @@ using namespace std;
 
 
 const int TAILLE_SPRITE = 32;
+const int MENU_MAX = 4;
 
 float temps () {
     return float(SDL_GetTicks()) / CLOCKS_PER_SEC;
@@ -168,6 +169,11 @@ SDLSimple::SDLSimple(): window(nullptr),renderer(nullptr){
         lava1.loadFromFile("data/lava-1.png",renderer);
         riviere1.loadFromFile("data/riviere-1.png",renderer);
         vert1.loadFromFile("data/vert-1.png",renderer);
+
+        titre.loadFromFile("data/titre.png",renderer);
+        boutonSDL.loadFromFile("data/iconeSDL.png",renderer);
+        boutonTXT.loadFromFile("data/iconeTXT.png",renderer);
+        boutonQuit.loadFromFile("data/iconeQuit.png",renderer);
     //cout<<"image";
     //FONT
         if (TTF_Init() < 0)
@@ -202,14 +208,14 @@ SDLSimple::~SDLSimple(){
 }
 
 //dessine le plateau de jeu sur le rendu SDL en utilisant les images
-void SDLSimple::sdlAff(Plateau pla){
+void SDLSimple::sdlAff(){
          //cout<<"init";
          //Remplir l'écran de blanc
          SDL_SetRenderDrawColor(renderer, 45,46,12,5);
          SDL_RenderClear(renderer);
          
          int x,y;
-        //  pla=jeu.getPlateau();
+         const Plateau  pla=jeu.getPlateau();
          const Personnage &eau = jeu.getPersonnageEau();
          const Personnage &feu = jeu.getPersonnageFeu();
 
@@ -266,7 +272,23 @@ void SDLSimple::afficherGameOver() {
     exit(0);
 
 }
+void SDLSimple::afficherMenu(SDL_Renderer* renderer, TTF_Font* font)
+{
 
+    SDL_SetRenderDrawColor(renderer, 143,130,65, 255);
+    SDL_RenderClear(renderer);
+
+    SDL_Surface* surface = TTF_RenderText_Solid(font, "Menu", {255,255,255});
+     // Couleur du texte
+    //SDL_Color textColor = {0, 0, 0, 255};
+
+    titre.draw(renderer,8*TAILLE_SPRITE,2*TAILLE_SPRITE,500,300);
+    boutonSDL.draw(renderer,2*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
+    boutonTXT.draw(renderer,18*TAILLE_SPRITE,12*TAILLE_SPRITE,400,100);
+    boutonQuit.draw(renderer,10*TAILLE_SPRITE,17*TAILLE_SPRITE,400,100);
+
+
+}
 //contient la boucle principale du jeu SDL, gère les entrées utilisateur, les mises à jour de jeu et le rendu du jeu
 void SDLSimple::sdlBoucle(){
     SDL_Event event;
@@ -277,7 +299,8 @@ void SDLSimple::sdlBoucle(){
     time = SDL_AddTimer(1000,chrono_callback,&chrono);
 
     while (!ouvert) {
-
+        afficherMenu(renderer,font);
+        
         if(jeu.tmp_partie <10)
             chrono_couleur = {255,0,0};
         string tmp_partie_str = to_string(jeu.tmp_partie);
@@ -294,18 +317,18 @@ void SDLSimple::sdlBoucle(){
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&event)) {
-            jeu.Gravite(true); 
-            //jeu.ajouteScore(pla);  
+            
+            jeu.Gravite(true);    
             for(int i=0; i<30; i++)
             {
                if (jeu.perte(pla.getObjet(i)))
                {
                    ouvert=true;
                    afficherGameOver();
-               }
-
-                jeu.ajouteScore(pla);
-
+               };
+                
+            }
+            //jeu.ajouteScore(pla);
 			if (event.type == SDL_QUIT) ouvert = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (event.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 
@@ -335,16 +358,16 @@ void SDLSimple::sdlBoucle(){
 				}
 				
 			}
-            
 
 		}
+
 		// on affiche le jeu sur le buffer caché
-		sdlAff(pla);
+		afficherMenu(renderer,font);
+        //sdlAff();
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
 	}
-    // SDL_RemoveTimer(time);
+    SDL_RemoveTimer(time);
     
-}
 }
