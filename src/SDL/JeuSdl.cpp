@@ -341,12 +341,6 @@ void SDLSimple::sdlBoucle(){
         
        // afficherMenu(renderer,font);
         sdlAff(pla);
-        if(jeu.tmp_partie <10)
-            chrono_couleur = {255,0,0};
-        string tmp_partie_str = to_string(jeu.tmp_partie);
-        im_chrono.setSurface(TTF_RenderText_Solid(font,tmp_partie_str.c_str(),chrono_couleur));
-        im_chrono.loadFromCurrentSurface(renderer);
-        im_chrono.draw(renderer,jeu.getPlateau().getDimx()/2,10,120,60);
         
         nt = SDL_GetTicks();
         if (nt-t>500) {
